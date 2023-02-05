@@ -2,10 +2,10 @@ const theme = {
  media: {
  mobile: "(max-width: 767px)",
   tablet: "(max-width: 1279px) and (min-width: 768px)",
-  desctop: "(min-width: 1280px)",
+  desktop: "(min-width: 1280px)",
  },
  colors: {
-  fon: "#FDF7F2",
+  bg: "#FDF7F2",
   black: "#111111",
   white: "#FFFFFF",
   accent: "#F59256",
@@ -36,7 +36,7 @@ const theme = {
   none: "none",
   box: "2px solid #F59256",
  },
- radii: {
+ radius: {
   none: "0",
   normal: "40px",
   round: "50%",

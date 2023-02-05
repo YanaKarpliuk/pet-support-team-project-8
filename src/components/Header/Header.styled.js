@@ -23,7 +23,7 @@ export const MobileBtn = styled.div`
   cursor: pointer;
   z-index: 10;
  }
- @media ${(p) => p.theme.media.desctop} {
+ @media ${(p) => p.theme.media.desktop} {
   display: none;
  }
 `;
