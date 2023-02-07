@@ -6,14 +6,15 @@ import { Box, MobileBtn, Menu } from "./Header.styled";
 import { IoMenu, IoClose } from "react-icons/io5";
 // import UserNav from "../UserNav/UserNav";
 const Header = () => {
- const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+    const notOpen = () => setOpen(!open);
  return (
-  <Box open={open} onClick={() => setOpen(!open)}>
-   <Logo />
+  <Box>
+   <Logo noOpen={notOpen} />
    <Menu open={open}>
     {/* <UserNav /> */}
-    <AuthNav />
-    <Nav />
+    <AuthNav noOpen={notOpen} />
+    <Nav noOpen={notOpen} />
    </Menu>
    <MobileBtn onClick={() => setOpen(!open)}>
     {open ? <IoClose size={40} /> : <IoMenu size={40} />}

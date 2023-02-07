@@ -8,6 +8,7 @@ export const Log = styled(NavLink)`
  letter-spacing: 0.07em;
   @media ${(p) => p.theme.media.desktop} {
   font-size: 32px;}
+  
 `;
 export const LogAccent = styled.span`
  font-family: ${(p) => p.theme.fonts.logo};

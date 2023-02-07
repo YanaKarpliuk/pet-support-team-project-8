@@ -2,12 +2,13 @@
 import { Box, Link} from "./UserNav.styled";
 import { HiUserCircle } from "react-icons/hi";
 
-const UserNav = () => {
+const UserNav = (notOpen) => {
  return (
   <Box>
-         <Link to="/user">
-             <HiUserCircle size={20}/>
-             Account</Link>
+   <Link to="/user" onClick={notOpen}>
+    <HiUserCircle size={20} />
+    Account
+   </Link>
   </Box>
  );
 };
