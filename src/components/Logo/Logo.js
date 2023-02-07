@@ -1,11 +1,16 @@
+
 import { Log,LogAccent} from "./Logo.styled";
 
 const Logo = () => { 
     return (
-        <div>
-            <Log>pe<LogAccent>t</LogAccent>ly</Log>
-        </div>
-    )
+     <nav>
+     
+       <Log to="/">
+        pe<LogAccent>t</LogAccent>ly
+       </Log>
+   
+     </nav>
+    );
 }
 
 export default Logo;

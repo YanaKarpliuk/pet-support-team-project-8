@@ -1,12 +1,12 @@
-import { Link } from "./Nav.styled";
+import { Link, Box } from "./Nav.styled";
 export const Nav = () => {
 
  return (
-  <nav style={{ display: "flex", gap: 10 }}>
+  <Box>
    <Link to="/news">News</Link>
    <Link to="/notices">Find pet</Link>
    <Link to="/friends">Our friends</Link>
-  </nav>
+  </Box>
  );
 };
 

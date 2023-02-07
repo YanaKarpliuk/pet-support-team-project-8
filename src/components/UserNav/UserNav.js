@@ -1,10 +1,14 @@
-import { NavLink } from "react-router-dom";
-// import { Link } from "./AuthNav.styled";
+// import { NavLink } from "react-router-dom";
+import { Box, Link} from "./UserNav.styled";
+import { HiUserCircle } from "react-icons/hi";
+
 const UserNav = () => {
  return (
-  <div>
-   <NavLink to="/user">UserPage</NavLink>
-  </div>
+  <Box>
+         <Link to="/user">
+             <HiUserCircle size={20}/>
+             Account</Link>
+  </Box>
  );
 };
 
