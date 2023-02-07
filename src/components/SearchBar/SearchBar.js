@@ -1,7 +1,6 @@
 import elements from "./SearchBar.styled"
-import { IconContext } from "react-icons";
-import { AiOutlineSearch } from "react-icons/ai"
-const { Form, Input, SearchBtn, SearchBarContainer } = elements
+
+const { Form, Input, SearchBtn, SearchBarContainer, MugnifyingGlass, CrissCross, ClearBtn } = elements
 
 const SearchBar = ({ handleQuery }) => {
 
@@ -9,11 +8,15 @@ const SearchBar = ({ handleQuery }) => {
         <SearchBarContainer>
             <Form onSubmit={handleQuery}>
                 <Input type="text" name="search" placeholder="Search" />
-                <IconContext.Provider value={{ style: { verticalAlign: 'bottom', width: "20px", height: "20px" } }}>
-                    <SearchBtn type="submit"><AiOutlineSearch /></SearchBtn>
-                </IconContext.Provider>
+
+                <SearchBtn type="submit">
+                    <MugnifyingGlass />
+                </SearchBtn>
+                <ClearBtn type="button">
+                    <CrissCross />
+                </ClearBtn>
             </Form>
-        </SearchBarContainer>
+        </SearchBarContainer >
     )
 }
 

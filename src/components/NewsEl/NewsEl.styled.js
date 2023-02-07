@@ -67,6 +67,11 @@ line-height: 1.375;
 text-align: right;
 color: ${theme.colors.accent};
 text-decoration-line: underline;
+transition: color 200ms ease-in-out;
+
+&:hover, &:active {
+    color: #FF6101
+}
 `
 
 const elements = { ListItem, FirstHalf, Title, Text, SecondHalf, Link, Date }

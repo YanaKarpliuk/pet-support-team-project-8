@@ -63,7 +63,10 @@ const NewsPage = () => {
         if (!searchQuery) {
             alert("Input some query, please")
         }
+        console.log(searchQuery)
         setQuery(searchQuery)
+
+        e.target.reset()
     }
 
     return (

@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import theme from '../../theme'
+import theme from '../../theme';
+import { AiOutlineSearch } from "react-icons/ai"
+import { AiOutlineCloseCircle } from "react-icons/ai"
 
 const SearchBarContainer = styled.div`
 display: flex;
@@ -56,20 +58,26 @@ font-family: ${theme.fonts.manrope};
 font-weight: ${theme.fontWeights.normal};
 font-size: 20px;
 letter-spacing: 0.04em;
+outline: none;
+
+&:focus {
+    outline: 1px solid rgba(245, 146, 86, 0.5);
+
+   
+}
 `;
 
 const SearchBtn = styled.button`
+display:block;
 position: absolute;
 top: 50%;
 right: 0;
 transform: translate(0, -50%);
 
 @media screen and (${theme.media.mobile}) {
-width: 15%;
 height: 40px;
 };
 
-width: 7%;
 height: 44px;
 
 padding: 0;
@@ -79,8 +87,43 @@ border: ${theme.borders.none};
 border-top-right-radius: 20px;
 border-bottom-right-radius: 20px;
 
+ input:focus ~ & {
+    display: none;
+  }
+
 cursor: pointer;`
 
-const elements = { Form, Input, SearchBtn, SearchBarContainer }
+const ClearBtn = styled(SearchBtn)`
+display: none;
+
+ input:focus ~ & {
+    display: block;
+  }`
+
+const MugnifyingGlass = styled(AiOutlineSearch)`
+display: block;
+@media screen and (${theme.media.mobile}) {
+width: 20px;
+height: 20px;
+ }
+
+  width: 24px; 
+  height: 24px;
+  
+  ${Input}:focus & {
+    display: none;
+  }`
+
+const CrissCross = styled(AiOutlineCloseCircle)`
+display: block;
+ @media screen and (${theme.media.mobile}) {
+width: 20px;
+height: 20px;
+ }
+
+  width: 24px; 
+  height: 24px;
+`
+const elements = { Form, Input, SearchBtn, SearchBarContainer, MugnifyingGlass, CrissCross, ClearBtn }
 
 export default elements
