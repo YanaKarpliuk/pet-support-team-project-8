@@ -9,7 +9,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 const HomePage = lazy(() => import("./pages/Home"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
-const NewsPage = lazy(() => import("./pages/NewsPage"));
+const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage"));
 const UserPage = lazy(() => import("./pages/UserPage"));
 const NoticesPage = lazy(() => import("./pages/NoticesPage"));
 const OurFriendsPage = lazy(() => import("./pages/OurFriendsPage"));
