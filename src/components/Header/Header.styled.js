@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Box = styled.div`
  display: flex;
- width: 100%;
  background-color: ${(p) => p.theme.colors.bg};
  @media ${(p) => p.theme.media.mobile} {
   padding: 12px 20px;
