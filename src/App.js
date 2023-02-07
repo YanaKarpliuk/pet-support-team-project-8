@@ -13,6 +13,7 @@ const NewsPage = lazy(() => import("./pages/NewsPage"));
 const UserPage = lazy(() => import("./pages/UserPage"));
 const NoticesPage = lazy(() => import("./pages/NoticesPage"));
 const OurFriendsPage = lazy(() => import("./pages/OurFriendsPage"));
+
 function App() {
  return (
   <div>
