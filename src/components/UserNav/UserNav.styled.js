@@ -6,8 +6,11 @@ export const Box = styled.div`
  gap: 12px;
  justify-content: center;
  margin-top: ${(p) => p.theme.space[5]}px;
- 
-  
+ @media ${(p) => p.theme.media.desktop} {
+
+  margin-top: ${(p) => p.theme.space[0]}px;
+
+ }
 `;
 export const Link = styled(NavLink)`
  display: flex;

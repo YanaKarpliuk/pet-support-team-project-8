@@ -6,6 +6,8 @@ export const Log = styled(NavLink)`
  font-size: 28px;
  line-height: 42px;
  letter-spacing: 0.07em;
+  @media ${(p) => p.theme.media.desktop} {
+  font-size: 32px;}
 `;
 export const LogAccent = styled.span`
  font-family: ${(p) => p.theme.fonts.logo};
@@ -13,4 +15,7 @@ export const LogAccent = styled.span`
  line-height: 42px;
  letter-spacing: 0.07em;
  color: ${(p) => p.theme.colors.accent};
+ @media ${(p) => p.theme.media.desktop} {
+  font-size: 32px;
+ }
 `;
