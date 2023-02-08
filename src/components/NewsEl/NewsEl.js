@@ -1,6 +1,6 @@
 import elements from "./NewsEl.styled";
 import React from "react";
-import EllipsisText from "react-ellipsis-text";
+const EllipsisText = require("react-ellipsis-text").default;
 
 window.React = React;
 
