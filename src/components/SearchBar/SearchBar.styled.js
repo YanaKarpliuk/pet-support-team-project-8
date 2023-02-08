@@ -72,15 +72,17 @@ display:block;
 position: absolute;
 top: 50%;
 right: 0;
+padding: 0;
+padding-right: 3%;
 transform: translate(0, -50%);
 
 @media screen and (${theme.media.mobile}) {
 height: 40px;
+padding-right: 5%;
 };
 
 height: 44px;
 
-padding: 0;
 background: transparent;
 
 border: ${theme.borders.none};
