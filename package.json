@@ -2,6 +2,7 @@
   "name": "pet-support-team-project-8",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yanakarpliuk.github.io/pet-support-team-project-8/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
