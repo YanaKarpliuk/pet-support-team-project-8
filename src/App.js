@@ -6,7 +6,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 // import About from "path/to/pages/About";
 // import Products from "path/to/pages/Products";
 // import NotFound from "path/to/pages/NotFound";
-const HomePage = lazy(() => import("./pages/Home"));
+const HomePage = lazy(() => import("./pages/Home/Home"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage"));
