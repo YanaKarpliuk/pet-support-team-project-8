@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from "../Logo/Logo";
 import Nav from "../Nav/Nav";
 import AuthNav from "../AuthNav/AuthNav";
-import { Box, MobileBtn, Menu } from "./Header.styled";
+import { Box, MobileBtn, Menu, MenuNav } from "./Header.styled";
 import { IoMenu, IoClose } from "react-icons/io5";
 // import UserNav from "../UserNav/UserNav";
 const Header = () => {
@@ -11,16 +11,18 @@ const Header = () => {
  return (
   <Box>
    <Logo noOpen={notOpen} />
-   <Menu open={open}>
-    {/* <UserNav /> */}
-    <AuthNav noOpen={notOpen} />
+   <MenuNav open={open}>
     <Nav noOpen={notOpen} />
+   </MenuNav>
+
+   <Menu open={open}>
+    {/* <UserNav noOpen={notOpen} /> */}
+    {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
+    <AuthNav noOpen={notOpen} />
    </Menu>
    <MobileBtn onClick={() => setOpen(!open)}>
     {open ? <IoClose size={40} /> : <IoMenu size={40} />}
    </MobileBtn>
-
-   {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
   </Box>
  );
 };
