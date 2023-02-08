@@ -69,6 +69,7 @@ export const Menu = styled.div`
 export const MenuNav = styled.div`
  @media ${(p) => p.theme.media.mobile} {
   position: fixed;
+  z-index: 5;
   width: 100%;
   height: 100vh;
 padding-top: 42px;
@@ -81,6 +82,7 @@ padding-top: 42px;
 
  @media ${(p) => p.theme.media.tablet} {
   position: fixed;
+  z-index: 5;
   width: 100%;
   height: 100vh;
   top: ${(p) => (p.open ? "72px" : "-100%")};
