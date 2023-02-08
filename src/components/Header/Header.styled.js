@@ -38,6 +38,7 @@ export const Menu = styled.div`
  @media ${(p) => p.theme.media.mobile} {
   position: fixed;
   width: 100%;
+  z-index: 5;
   height: 82px;
   top: ${(p) => (p.open ? "64px" : "-100%")};
   text-align: center;
@@ -48,12 +49,13 @@ export const Menu = styled.div`
 
  @media ${(p) => p.theme.media.tablet} {
   display: flex;
+  z-index: 5;
   margin-left: auto;
   display: ${(p) => (p.open ? "none" : "margin-left: auto")};
   text-align: center;
   align-items: center;
  }
-// 
+ //
  @media ${(p) => p.theme.media.desktop} {
   display: flex;
 

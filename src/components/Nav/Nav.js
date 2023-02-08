@@ -1,6 +1,5 @@
 import { Link, Box } from "./Nav.styled";
 export const Nav = (notOpen) => {
-
  return (
   <Box>
    <Link to="/news" onClick={notOpen}>
