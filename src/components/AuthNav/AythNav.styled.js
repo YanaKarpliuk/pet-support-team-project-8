@@ -24,7 +24,8 @@ export const Link = styled(NavLink)`
   color: ${(p) => p.theme.colors.white};
  }
  @media ${(p) => p.theme.media.tablet} {
-  margin-top: ${(p) => p.theme.space[0]}px;
+  margin: ${(p) => p.theme.space[0]}px;
+  font-size: 20px;
  }
 
  @media ${(p) => p.theme.media.desktop} {

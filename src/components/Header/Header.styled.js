@@ -24,9 +24,12 @@ export const MobileBtn = styled.div`
  // position: absolute;
  cursor: pointer;
 
-//  @media ${(p) => p.theme.media.tablet} {
-//   margin-left: auto;
-//  }
+ @media ${(p) => p.theme.media.tablet} {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-left: 20px;
+ }
  @media ${(p) => p.theme.media.desktop} {
   display: none;
  }
@@ -44,10 +47,13 @@ export const Menu = styled.div`
  }
 
  @media ${(p) => p.theme.media.tablet} {
+  display: flex;
   margin-left: auto;
   display: ${(p) => (p.open ? "none" : "margin-left: auto")};
+  text-align: center;
+  align-items: center;
  }
-
+// 
  @media ${(p) => p.theme.media.desktop} {
   display: flex;
 

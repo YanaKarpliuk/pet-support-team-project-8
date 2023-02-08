@@ -34,6 +34,10 @@ export const Link = styled(NavLink)`
  &.active {
   font-weight: ${(p) => p.theme.fontWeights.bold};}
  };
+ @media ${(p) => p.theme.media.tablet} {
+  margin: ${(p) => p.theme.space[0]}px;
+
+ }
 
 @media ${(p) => p.theme.media.desktop} {
   font-size: 20px;
