@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpet_support_team_project_8=self.webpackChunkpet_support_team_project_8||[]).push([[254],{254:function(e,t,n){n.r(t);var s=n(184);t.default=function(){return(0,s.jsx)("div",{style:{display:"flex",alignItems:"center",justifyContent:"center",height:"85vh"},children:(0,s.jsx)("h1",{style:{textAlign:"center"},children:"NoticesPage"})})}}}]);
+//# sourceMappingURL=254.a6a5d0de.chunk.js.map
