@@ -9,13 +9,15 @@ const Box = styled.div`
   position: relative;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 60px 20px 0;
   height: 100%;
   justify-content: space-between;
 
   @media screen and (${theme.media.tablet}) {
+    padding: 88px 30px 0;
   }
   @media screen and (${theme.media.desktop}) {
+    padding: 60px 16px 0;
     flex-direction: row;
     align-items: flex-end;
   }
@@ -51,6 +53,7 @@ const ImgWrap = styled.div`
 `;
 
 const Container = styled.section`
+  background-color: ${theme.colors.bg};
   background-image: url(${mobileBg});
   background-repeat: no-repeat;
   background-position: center;
