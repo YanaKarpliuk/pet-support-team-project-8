@@ -2,7 +2,22 @@ import styled from "styled-components"
 import theme from "../../theme"
 
 const Container = styled.div`
-background-color: ${theme.colors.bg}`
+background-color: ${theme.colors.bg};
+padding-bottom: 100px;
+
+@media screen and (${theme.media.mobile}) {
+    padding-top: 42px;
+}
+
+@media screen and (${theme.media.tablet}) {
+padding-top: 88px;
+}
+
+@media screen and (${theme.media.desktop}) {
+padding-top: 58px;
+padding-bottom: 200px;
+}
+`
 
 const Header = styled.h1`
 @media screen and (${theme.media.mobile}) {
