@@ -1,4 +1,8 @@
 import elements from "./NewsEl.styled";
+import React from "react";
+const EllipsisText = require("react-ellipsis-text").default;
+
+window.React = React;
 
 const { ListItem, FirstHalf, Title, Text, SecondHalf, Date, Link } = elements;
 
@@ -8,8 +12,8 @@ const NewsEl = ({ info }) => {
     return (
         <ListItem>
             <FirstHalf>
-                <Title>{title}</Title>
-                <Text>{text}</Text>
+                <Title><EllipsisText text={title} length={38} /></Title>
+                <Text><EllipsisText text={text} length={213} /></Text>
             </FirstHalf>
             <SecondHalf>
                 <Date>{date}</Date>
