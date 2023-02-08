@@ -6,7 +6,7 @@ export const Box = styled.div`
  gap: 12px;
  justify-content: center;
  @media ${(p) => p.theme.media.desktop} {
-  gap: 48px;
+  gap: 20px;
  }
 `;
 export const Link = styled(NavLink)`
@@ -18,10 +18,15 @@ export const Link = styled(NavLink)`
  font-size: ${(p) => p.theme.fontSizes.s};
  color: ${(p) => p.theme.colors.black};
  letter-spacing: 0.07em;
+
  &:hover {
   background-color: ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.white};
  }
+ @media ${(p) => p.theme.media.tablet} {
+  margin-top: ${(p) => p.theme.space[0]}px;
+ }
+
  @media ${(p) => p.theme.media.desktop} {
   margin-top: ${(p) => p.theme.space[0]}px;
  }
