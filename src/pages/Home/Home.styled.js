@@ -60,7 +60,7 @@ const Container = styled.section`
   background-size: cover;
   position: relative;
   height: 100%;
-  margin-top: 68px;
+  margin-top: 67px;
 
   @media screen and (${theme.media.tablet}) {
     margin-top: 82px;

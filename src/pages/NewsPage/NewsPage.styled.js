@@ -4,7 +4,7 @@ import theme from "../../theme"
 const Container = styled.div`
  background-color: ${theme.colors.bg};
  padding-bottom: 100px;
- margin-top: 68px;
+ margin-top: 67px;
 
  @media screen and (${theme.media.mobile}) {
   padding-top: 42px;
