@@ -60,11 +60,15 @@ const Container = styled.section`
   background-size: cover;
   position: relative;
   height: 100%;
+  margin-top: 67px;
+
   @media screen and (${theme.media.tablet}) {
+    margin-top: 82px;
   }
 
   @media screen and (${theme.media.desktop}) {
     background-image: url(${desktopBg});
+    margin-top: 82px;
   }
 `;
 
