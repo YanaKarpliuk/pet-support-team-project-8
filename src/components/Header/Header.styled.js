@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Box = styled.div`
  display: flex;
  width: 100%;
+ position: fixed;
+ z-index: 100;
  background-color: ${(p) => p.theme.colors.bg};
  @media ${(p) => p.theme.media.mobile} {
   padding: 12px 20px;
@@ -10,8 +12,8 @@ export const Box = styled.div`
   justify-content: space-between;
  }
  @media ${(p) => p.theme.media.tablet} {
-  position: fixed;
-    z-index: 100;
+  // position: fixed;
+  // z-index: 100;
   padding: 20px 32px;
   gap: 10px;
   justify-content: space-between;
