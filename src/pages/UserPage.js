@@ -1,4 +1,4 @@
-const Home = () => {
+const UserPage = () => {
  return (
   <div
    style={{
@@ -8,8 +8,8 @@ const Home = () => {
     height: "85vh",
    }}
   >
-   <h1 style={{ textAlign: "center" }}>Home</h1>
+   <h1 style={{ textAlign: "center" }}>UserPage</h1>
   </div>
  );
-}
-export default Home;
+};
+export default UserPage;

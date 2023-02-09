@@ -1,11 +1,15 @@
 // import { NavLink } from 'react-router-dom';
-import { Link } from "./AythNav.styled";
-const AuthNav = () => {
+import { Box, Link } from "./AythNav.styled";
+const AuthNav = ({noOpen}) => {
  return (
-  <div style={{ display: "flex", gap: 10 }}>
-   <Link to="/login">Log In</Link>
-   <Link to="/register">Register</Link>
-  </div>
+  <Box>
+   <Link to="/login" onClick={noOpen}>
+    Login
+   </Link>
+   <Link to="/register" onClick={noOpen}>
+    Registration
+   </Link>
+  </Box>
  );
 };
 

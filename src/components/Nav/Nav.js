@@ -1,13 +1,18 @@
-import { Link } from "./Nav.styled";
-export const Nav = () => {
-
- return (
-  <nav style={{ display: "flex", gap: 10 }}>
-   <Link to="/news">News</Link>
-   <Link to="/notices">Find pet</Link>
-   <Link to="/friends">Our friends</Link>
-  </nav>
- );
+import { Link, Box } from "./Nav.styled";
+export const Nav = ({ noOpen }) => {
+  return (
+    <Box>
+      <Link to="/news" onClick={noOpen}>
+        News
+      </Link>
+      <Link to="/notices" onClick={noOpen}>
+        Find pet
+      </Link>
+      <Link to="/friends" onClick={noOpen}>
+        Our friends
+      </Link>
+    </Box>
+  );
 };
 
 export default Nav;

@@ -1,24 +1,29 @@
-
+import { useState } from "react";
 import Logo from "../Logo/Logo";
 import Nav from "../Nav/Nav";
 import AuthNav from "../AuthNav/AuthNav";
-import { Box, MobileBtn, Menu } from "./Header.styled";
-import { IoMenu } from "react-icons/io5";
+import { Box, MobileBtn, Menu, MenuNav } from "./Header.styled";
+import { IoMenu, IoClose } from "react-icons/io5";
 // import UserNav from "../UserNav/UserNav";
 const Header = () => {
-    return (
-     <Box>
-      <Logo />
-      <Menu>
-       <Nav />
-       <AuthNav />
+  const [open, setOpen] = useState(false);
+  const notOpen = () => setOpen(!open);
+  return (
+    <Box>
+      {open ? <Logo noOpen={notOpen} /> : <Logo/>}
+      <MenuNav open={open}>
+        <Nav noOpen={notOpen} />
+      </MenuNav>
+
+      <Menu open={open}>
+        {/* <UserNav noOpen={notOpen} /> */}
+        {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
+        <AuthNav noOpen={notOpen} />
       </Menu>
-      <MobileBtn>
-       <IoMenu size={40} />
+      <MobileBtn onClick={() => setOpen(!open)}>
+        {open ? <IoClose size={40} /> : <IoMenu size={40} />}
       </MobileBtn>
-      {/* <UserNav/> */}
-      {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
-     </Box>
-    );
-}
+    </Box>
+  );
+};
 export default Header;
