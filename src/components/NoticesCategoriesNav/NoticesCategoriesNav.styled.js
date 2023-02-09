@@ -29,7 +29,8 @@ transition: background-color 200ms, color 200ms;
 &:hover, &:focus {
     background-color: ${theme.colors.accent};
     color: ${theme.colors.white};
-}`
+};
+cursor: pointer;`
 
 const elements = { Option, Container }
 

@@ -1,8 +1,8 @@
-import elements from "./SearchOptions.styled"
+import elements from "./NoticesCategoriesNav.styled"
 
 const { Option, Container } = elements;
 
-const SearchOptions = () => {
+const NoticesCategoriesNav = () => {
     return (<Container>
         <Option type="button">lost/found</Option>
         <Option type="button">in good hands</Option>
@@ -10,4 +10,4 @@ const SearchOptions = () => {
     </Container>)
 }
 
-export default SearchOptions
+export default NoticesCategoriesNav
