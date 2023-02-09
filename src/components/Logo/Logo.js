@@ -1,14 +1,13 @@
+import { Log, LogAccent } from "./Logo.styled";
 
-import { Log,LogAccent} from "./Logo.styled";
-
-const Logo = (notOpen) => { 
-    return (
-     <nav>
-      <Log to="/" onClick={notOpen}>
-       pe<LogAccent>t</LogAccent>ly
+const Logo = ({ noOpen }) => {
+  return (
+    <nav>
+      <Log to="/" onClick={noOpen}>
+        pe<LogAccent>t</LogAccent>ly
       </Log>
-     </nav>
-    );
-}
+    </nav>
+  );
+};
 
 export default Logo;
