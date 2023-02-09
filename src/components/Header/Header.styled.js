@@ -35,6 +35,31 @@ export const MobileBtn = styled.div`
   }
 `;
 export const Menu = styled.div`
+<<<<<<< HEAD
+ @media ${(p) => p.theme.media.mobile} {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  height: 82px;
+  top: ${(p) => (p.open ? "64px" : "-100%")};
+  text-align: center;
+  right: ${(p) => (p.open ? 0 : "-100%")};
+  transition: all 0.4s ease;
+  background-color: ${(p) => p.theme.colors.bg};
+ }
+
+ @media ${(p) => p.theme.media.tablet} {
+  display: flex;
+  z-index: 5;
+  margin-left: auto;
+  display: ${(p) => (p.open ? "none" : "margin-left: auto")};
+  text-align: center;
+  align-items: center;
+ }
+ //
+ @media ${(p) => p.theme.media.desktop} {
+  display: flex;
+=======
   @media ${(p) => p.theme.media.mobile} {
     position: fixed;
     width: 100%;
@@ -56,6 +81,7 @@ export const Menu = styled.div`
   //
   @media ${(p) => p.theme.media.desktop} {
     display: flex;
+>>>>>>> main
 
     width: 100%;
     margin-left: 80px;
