@@ -10,7 +10,7 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  <React.StrictMode>
-  <BrowserRouter basename="/pet-support-team-project-8">
+  <BrowserRouter basename="/">
    <ThemeProvider theme={theme}>
     <App />
    </ThemeProvider>
