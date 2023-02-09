@@ -90,6 +90,7 @@ border-top-right-radius: 20px;
 border-bottom-right-radius: 20px;
 
  input:focus ~ & {
+  pointer-events: none;
     display: none;
   }
 
@@ -99,8 +100,10 @@ const ClearBtn = styled(SearchBtn)`
 display: none;
 
  input:focus ~ & {
+  pointer-events: all;
     display: block;
-  }`
+  }
+  `
 
 const MugnifyingGlass = styled(AiOutlineSearch)`
 display: block;

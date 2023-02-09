@@ -4,6 +4,12 @@ const { Form, Input, SearchBtn, SearchBarContainer, MugnifyingGlass, CrissCross,
 
 const SearchBar = ({ handleQuery }) => {
 
+    const clear = (e) => {
+        console.log(e)
+
+
+    }
+
     return (
         <SearchBarContainer>
             <Form onSubmit={handleQuery}>
@@ -12,7 +18,7 @@ const SearchBar = ({ handleQuery }) => {
                 <SearchBtn type="submit">
                     <MugnifyingGlass />
                 </SearchBtn>
-                <ClearBtn type="button">
+                <ClearBtn onClick={clear} type="button">
                     <CrissCross />
                 </ClearBtn>
             </Form>
