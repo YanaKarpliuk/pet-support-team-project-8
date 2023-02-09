@@ -4,10 +4,10 @@ const AuthNav = (notOpen) => {
  return (
   <Box>
    <Link to="/login" onClick={notOpen}>
-    LogIn
+    Login
    </Link>
    <Link to="/register" onClick={notOpen}>
-    Register
+    Registration
    </Link>
   </Box>
  );
