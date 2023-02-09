@@ -7,7 +7,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import './index.css';
 
-import theme  from "./theme";
+import theme from './theme';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
