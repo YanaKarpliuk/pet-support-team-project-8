@@ -9,7 +9,7 @@ const Container = styled.div`
   font-family: ${({ theme }) => theme.fonts.manrope};
   width: 100%;
   height: ${props => props.viewportHeight - 0.5}px;
-  padding-top: 42px;
+  padding-top: 100px;
   background-color: ${({ theme }) => theme.colors.bg};
   background-image: ${({ isFirstStepComplete: t }) =>
     `url(${t ? mobileBgImgSecondStep : mobileBgImgFirstStep})`};
