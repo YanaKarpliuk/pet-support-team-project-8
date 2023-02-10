@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "../../theme";
-import mobileBg from "../../img/bg-mobile.svg";
-import desktopBg from "../../img/bg-desktop.svg";
+import mobileBg from "../../images/home/bg-mobile.svg";
+import desktopBg from "../../images/home/bg-desktop.svg";
 
 const Box = styled.div`
   display: flex;
