@@ -4,9 +4,9 @@ const { Option, Container } = elements;
 
 const NoticesCategoriesNav = () => {
     return (<Container>
-        <Option type="button">lost/found</Option>
-        <Option type="button">in good hands</Option>
-        <Option type="button">sell</Option>
+        <li> <Option type="button">lost/found</Option></li>
+        <li><Option type="button">in good hands</Option></li>
+        <li><Option type="button">sell</Option></li>
     </Container>)
 }
 

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import theme from "../../theme";
 
-const Container = styled.div`
+const Container = styled.ul`
+display: flex;
 `
 
 const Option = styled.button`

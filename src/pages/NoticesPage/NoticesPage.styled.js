@@ -38,7 +38,8 @@ color: ${theme.colors.black};
 const CategoriesCont = styled.div`
 display: flex;
 justify-content: space-between;
-align-items: top;`
+align-items: top;
+margin-bottom: 30px;`
 
 const elements = { Header, Container, CategoriesCont }
 
