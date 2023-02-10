@@ -2,6 +2,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import AddNoticeButton from "../../components/AddNoticeButton/AddNoticeButton";
 import NoticesCategoriesNav from "../../components/NoticesCategoriesNav/NoticesCategoriesNav";
 import elements from "./NoticesPage.styled";
+import doggo from '../../img/example.jpg'
 import NoticesCategoriesList from "../../components/NoticesCategoriesList/NoticesCategoriesList";
 
 const { Header, Container, CategoriesCont } = elements;
@@ -10,7 +11,7 @@ const ads = [{
     id: 1,
     title: "Сute dog looking for a home",
     category: "in good hands",
-    img: "https://www.shutterstock.com/image-photo/big-light-brown-bitch-purebred-breeding-1742682791",
+    img: doggo,
     breed: 'Pomeranian',
     age: 'one',
     place: 'Lviv'
@@ -19,7 +20,8 @@ const ads = [{
     id: 2,
     title: "Сute dog looking for a home",
     category: "cell",
-    img: "https://www.pexels.com/photo/two-yellow-labrador-retriever-puppies-1108099/",
+    price: 13,
+    img: doggo,
     breed: 'Pomeranian',
     age: 'one',
     place: 'Lviv'
@@ -28,7 +30,35 @@ const ads = [{
     id: 3,
     title: "Сute dog looking for a home",
     category: "lost/found",
-    img: "https://www.shutterstock.com/image-photo/hungry-jack-russell-dog-empty-bowl-1484307701",
+    img: doggo,
+    breed: 'Pomeranian',
+    age: 'one',
+    place: 'Lviv'
+},
+{
+    id: 4,
+    title: "Сute dog looking for a home",
+    category: "in good hands",
+    img: doggo,
+    breed: 'Pomeranian',
+    age: 'one',
+    place: 'Lviv'
+},
+{
+    id: 5,
+    title: "Сute dog looking for a home",
+    category: "cell",
+    price: 13,
+    img: doggo,
+    breed: 'Pomeranian',
+    age: 'one',
+    place: 'Lviv'
+},
+{
+    id: 6,
+    title: "Сute dog looking for a home",
+    category: "lost/found",
+    img: doggo,
     breed: 'Pomeranian',
     age: 'one',
     place: 'Lviv'

@@ -7,7 +7,7 @@ const MobBtn = styled.button`
     display: none;
 }
  cursor: pointer;
-position: absolute;
+position: fixed;
 width: 80px;
 height: 80px;
 right: 20px;

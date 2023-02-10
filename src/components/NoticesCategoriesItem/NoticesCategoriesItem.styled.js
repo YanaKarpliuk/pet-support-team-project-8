@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import theme from "../../theme";
-import { BsHeart } from "react-icons/bs";
+import { TiHeartFullOutline } from "react-icons/ti";
 
 const Item = styled.li`
 width: 280px;
 height: 606px;
 
+@media screen and (${theme.media.tablet}) {
+    width: 336px;
+}
 background: ${theme.colors.white};
 
 box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -15,7 +18,21 @@ const TextContainer = styled.div`
 padding: 20px;`
 
 const ImageContainer = styled.div`
-position: relative;`
+position: relative;
+width: 280px;
+height: 288px;
+
+@media screen and (${theme.media.tablet}) {
+    width: 336px;
+}
+
+& > img {
+    display: block;
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+}`
 
 const Category = styled.span`
 position: absolute;
@@ -25,6 +42,8 @@ left: 0;
 top: 20px;
 
 background: rgba(255, 255, 255, 0.6);
+border-top-right-radius: ${theme.radius.normal};
+border-bottom-right-radius: ${theme.radius.normal};
 backdrop-filter: blur(2px);
 
 font-family: ${theme.fonts.inter};
@@ -32,7 +51,9 @@ font-weight: ${theme.fontWeights.normal};
 font-size: ${theme.fontSizes.xs};
 line-height: 1.25;
 
-text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
 letter-spacing: 0.04em;
 
 color: ${theme.colors.black};
@@ -78,17 +99,50 @@ border: none;
 border-radius: ${theme.radius.round};
 background: rgba(255, 255, 255, 0.6);
 backdrop-filter: blur(2px);
+
+cursor: pointer;
 `
 
-const Heart = styled(BsHeart)`
+const Heart = styled(TiHeartFullOutline)`
 margin: 0 auto;
 display: block;
 width: 28px;
 height: 28px;
 fill: rgba(255, 255, 255, 0.6);
 stroke: ${theme.colors.accent};
-backdrop-filter: blur(50px);`
+    stroke-width: 2px;
+transition: fill 200ms, stroke 200ms;
 
-const elements = { AddToFav, Item, Title, InfoList, Info, TextContainer, Category, ImageContainer, Heart }
+${AddToFav}:hover &, ${AddToFav}:focus & {
+    fill: #FF6101;
+    stroke: #FF6101;
+} `
+
+const LearMore = styled.button`
+padding: 8px 0;
+width: 248px;
+
+background: ${theme.colors.white};
+border: 2px solid ${theme.colors.accent};
+border-radius: ${theme.radius.normal};
+
+font-family:${theme.fonts.manrope};
+font-weight: ${theme.fontWeights.normal};
+font-size: ${theme.fontSizes.m};
+line-height: 1.375;
+
+text-align: center;
+letter-spacing: 0.04em;
+cursor: pointer;
+color: ${theme.colors.accent};
+transition: color 200ms, border 200ms;
+
+&:focus, &:hover {
+border: 2px solid #FF6101;
+color: #FF6101;
+
+}`
+
+const elements = { LearMore, AddToFav, Item, Title, InfoList, Info, TextContainer, Category, ImageContainer, Heart }
 
 export default elements

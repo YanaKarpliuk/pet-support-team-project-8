@@ -1,9 +1,9 @@
 import elements from "./NoticesCategoriesItem.styled";
 
-const { Item, Title, AddToFav, InfoList, Info, TextContainer, Category, ImageContainer, Heart } = elements
+const { Item, LearMore, Title, AddToFav, InfoList, Info, TextContainer, Category, ImageContainer, Heart } = elements
 
 const NoticesCategoriesItem = ({ info }) => {
-    const { img, category, title, breed, place, age } = info;
+    const { img, category, title, breed, place, age, price = 0 } = info;
 
     return (
         <Item>
@@ -19,15 +19,17 @@ const NoticesCategoriesItem = ({ info }) => {
                         <span>Breed:</span>
                         <span>Place:</span>
                         <span>Age:</span>
+                        {category === "cell" ? <span>Price:</span> : ''}
                     </InfoList>
                     <InfoList>
                         <span>{breed}</span>
                         <span>{place}</span>
                         <span>{age} year(s)</span>
+                        {category === "cell" ? <span>{price} $</span> : ''}
                     </InfoList>
                 </Info>
 
-                <button type="button">Lear more</button>
+                <LearMore type="button">Lear more</LearMore>
             </TextContainer>
         </Item>
     )
