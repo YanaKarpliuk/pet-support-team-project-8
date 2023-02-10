@@ -35,6 +35,11 @@ text-align: center;
 color: ${theme.colors.black};
 `
 
-const elements = { Header, Container }
+const CategoriesCont = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: top;`
+
+const elements = { Header, Container, CategoriesCont }
 
 export default elements
