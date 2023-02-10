@@ -10,7 +10,7 @@ const Header = () => {
   const notOpen = () => setOpen(!open);
   return (
     <Box>
-      <Logo noOpen={notOpen} />
+      {open ? <Logo noOpen={notOpen} /> : <Logo/>}
       <MenuNav open={open}>
         <Nav noOpen={notOpen} />
       </MenuNav>
