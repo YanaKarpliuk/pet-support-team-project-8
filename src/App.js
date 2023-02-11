@@ -6,13 +6,13 @@ import RestrictedRoute from './components/RestrictedRoute ';
 // import About from "path/to/pages/About";
 // import Products from "path/to/pages/Products";
 // import NotFound from "path/to/pages/NotFound";
-const HomePage = lazy(() => import('./pages/Home/Home'));
-const RegisterPage = lazy(() => import('./pages/RegisterPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
-const UserPage = lazy(() => import('./pages/UserPage'));
-const NoticesPage = lazy(() => import('./pages/NoticesPage'));
-const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage'));
+const HomePage = lazy(() => import("./pages/Home/Home"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage"));
+const UserPage = lazy(() => import("./pages/UserPage"));
+const NoticesPage = lazy(() => import("./pages/NoticesPage"));
+const OurFriendsPage = lazy(() => import("./pages/OurFriendsPage/OurFriendsPage"));
 
 function App() {
   return (
