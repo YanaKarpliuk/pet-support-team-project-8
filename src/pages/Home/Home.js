@@ -1,4 +1,4 @@
-import womanImg from "../../img/woman.png";
+import womanImg from "../../images/home/woman.png";
 import elements from "./Home.styled";
 
 const Home = () => {

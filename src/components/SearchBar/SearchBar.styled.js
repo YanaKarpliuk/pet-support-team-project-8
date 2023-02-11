@@ -9,11 +9,11 @@ justify-content: center;
 
 @media screen and (${theme.media.mobile}) {
 margin-top: 28px;
-margin-bottom: 40px;
+margin-bottom: 28px;
 }
-
+margin-bottom: 40px;
 margin-top: 40px;
-margin-bottom: 60px;`
+`
 
 const Form = styled.form`
 position: relative;

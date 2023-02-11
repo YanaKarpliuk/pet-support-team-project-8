@@ -1,13 +1,43 @@
-import styled from "styled-components";
-import theme from "../../theme";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import theme from '../../theme';
+import { Link } from 'react-router-dom';
 
-{
-  /*Grid not working */
-}
+const Title = styled.h2`
+  margin-top: 42px;
+  margin-bottom: 28px;
+  font-family: ${theme.fonts.manrope};
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+
+  @media screen and (${theme.media.tablet}) {
+    font-size: 48px;
+    line-height: 66px;
+    margin-top: 88px;
+    margin-bottom: 40px;
+  }
+
+  @media screen and (${theme.media.desktop}) {
+    font-size: 48px;
+    line-height: 66px;
+    margin-top: 72px;
+    margin-bottom: 60px;
+  }
+`;
+
 const Container = styled.div`
   background-color: ${theme.colors.bg};
-  padding: 20px;
+  padding: 20px 20px 100px;
+  margin-top: 67px;
+
+  @media screen and (${theme.media.tablet}) {
+    margin-top: 82px;
+  }
+
+  @media screen and (${theme.media.desktop}) {
+    margin-top: 82px;
+  }
 `;
 
 const List = styled.div`
@@ -32,7 +62,7 @@ const Card = styled.li`
   padding: 14px 4px 12px;
   background-color: ${theme.colors.white};
   border-radius: 20px;
-  filter: drop-shadow(7px 4px 14px rgba(49, 21, 4, 0.07));
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   &:not(:last-child) {
     margin-bottom: 12px;
   }
@@ -135,8 +165,64 @@ const ContentItem = styled.div`
     }
   }
   @media screen and (${theme.media.desktop}) {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+`;
+
+const ContentItemModal = styled.ul`
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid ${theme.colors.accent};
+  padding: 12px 0;
+  border-radius: 8px;
+  z-index: 10;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  width: 120px;
+`;
+
+const ContentItemTime = styled.div`
+  margin-bottom: 4px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: ${theme.colors.accent};
+  }
+
+  &:hover > ${ContentItemModal} {
+    display: flex;
+  }
+
+  @media screen and (${theme.media.tablet}) {
+    margin-bottom: 8px;
+  }
+
+  @media screen and (${theme.media.desktop}) {
     margin-bottom: 12px;
   }
+`;
+
+const ContentItemModalSchedude = styled.li`
+  color: black;
+  display: flex;
+  width: max-content;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 16px;
+  width: 120px;
+
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+`;
+
+const ContentItemModalDay = styled.p`
+
 `;
 
 const elements = {
@@ -150,6 +236,11 @@ const elements = {
   ContentItem,
   Box,
   List,
+  ContentItemTime,
+  ContentItemModal,
+  ContentItemModalSchedude,
+  ContentItemModalDay,
+  Title,
 };
 
 export default elements;
