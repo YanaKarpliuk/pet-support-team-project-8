@@ -11,7 +11,7 @@ const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/index"));
 const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage"));
 const UserPage = lazy(() => import("./pages/UserPage"));
-const NoticesPage = lazy(() => import("./pages/NoticesPage"));
+const NoticesPage = lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const OurFriendsPage = lazy(() => import("./pages/OurFriendsPage/OurFriendsPage"));
 
 function App() {
