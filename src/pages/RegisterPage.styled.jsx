@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import mobileBgImgFirstStep from '../images/register/register-Down-BG-image-mobile.svg';
 import mobileBgImgSecondStep from '../images/register/register2Step-Down-BG-image-mobile.svg';
 import tabletBgImg from '../images/register/register-Down-BG-image-tablet.svg';
@@ -30,7 +31,6 @@ const Container = styled.div`
 const FormWrap = styled.div`
   width: 100%;
   padding: 0px 20px 0px 20px;
-  overflow: hidden;
 
   @media screen and (min-width: 600px) {
     padding-left: 2px;
@@ -50,10 +50,11 @@ const FormWrap = styled.div`
     margin: 0;
     border-radius: 40px;
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    overflow: hidden;
   }
 
   @media screen and (min-width: 1280px) {
-    top: ${({ isFirstStepComplete }) => (isFirstStepComplete ? '114px' : '112px')};
+    top: ${({ isFirstStepComplete }) => (isFirstStepComplete ? '112px' : '114px')};
     transform: translate(50%, 0%);
     width: 618px;
     padding-bottom: 60px;
@@ -98,11 +99,39 @@ const LinkToLogin = styled(Link)`
   }
 `;
 
+const StyledToastContainer = styled(ToastContainer)`
+  .Toastify__toast {
+    font-family: ${({ theme }) => theme.fonts.manrope};
+    min-width: 150px;
+    min-height: 50px;
+    background-color: #fde6d8;
+    color: ${({ theme }) => theme.colors.black};
+
+    @media screen and (min-width: 768px) {
+      width: 250px;
+      min-height: 60px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 300px;
+      min-height: 70px;
+    }
+  }
+  --toastify-icon-color-error: ${({ theme }) => theme.colors.accent};
+  .Toastify__progress-bar {
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
+  .Toastify__close-button:hover,
+  .Toastify__close-button:focus {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+`;
+
 const styles = {
   Container,
   FormWrap,
   Title,
   Text,
   LinkToLogin,
+  StyledToastContainer,
 };
 export default styles;
