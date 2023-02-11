@@ -174,14 +174,14 @@ const ContentItem = styled.div`
 const ContentItemModal = styled.ul`
   display: none;
   flex-direction: column;
-  align-items: flex-end;
   position: absolute;
   background-color: #fff;
   border: 1px solid ${theme.colors.accent};
-  padding: 12px;
+  padding: 12px 0;
   border-radius: 8px;
   z-index: 10;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  width: 120px;
 `;
 
 const ContentItemTime = styled.div`
@@ -210,6 +210,11 @@ const ContentItemModalSchedude = styled.li`
   color: black;
   display: flex;
   width: max-content;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 16px;
+  width: 120px;
 
   &:not(:last-child) {
     margin-bottom: 4px;
@@ -217,7 +222,7 @@ const ContentItemModalSchedude = styled.li`
 `;
 
 const ContentItemModalDay = styled.p`
-  margin-right: 12px;
+
 `;
 
 const elements = {
