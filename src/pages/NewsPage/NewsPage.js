@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SearchBar from '../../components/SearchBar/SearchBar'
 import NewsList from '../../components/NewsList/NewsList'
 import elements from './NewsPage.styled';
@@ -13,6 +15,7 @@ const newsEx = [{
     text: 'Травневі прогулянки з улюбленцем не лише приємні, але й потребують пильності. З початком теплої пори року активізуються кліщі, і треба бути уважним, щоб уберегти свого песика чи котика від дуже серйозних неприємностей зі здоров`ям.',
     date: '2022/01/20',
     link: 'https://www.youtube.com/'
+
 }, {
     id: '2',
     title: 'В День ветеринара в столиці пройде...',
@@ -57,14 +60,13 @@ const NewsPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     const obtainQuery = (e) => {
         e.preventDefault()
 
         const searchQuery = e.target.search.value.trim()
 
         if (!searchQuery) {
-            Notify.warning("Input some query, please")
+            toast.info("Make sure you've entered your query", { backgroundColor: '#F59256' })
             return
         }
 
@@ -75,6 +77,15 @@ const NewsPage = () => {
         <Section>
             <Container>
                 <Header>News</Header>
+                <ToastContainer position="top-center"
+                    autoClose={3000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable={false}
+                    pauseOnHover={false} />
                 <SearchBar handleQuery={obtainQuery} />
                 <NewsList query={searchParams.get('query')} contents={news} />
             </Container>

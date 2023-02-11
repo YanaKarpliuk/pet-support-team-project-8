@@ -4,9 +4,8 @@ import theme from "../../theme"
 const Section = styled.section`
 background-color: ${theme.colors.bg};
  padding-bottom: 100px;
- min-height: 100vh;
- width: auto;
-
+ min-height: 100%;
+height: auto;
  @media screen and (${theme.media.mobile}) {
   padding-top: 100px;
  }
@@ -52,6 +51,7 @@ text-align: center;
 
 color: ${theme.colors.black};
 `
+
 
 const elements = { Section, Header, Container }
 
