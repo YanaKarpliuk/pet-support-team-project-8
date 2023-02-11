@@ -1,35 +1,40 @@
 import elements from "./NoticesCategoriesItem.styled";
 
-const { Item, LearMore, Title, AddToFav, InfoList, Info, TextContainer, Category, ImageContainer, Heart } = elements
+const { Item, BtnCont, NoticeBtn, Title, AddToFav, InfoList, Info, TextContainer, Category, ImageContainer, Heart } = elements
 
 const NoticesCategoriesItem = ({ info }) => {
     const { img, category, title, breed, place, age, price = 0 } = info;
 
+    const capitalizedCategory = () => {
+        return category.charAt(0).toUpperCase() + category.slice(1)
+    }
     return (
         <Item>
             <ImageContainer>
                 <img src={img} alt="a pet" />
-                <Category>{category}</Category>
+                <Category>{capitalizedCategory()}</Category>
                 <AddToFav type="button"><Heart /></AddToFav>
             </ImageContainer>
             <TextContainer>
                 <Title>{title}</Title>
-                <Info>
+                <Info category={category}>
                     <InfoList>
-                        <span>Breed:</span>
-                        <span>Place:</span>
-                        <span>Age:</span>
-                        {category === "cell" ? <span>Price:</span> : ''}
+                        <li><span>Breed:</span></li>
+                        <li><span>Place:</span></li>
+                        <li><span>Age:</span></li>
+                        {category === "cell" ? <li><span>Price:</span></li> : ''}
                     </InfoList>
                     <InfoList>
-                        <span>{breed}</span>
-                        <span>{place}</span>
-                        <span>{age} year(s)</span>
-                        {category === "cell" ? <span>{price} $</span> : ''}
+                        <li><span>{breed}</span></li>
+                        <li><span>{place}</span></li>
+                        <li><span>{age} year(s)</span></li>
+                        {category === "cell" ? <li><span>{price} $</span></li> : ''}
                     </InfoList>
                 </Info>
-
-                <LearMore type="button">Lear more</LearMore>
+                <BtnCont>
+                    <NoticeBtn type="button">Lear more</NoticeBtn>
+                    {/* <NoticeBtn type="button">Delete</NoticeBtn> */}
+                </BtnCont>
             </TextContainer>
         </Item>
     )

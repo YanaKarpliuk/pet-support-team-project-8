@@ -5,7 +5,7 @@ import elements from "./NoticesPage.styled";
 import doggo from '../../img/example.jpg'
 import NoticesCategoriesList from "../../components/NoticesCategoriesList/NoticesCategoriesList";
 
-const { Header, Container, CategoriesCont } = elements;
+const { Section, Header, Container, CategoriesCont } = elements;
 
 const ads = [{
     id: 1,
@@ -66,15 +66,17 @@ const ads = [{
 
 const NoticesPage = () => {
     return (
-        <Container>
-            <Header style={{ textAlign: "center" }}>Find your favorite pet</Header>
-            <SearchBar />
-            <CategoriesCont>
-                <NoticesCategoriesNav />
-                <AddNoticeButton />
-            </CategoriesCont>
-            <NoticesCategoriesList contents={ads} />
-        </Container>
+        <Section>
+            <Container>
+                <Header style={{ textAlign: "center" }}>Find your favorite pet</Header>
+                <SearchBar />
+                <CategoriesCont>
+                    <NoticesCategoriesNav />
+                    <AddNoticeButton />
+                </CategoriesCont>
+                <NoticesCategoriesList contents={ads} />
+            </Container>
+        </Section>
     );
 };
 export default NoticesPage;

@@ -3,6 +3,8 @@ import theme from "../../theme";
 
 const Container = styled.ul`
 display: flex;
+flex-wrap: wrap;
+gap: 12px;
 `
 
 const Option = styled.button`

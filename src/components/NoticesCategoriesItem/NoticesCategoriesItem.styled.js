@@ -15,7 +15,7 @@ box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border-radius: 0px 0px 20px 20px;`
 
 const TextContainer = styled.div`
-padding: 20px;`
+padding: 20px 20px 0 20px;`
 
 const ImageContainer = styled.div`
 position: relative;
@@ -73,6 +73,7 @@ display: flex;
 align-items: center;
 text-align: center;
 gap: 40px;
+margin-bottom: ${props => props.category === 'cell' ? "20px" : "50px"};
 `
 
 const InfoList = styled.ul`
@@ -86,7 +87,11 @@ flex-direction: column;
 align-items: flex-start;
 text-align: center;
 
-color:${theme.colors.black};`
+color:${theme.colors.black};
+
+& > li:not(:first-child) {
+    margin-top: 8px;
+}`
 
 const AddToFav = styled.button`
 position: absolute;
@@ -118,7 +123,13 @@ ${AddToFav}:hover &, ${AddToFav}:focus & {
     stroke: #FF6101;
 } `
 
-const LearMore = styled.button`
+const BtnCont = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;`
+
+const NoticeBtn = styled.button`
 padding: 8px 0;
 width: 248px;
 
@@ -143,6 +154,6 @@ color: #FF6101;
 
 }`
 
-const elements = { LearMore, AddToFav, Item, Title, InfoList, Info, TextContainer, Category, ImageContainer, Heart }
+const elements = { BtnCont, NoticeBtn, AddToFav, Item, Title, InfoList, Info, TextContainer, Category, ImageContainer, Heart }
 
 export default elements

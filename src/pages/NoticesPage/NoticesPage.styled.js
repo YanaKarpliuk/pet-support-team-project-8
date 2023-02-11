@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import theme from "../../theme";
 
-const Container = styled.div`
+const Section = styled.section`
 background-color: ${theme.colors.bg};
-padding-bottom: 100px;
-
 @media screen and (${theme.media.mobile}) {
     padding-top: 110px;
 }
@@ -16,6 +14,24 @@ padding-top: 170px;
 @media screen and (${theme.media.desktop}) {
 padding-top: 152px;
 padding-bottom: 200px;
+}
+`
+
+const Container = styled.div`
+margin: 0 auto;
+@media screen and (${theme.media.mobile}) {
+   padding: 0 20px;
+   width: 320px;
+}
+
+@media screen and (${theme.media.tablet}) {
+padding: 0 32px;
+width: 768px;
+}
+
+@media screen and (${theme.media.desktop}) {
+padding: 0 16px;
+width: 1280px;
 }
 `
 
@@ -39,11 +55,14 @@ const CategoriesCont = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: top;
+margin-left: auto;
+margin-right: auto;
+
 @media screen and (${theme.media.mobile}) {
     margin-bottom: 30px;
 }
 margin-bottom: 60px;`
 
-const elements = { Header, Container, CategoriesCont }
+const elements = { Section, Header, Container, CategoriesCont }
 
 export default elements

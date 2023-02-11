@@ -3,6 +3,7 @@ import theme from "../../theme";
 import { AiOutlinePlus } from "react-icons/ai"
 
 const MobBtn = styled.button`
+z-index: 10;
 @media screen and (min-width: 767px) {
     display: none;
 }
