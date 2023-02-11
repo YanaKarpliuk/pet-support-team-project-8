@@ -3,9 +3,14 @@ import elements from "./NewsList.styled"
 
 const { List } = elements
 
-const NewsList = ({ contents }) => {
-    const items = contents.map((data) => {
-        return <NewsEl key={data.id} info={data} />
+const NewsList = ({ contents, query }) => {
+    let contentsNeeded = contents
+    if (query) {
+        contentsNeeded = contents.filter(({ title }) => title.toLowerCase().includes(query))
+    }
+
+    const items = contentsNeeded.map((itemData) => {
+        return <NewsEl key={itemData.id} info={itemData} />
     })
 
     return (

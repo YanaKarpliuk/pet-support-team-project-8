@@ -4,19 +4,17 @@ import theme from "../../theme"
 const Container = styled.div`
  background-color: ${theme.colors.bg};
  padding-bottom: 100px;
- margin-top: 67px;
 
  @media screen and (${theme.media.mobile}) {
-  padding-top: 42px;
+  padding-top: 100px;
  }
 
  @media screen and (${theme.media.tablet}) {
-  padding-top: 88px;
-  margin-top: 83px;
+  padding-top: 160px;
  }
 
  @media screen and (${theme.media.desktop}) {
-  padding-top: 58px;
+  padding-top: 126px;
   padding-bottom: 200px;
  }
 `;

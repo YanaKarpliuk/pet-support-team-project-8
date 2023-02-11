@@ -68,7 +68,8 @@ outline: none;
 `;
 
 const SearchBtn = styled.button`
-display:block;
+display: ${props => props.exist ? 'none' : "block"};
+cursor: pointer;
 position: absolute;
 top: 50%;
 right: 0;
@@ -88,21 +89,28 @@ background: transparent;
 border: ${theme.borders.none};
 border-top-right-radius: 20px;
 border-bottom-right-radius: 20px;
+`
 
- input:focus ~ & {
-  pointer-events: none;
-    display: none;
-  }
+const ClearBtn = styled.button`
+display: ${props => props.exist ? 'block' : "none"};
+cursor: pointer;
+position: absolute;
+top: 50%;
+right: 0;
+padding: 0;
+padding-right: 3%;
+transform: translate(0, -50%);
 
-cursor: pointer;`
+@media screen and (${theme.media.mobile}) {
+height: 40px;
+padding-right: 5%;
+};
+height: 44px;
+background: transparent;
 
-const ClearBtn = styled(SearchBtn)`
-display: none;
-
- input:focus ~ & {
-  pointer-events: all;
-    display: block;
-  }
+border: ${theme.borders.none};
+border-top-right-radius: 20px;
+border-bottom-right-radius: 20px;
   `
 
 const MugnifyingGlass = styled(AiOutlineSearch)`
@@ -113,11 +121,7 @@ height: 20px;
  }
 
   width: 24px; 
-  height: 24px;
-  
-  ${Input}:focus & {
-    display: none;
-  }`
+  height: 24px;`
 
 const CrissCross = styled(AiOutlineCloseCircle)`
 display: block;
