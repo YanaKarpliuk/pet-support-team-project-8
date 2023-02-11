@@ -19,7 +19,7 @@ const ads = [{
 {
     id: 2,
     title: "Сute dog looking for a home",
-    category: "cell",
+    category: "sell",
     price: 13,
     img: doggo,
     breed: 'Pomeranian',
@@ -47,7 +47,7 @@ const ads = [{
 {
     id: 5,
     title: "Сute dog looking for a home",
-    category: "cell",
+    category: "sell",
     price: 13,
     img: doggo,
     breed: 'Pomeranian',
@@ -66,7 +66,7 @@ const ads = [{
 
 const NoticesPage = () => {
     return (
-        <Section>
+        <Section contents={ads.length}>
             <Container>
                 <Header style={{ textAlign: "center" }}>Find your favorite pet</Header>
                 <SearchBar />

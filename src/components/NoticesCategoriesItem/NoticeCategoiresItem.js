@@ -22,13 +22,13 @@ const NoticesCategoriesItem = ({ info }) => {
                         <li><span>Breed:</span></li>
                         <li><span>Place:</span></li>
                         <li><span>Age:</span></li>
-                        {category === "cell" ? <li><span>Price:</span></li> : ''}
+                        {category === "sell" ? <li><span>Price:</span></li> : ''}
                     </InfoList>
                     <InfoList>
                         <li><span>{breed}</span></li>
                         <li><span>{place}</span></li>
                         <li><span>{age} year(s)</span></li>
-                        {category === "cell" ? <li><span>{price} $</span></li> : ''}
+                        {category === "sell" ? <li><span>{price} $</span></li> : ''}
                     </InfoList>
                 </Info>
                 <BtnCont>

@@ -3,6 +3,8 @@ import theme from "../../theme";
 
 const Section = styled.section`
 background-color: ${theme.colors.bg};
+height: ${props => props.contents ? "fit-content" : "100vh"};
+padding-bottom: 100px;
 @media screen and (${theme.media.mobile}) {
     padding-top: 110px;
 }

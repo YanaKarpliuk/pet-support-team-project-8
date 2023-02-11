@@ -73,7 +73,7 @@ display: flex;
 align-items: center;
 text-align: center;
 gap: 40px;
-margin-bottom: ${props => props.category === 'cell' ? "20px" : "50px"};
+margin-bottom: ${props => props.category === 'sell' ? "20px" : "50px"};
 `
 
 const InfoList = styled.ul`
