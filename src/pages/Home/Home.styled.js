@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import theme from "../../theme";
-import mobileBg from "../../img/bg-mobile.svg";
-import desktopBg from "../../img/bg-desktop.svg";
+import mobileBg from "../../images/home/bg-mobile.svg";
+import desktopBg from "../../images/home/bg-desktop.svg";
+import tabletBg from "../../images/home/bg-tablet.svg";
 
 const Box = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ const Box = styled.div`
   @media screen and (${theme.media.tablet}) {
     padding: 88px 30px 0;
   }
+
   @media screen and (${theme.media.desktop}) {
     padding: 60px 16px 0;
     flex-direction: row;
@@ -29,22 +31,37 @@ const Title = styled.h1`
   font-weight: ${theme.fontWeights.bold};
   font-size: ${theme.fontSizes.l};
   line-height: 44px;
+  max-width: 280px;
+  position: relative;
+  z-index: 1;
 
   @media screen and (${theme.media.tablet}) {
     font-size: 68px;
     line-height: 100px;
+    max-width: 588px;
   }
 
   @media screen and (${theme.media.desktop}) {
     font-size: 68px;
     line-height: 100px;
     flex: 1;
+    max-width: none;
+    max-width: 588px;
   }
 `;
 
 const ImgWrap = styled.div`
   margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   @media screen and (${theme.media.tablet}) {
+    & > img {
+      max-height: 100%;
+    }
+    position: absolute;
+    bottom: 0;
+    right: 10%;
   }
 
   @media screen and (${theme.media.desktop}) {
@@ -63,6 +80,7 @@ const Container = styled.section`
   margin-top: 67px;
 
   @media screen and (${theme.media.tablet}) {
+    background-image: url(${tabletBg});
     margin-top: 82px;
   }
 

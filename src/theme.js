@@ -2,13 +2,17 @@ const theme = {
   media: {
     mobile: '(max-width: 767px)',
     tablet: '(max-width: 1279px) and (min-width: 768px)',
+    fromTablet: '(min-width: 768px)',
     desktop: '(min-width: 1280px)',
   },
   colors: {
     bg: '#FDF7F2',
     black: '#111111',
+    blackSemitransparent: 'rgba(17, 17, 17, 0.6)',
     white: '#FFFFFF',
     accent: '#F59256',
+    accentHover: '#fb731e',
+    blue: '#3091eb',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
 
