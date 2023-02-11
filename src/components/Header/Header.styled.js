@@ -53,7 +53,6 @@ export const Menu = styled.div`
  }
 
  @media ${(p) => p.theme.media.tablet} {
-
   display: flex;
   z-index: 5;
   margin-left: auto;
@@ -61,10 +60,9 @@ export const Menu = styled.div`
   text-align: center;
   align-items: center;
  }
- //
+
  @media ${(p) => p.theme.media.desktop} {
   display: flex;
-
   width: 100%;
   margin-left: 80px;
   flex-direction: row-reverse;
@@ -102,10 +100,8 @@ export const MenuNav = styled.div`
 
   @media ${(p) => p.theme.media.desktop} {
     display: flex;
-
     width: 100%;
     margin-left: 80px;
-
     justify-content: space-between;
     text-align: center;
     align-items: center;
