@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet';
+// import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -76,6 +78,9 @@ const RegisterPage = () => {
 
   return (
     <Container isFirstStepComplete={isFirstStepComplete} viewportHeight={viewportHeight}>
+      <Helmet>
+        <title>Registration</title>
+      </Helmet>
       <FormWrap isFirstStepComplete={isFirstStepComplete}>
         <Title>Registration</Title>
         {!isFirstStepComplete ? (
@@ -91,6 +96,7 @@ const RegisterPage = () => {
         {isLoading && <p>IS LOADING...</p>}
         <Text>
           Already have an account?
+          {/* <LinkToLogin to="/login">Login</LinkToLogin> */}
           <LinkToLogin to="/login">Login</LinkToLogin>
         </Text>
       </FormWrap>
