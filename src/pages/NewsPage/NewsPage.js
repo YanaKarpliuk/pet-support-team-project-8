@@ -5,7 +5,7 @@ import SearchBar from '../../components/SearchBar/SearchBar'
 import NewsList from '../../components/NewsList/NewsList'
 import elements from './NewsPage.styled';
 
-const { Header, Container } = elements
+const { Section, Header, Container } = elements
 
 const newsEx = [{
     id: '1',
@@ -72,11 +72,13 @@ const NewsPage = () => {
     }
 
     return (
-        <Container>
-            <Header>News</Header>
-            <SearchBar handleQuery={obtainQuery} />
-            <NewsList query={searchParams.get('query')} contents={news} />
-        </Container>
+        <Section>
+            <Container>
+                <Header>News</Header>
+                <SearchBar handleQuery={obtainQuery} />
+                <NewsList query={searchParams.get('query')} contents={news} />
+            </Container>
+        </Section>
     )
 };
 export default NewsPage;
