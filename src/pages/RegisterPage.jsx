@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 // import axios from 'axios';
 import forms from '../components/RegisterForms/RegisterForms';
 import styles from './RegisterPage.styled';
@@ -42,6 +43,9 @@ const RegisterPage = () => {
 
   return (
     <Container isFirstStepComplete={isFirstStepComplete} viewportHeight={viewportHeight}>
+      <Helmet>
+        <title>Registration</title>
+      </Helmet>
       <FormWrap isFirstStepComplete={isFirstStepComplete}>
         <Title>Registration</Title>
         {!isFirstStepComplete ? (
@@ -57,7 +61,7 @@ const RegisterPage = () => {
         <Text>
           Already have an account?
           {/* <LinkToLogin to="/login">Login</LinkToLogin> */}
-          <LinkToLogin to="/">Login</LinkToLogin>
+          <LinkToLogin to="/login">Login</LinkToLogin>
         </Text>
       </FormWrap>
     </Container>
