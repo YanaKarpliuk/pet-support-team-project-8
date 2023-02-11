@@ -12,7 +12,7 @@ const ErrorElem = styled.div`
   text-align: center;
   color: #e00e0e;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (${theme.media.fromTablet}) {
     font-size: 17px;
   }
 `;
