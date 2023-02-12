@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../theme';
 
 const ErrorElem = styled.div`
   display: block;
@@ -6,12 +7,12 @@ const ErrorElem = styled.div`
   width: 100%;
   right: 50%;
   transform: translateX(50%);
-  font-family: ${({ theme }) => theme.fonts.manrope};
-  font-size: ${({ theme }) => theme.fontSizes.s};
+  font-family: ${theme.fonts.manrope};
+  font-size: ${theme.fontSizes.s};
   text-align: center;
   color: #e00e0e;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${theme.media.fromTablet}) {
     font-size: 17px;
   }
 `;
