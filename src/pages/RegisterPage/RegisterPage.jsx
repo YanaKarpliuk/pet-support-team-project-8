@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import toastOptions from '../utils/toastErrorOptions';
-import authOperations from '../redux/auth/authOperations';
-import authStore from '../redux/auth/authReducer';
-import authSelectors from '../redux/auth/authSelectors';
-import forms from '../components/RegisterForms/RegisterForms';
+import Loader from '../../components/Loader/Loader';
+import toastOptions from '../../utils/toastErrorOptions';
+import authOperations from '../../redux/auth/authOperations';
+import authStore from '../../redux/auth/authReducer';
+import authSelectors from '../../redux/auth/authSelectors';
+import forms from '../../components/RegisterForms/RegisterForms';
 import styles from './RegisterPage.styled';
 const { Container, FormWrap, Title, Text, LinkToLogin, StyledToastContainer } = styles;
 const { FirstStepRegisterForm, SecondStepRegisterForm } = forms;
@@ -31,11 +32,13 @@ const RegisterPage = () => {
   const [secondStep, setSecondStep] = useState(secondStepInitialState);
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(null);
+  const [viewportWidth, setViewportWidth] = useState(null);
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   useEffect(() => {
+    setViewportWidth(window.innerWidth);
     setViewportHeight(window.innerHeight);
   }, []);
 
@@ -70,8 +73,8 @@ const RegisterPage = () => {
     if (loginError) {
       return setIsFirstStepComplete(false);
     }
-    setSecondStep(secondStepInitialState);
-    setFirstStep(firstStepInitialState);
+    setSecondStep({ ...secondStepInitialState });
+    setFirstStep({ ...firstStepInitialState });
   };
 
   return (
@@ -86,14 +89,15 @@ const RegisterPage = () => {
             setState={setSecondStep}
             handleSubmit={handleSubmitSecondStep}
             setIsFirstStepComplete={setIsFirstStepComplete}
+            isLoading={isLoading}
           />
         )}
-        {isLoading && <p>IS LOADING...</p>}
         <Text>
           Already have an account?
           <LinkToLogin to="/login">Login</LinkToLogin>
         </Text>
       </FormWrap>
+      {isLoading && <Loader viewportWidth={viewportWidth} />}
       <StyledToastContainer />
     </Container>
   );

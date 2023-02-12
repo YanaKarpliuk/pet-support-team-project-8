@@ -10,8 +10,7 @@ const authHeader = {
 
 const register = createAsyncThunk('auth/register', async (userData, { rejectWithValue }) => {
   try {
-    const { data } = await axios.post('/auth/register', userData);
-    return data.data.user;
+    await axios.post('/auth/register', userData);
   } catch (error) {
     return rejectWithValue(error.response.data.message);
   }
@@ -20,8 +19,8 @@ const register = createAsyncThunk('auth/register', async (userData, { rejectWith
 const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue }) => {
   try {
     const { data } = await axios.post('/auth/login', userData);
-    authHeader.setAuthHeader(data.data.token);
-    return { token: data.data.token, id: data.data.user.id };
+    authHeader.setAuthHeader(data.data.result.token);
+    return data.data.result;
   } catch (error) {
     return rejectWithValue(error.response.data.message);
   }

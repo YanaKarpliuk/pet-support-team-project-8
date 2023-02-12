@@ -17,21 +17,21 @@ const initialState = {
   error: null,
 };
 
-const onAuthRegisterSuccess = (s, { payload }) => ({
+const onAuthRegisterSuccess = s => ({
   ...s,
-  name: payload.name,
-  email: payload.email,
-  phone: payload.phone,
-  city: payload.city,
-  avatarURL: payload.avatarURL,
   isLoading: false,
   error: null,
 });
 
 const onAuthLogInSuccess = (s, { payload }) => ({
   ...s,
+  name: payload.name,
+  email: payload.email,
+  phone: payload.phone,
+  city: payload.city,
+  avatarURL: payload.avatarURL,
   token: payload.token,
-  id: payload.id,
+  id: payload._id,
   isLoggedIn: true,
   isLoading: false,
   error: null,
