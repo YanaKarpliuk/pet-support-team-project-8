@@ -73,7 +73,13 @@ const FirstStepRegisterForm = ({ state, handleSubmit }) => {
   );
 };
 
-const SecondStepRegisterForm = ({ state, handleSubmit, setState, setIsFirstStepComplete }) => {
+const SecondStepRegisterForm = ({
+  state,
+  handleSubmit,
+  setState,
+  setIsFirstStepComplete,
+  isLoading,
+}) => {
   return (
     <motion.div
       initial={{ x: 320, opacity: 0 }}
@@ -106,7 +112,7 @@ const SecondStepRegisterForm = ({ state, handleSubmit, setState, setIsFirstStepC
               />
               {errors.number && <FormError name="number" />}
             </InputWrap>
-            <Button type="submit" secondStep={true}>
+            <Button type="submit" secondStep={true} disabled={isLoading}>
               Register
             </Button>
             <BackBtn
@@ -115,6 +121,7 @@ const SecondStepRegisterForm = ({ state, handleSubmit, setState, setIsFirstStepC
                 setState({ ...values });
                 setIsFirstStepComplete(false);
               }}
+              disabled={isLoading}
             >
               Back
             </BackBtn>

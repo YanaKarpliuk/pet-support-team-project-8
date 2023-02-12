@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import mobileBgImgFirstStep from '../images/register/register-Down-BG-image-mobile.svg';
-import mobileBgImgSecondStep from '../images/register/register2Step-Down-BG-image-mobile.svg';
-import tabletBgImg from '../images/register/register-Down-BG-image-tablet.svg';
-import desktopBgImg from '../images/register/register-Down-BG-image-desktop.svg';
+import mobileBgImgFirstStep from '../../images/register/register-Down-BG-image-mobile.svg';
+import mobileBgImgSecondStep from '../../images/register/register2Step-Down-BG-image-mobile.svg';
+import tabletBgImg from '../../images/register/register-Down-BG-image-tablet.svg';
+import desktopBgImg from '../../images/register/register-Down-BG-image-desktop.svg';
 
 const Container = styled.div`
   font-family: ${({ theme }) => theme.fonts.manrope};
@@ -102,7 +102,7 @@ const LinkToLogin = styled(Link)`
 const StyledToastContainer = styled(ToastContainer)`
   .Toastify__toast {
     font-family: ${({ theme }) => theme.fonts.manrope};
-    min-width: 150px;
+    min-width: 100px;
     min-height: 50px;
     background-color: #fde6d8;
     color: ${({ theme }) => theme.colors.black};
@@ -116,7 +116,7 @@ const StyledToastContainer = styled(ToastContainer)`
       min-height: 70px;
     }
   }
-  --toastify-icon-color-error: ${({ theme }) => theme.colors.accent};
+  --toastify-icon-color-error: #ea0808;
   .Toastify__progress-bar {
     background-color: ${({ theme }) => theme.colors.accent};
   }
