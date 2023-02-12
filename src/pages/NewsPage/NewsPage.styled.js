@@ -1,23 +1,39 @@
 import styled from "styled-components"
 import theme from "../../theme"
 
-const Container = styled.div`
- background-color: ${theme.colors.bg};
+const Section = styled.section`
+background-color: ${theme.colors.bg};
  padding-bottom: 100px;
- margin-top: 67px;
-
+ min-height: 100%;
+height: auto;
  @media screen and (${theme.media.mobile}) {
-  padding-top: 42px;
+  padding-top: 100px;
  }
 
  @media screen and (${theme.media.tablet}) {
-  padding-top: 88px;
-  margin-top: 83px;
+  padding-top: 160px;
  }
 
  @media screen and (${theme.media.desktop}) {
-  padding-top: 58px;
+  padding-top: 126px;
   padding-bottom: 200px;
+ }
+`
+
+const Container = styled.div`
+ margin: 0 auto;
+ background-color: ${theme.colors.bg};
+
+ @media screen and (${theme.media.mobile}) {
+  padding: 0 20px;
+ }
+
+ @media screen and (${theme.media.tablet}) {
+  padding: 0 32px;
+ }
+
+ @media screen and (${theme.media.desktop}) {
+  padding: 0 16px;
  }
 `;
 
@@ -37,6 +53,7 @@ text-align: center;
 color: ${theme.colors.black};
 `
 
-const elements = { Header, Container }
+
+const elements = { Section, Header, Container }
 
 export default elements

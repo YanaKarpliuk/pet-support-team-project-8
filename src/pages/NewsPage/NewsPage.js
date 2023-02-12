@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
-
+import { useSearchParams } from "react-router-dom";
+import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SearchBar from '../../components/SearchBar/SearchBar'
 import NewsList from '../../components/NewsList/NewsList'
 import elements from './NewsPage.styled';
 
-const { Header, Container } = elements
+const { Section, Header, Container } = elements
 
-const news = [{
+const newsEx = [{
     id: '1',
     title: 'Обережно, кліщі! Як уберегти улюбленця',
     text: 'Травневі прогулянки з улюбленцем не лише приємні, але й потребують пильності. З початком теплої пори року активізуються кліщі, і треба бути уважним, щоб уберегти свого песика чи котика від дуже серйозних неприємностей зі здоров`ям.',
     date: '2022/01/20',
     link: 'https://www.youtube.com/'
+
 }, {
     id: '2',
     title: 'В День ветеринара в столиці пройде...',
@@ -47,13 +51,14 @@ const news = [{
 
 const NewsPage = () => {
 
-    const [query, setQuery] = useState('')
-    // const [news, setNews] = useState(null)
+    // const [query, setQuery] = useState('')
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [news, setNews] = useState(newsEx)
 
     useEffect(() => {
-        //
+        setSearchParams('')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
     const obtainQuery = (e) => {
         e.preventDefault()
@@ -61,20 +66,30 @@ const NewsPage = () => {
         const searchQuery = e.target.search.value.trim()
 
         if (!searchQuery) {
-            alert("Input some query, please")
+            toast.info("Make sure you've entered your query", { backgroundColor: '#F59256' })
+            return
         }
-        console.log(searchQuery)
-        setQuery(searchQuery)
 
-        e.target.reset()
+        setSearchParams({ query: searchQuery })
     }
 
     return (
-        <Container>
-            <Header>News</Header>
-            <SearchBar handleQuery={obtainQuery} />
-            <NewsList query={query} contents={news} />
-        </Container>
+        <Section>
+            <Container>
+                <Header>News</Header>
+                <ToastContainer position="top-center"
+                    autoClose={3000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable={false}
+                    pauseOnHover={false} />
+                <SearchBar handleQuery={obtainQuery} />
+                <NewsList query={searchParams.get('query')} contents={news} />
+            </Container>
+        </Section>
     )
 };
 export default NewsPage;

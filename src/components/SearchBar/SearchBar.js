@@ -1,20 +1,26 @@
+import { useState } from "react"
 import elements from "./SearchBar.styled"
 
 const { Form, Input, SearchBtn, SearchBarContainer, MugnifyingGlass, CrissCross, ClearBtn } = elements
 
-const SearchBar = ({ handleQuery }) => {
+const SearchBar = ({ handleQuery, }) => {
+    const [query, setQuery] = useState('')
 
+    const clear = (event) => {
+        setQuery('')
+    }
     return (
         <SearchBarContainer>
             <Form onSubmit={handleQuery}>
-                <Input type="text" name="search" placeholder="Search" />
+                <Input type="text" value={query} name="search" placeholder="Search" onChange={e => setQuery(e.currentTarget.value)} />
 
-                <SearchBtn type="submit">
+                <SearchBtn exist={query} type="submit">
                     <MugnifyingGlass />
                 </SearchBtn>
-                <ClearBtn type="button">
+                <ClearBtn type="button" onClick={clear} exist={query}>
                     <CrissCross />
                 </ClearBtn>
+
             </Form>
         </SearchBarContainer >
     )
