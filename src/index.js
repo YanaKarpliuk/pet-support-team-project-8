@@ -7,24 +7,20 @@ import {
 import { ThemeProvider } from 'styled-components';
 import './index.css';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import appStore from './redux/store';
+import store from './redux/store';
 
 import theme from './theme';
 import App from './App';
-const { store, persistor } = appStore;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <HashRouter>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </HashRouter>
-      </PersistGate>
+      <HashRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 );
