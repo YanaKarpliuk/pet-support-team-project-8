@@ -1,8 +1,8 @@
 import { lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // import RestrictedRoute from "./components/RestrictedRoute ";
-import SharedLayout from './components/SharedLayout/SharedLayout';
 import RestrictedRoute from './components/RestrictedRoute ';
+import SharedLayout from './components/SharedLayout/SharedLayout';
 // import About from "path/to/pages/About";
 // import Products from "path/to/pages/Products";
 // import NotFound from "path/to/pages/NotFound";
@@ -20,14 +20,17 @@ function App() {
       <Routes>
         <Route path="" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={<RestrictedRoute redirectTo="/user" component={<LoginPage />} />}
+          />
           <Route
             path="/register"
             element={<RestrictedRoute redirectTo="/user" component={<RegisterPage />} />}
           />
           <Route path="/user" element={<UserPage />} />
           <Route path="/news" element={<NewsPage />} />
-          <Route path="/notices" element={<NoticesPage />} /> 
+          <Route path="/notices" element={<NoticesPage />} />
           <Route path="/friends" element={<OurFriendsPage />} />
         </Route>
       </Routes>
