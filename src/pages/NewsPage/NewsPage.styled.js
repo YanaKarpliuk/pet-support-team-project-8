@@ -22,6 +22,7 @@ height: auto;
 
 const Container = styled.div`
  margin: 0 auto;
+ background-color: ${theme.colors.bg};
 
  @media screen and (${theme.media.mobile}) {
   padding: 0 20px;
