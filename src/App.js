@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 // import RestrictedRoute from "./components/RestrictedRoute ";
-import SharedLayout from './components/SharedLayout/SharedLayout';
 import RestrictedRoute from './components/RestrictedRoute ';
+import SharedLayout from './components/SharedLayout/SharedLayout';
 // import About from "path/to/pages/About";
 // import Products from "path/to/pages/Products";
 // import NotFound from "path/to/pages/NotFound";
@@ -10,7 +10,7 @@ const HomePage = lazy(() => import('./pages/Home/Home'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
-const UserPage = lazy(() => import('./pages/UserPage'));
+const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const NoticesCategoriesList = lazy(() => import('./components/NoticesCategoriesList/NoticesCategoriesList'));
 const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage/OurFriendsPage'));
@@ -21,7 +21,10 @@ function App() {
       <Routes>
         <Route path="" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={<RestrictedRoute redirectTo="/user" component={<LoginPage />} />}
+          />
           <Route
             path="/register"
             element={<RestrictedRoute redirectTo="/user" component={<RegisterPage />} />}

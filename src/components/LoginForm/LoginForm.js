@@ -1,5 +1,14 @@
 import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../../components/Loader/Loader';
+import authOperations from '../../redux/auth/authOperations';
+import authStore from '../../redux/auth/authReducer';
+import authSelectors from '../../redux/auth/authSelectors';
+import toastOptions from '../../utils/toastErrorOptions';
+
 import schemas from '../../schemas/schemas';
 import FormError from '../FormError/FormError';
 import {
@@ -12,28 +21,49 @@ import {
   InputPassWrap,
   InputWrap,
   LinkToRegister,
+  StyledToastContainer,
   Text,
   Title,
 } from './LoginForm.styled';
 
 const { LoginSchema } = schemas;
+const { login } = authOperations;
+const { selectError, selectIsLoading } = authSelectors;
+
+const { removeError } = authStore;
+const initialState = {
+  email: '',
+  password: '',
+};
 
 const LoginForm = () => {
-  const initialState = {
-    email: '',
-    password: '',
-  };
   const [isShownPass, setIsShownPass] = useState(false);
-  const [state, setState] = useState(initialState);
+  const [viewportWidth, setViewportWidth] = useState(null);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    setViewportWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, toastOptions);
+      dispatch(removeError());
+    }
+  }, [error, dispatch]);
 
   const togglePassword = () => setIsShownPass(isShown => !isShown);
 
-  const handleSubmit = async ({ email: userEmail, password }) => {
-    setState({
-      email: userEmail.trim(),
-      password,
-    });
-    await console.log(state);
+  const handleSubmit = async (values, { resetForm }) => {
+    const { email, password } = values;
+    const normalizedEmail = email.trim();
+    const { error } = await dispatch(login({ email: normalizedEmail, password }));
+    if (!error) {
+      resetForm();
+      return;
+    }
   };
 
   return (
@@ -75,6 +105,8 @@ const LoginForm = () => {
         Don't have an account?
         <LinkToRegister to="/register">Register</LinkToRegister>
       </Text>
+      {isLoading && <Loader viewportWidth={viewportWidth} />}
+      <StyledToastContainer />
     </FormWrap>
   );
 };

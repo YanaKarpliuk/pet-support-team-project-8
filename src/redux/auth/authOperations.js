@@ -26,5 +26,14 @@ const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue 
   }
 });
 
-const authOperations = { register, login };
+const logOut = createAsyncThunk('auth/logOut', async (credential, { rejectWithValue }) => {
+  try {
+    await axios.post('/auth/signout', credential);
+    authHeader.clearAuthHeader();
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+const authOperations = { register, login, logOut };
 export default authOperations;

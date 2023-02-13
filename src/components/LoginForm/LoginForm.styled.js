@@ -1,6 +1,7 @@
 import { Field } from 'formik';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
 import theme from '../../theme';
 
@@ -204,5 +205,32 @@ export const Button = styled.button`
 
   @media screen and (${theme.media.desktop}) {
     height: 48px;
+  }
+`;
+
+export const StyledToastContainer = styled(ToastContainer)`
+  .Toastify__toast {
+    font-family: ${theme.fonts.manrope};
+    min-width: 100px;
+    min-height: 50px;
+    background-color: #fde6d8;
+    color: ${theme.colors.black};
+
+    @media screen and (${theme.media.fromTablet}) {
+      width: 250px;
+      min-height: 60px;
+    }
+    @media screen and (${theme.media.desktop}) {
+      width: 300px;
+      min-height: 70px;
+    }
+  }
+  --toastify-icon-color-error: #ea0808;
+  .Toastify__progress-bar {
+    background-color: ${theme.colors.accent};
+  }
+  .Toastify__close-button:hover,
+  .Toastify__close-button:focus {
+    color: ${theme.colors.accent};
   }
 `;
