@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import theme from "../../theme";
 import { TiHeartFullOutline } from "react-icons/ti";
+import { IoTrash } from "react-icons/io5"
 
 const Item = styled.li`
 width: 280px;
-height: 606px;
 
 @media screen and (${theme.media.tablet}) {
     width: 336px;
@@ -15,7 +15,8 @@ box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border-radius: 0px 0px 20px 20px;`
 
 const TextContainer = styled.div`
-padding: 20px 20px 0 20px;`
+padding: 20px;
+padding-bottom: 32px;`
 
 const ImageContainer = styled.div`
 position: relative;
@@ -132,6 +133,9 @@ gap: 12px;`
 const NoticeBtn = styled.button`
 padding: 8px 0;
 width: 248px;
+display: flex;
+justify-content: center;
+align-items: center;
 
 background: ${theme.colors.white};
 border: 2px solid ${theme.colors.accent};
@@ -154,6 +158,13 @@ color: #FF6101;
 
 }`
 
-const elements = { BtnCont, NoticeBtn, AddToFav, Item, Title, InfoList, Info, TextContainer, Category, ImageContainer, Heart }
+const Trash = styled(IoTrash)`
+display: block;
+width: 20px;
+height: 20px;
+margin-left: 13px;
+`
+
+const elements = { Trash, BtnCont, NoticeBtn, AddToFav, Item, Title, InfoList, Info, TextContainer, Category, ImageContainer, Heart }
 
 export default elements

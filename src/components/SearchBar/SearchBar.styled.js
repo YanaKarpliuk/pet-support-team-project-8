@@ -31,6 +31,7 @@ const Input = styled.input`
 height: 40px;
 font-size: ${theme.fontSizes.m};
 line-height: 1.375;
+padding: 9px 0 9px 12px;
 };
 
 width: 100%;
@@ -51,7 +52,7 @@ box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border: ${theme.borders.none};
 border-radius: 20px;
 
-padding: 0 0 0 10px;
+padding: 8px 0 8px 20px;
 
 color: #535353;
 font-family: ${theme.fonts.manrope};

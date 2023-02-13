@@ -3,7 +3,7 @@ import theme from "../../theme";
 
 const Section = styled.section`
 background-color: ${theme.colors.bg};
-height: ${props => props.contents ? "fit-content" : "100vh"};
+height: auto;
 padding-bottom: 100px;
 @media screen and (${theme.media.mobile}) {
     padding-top: 110px;
@@ -56,7 +56,6 @@ color: ${theme.colors.black};
 const CategoriesCont = styled.div`
 display: flex;
 justify-content: space-between;
-align-items: top;
 margin-left: auto;
 margin-right: auto;
 

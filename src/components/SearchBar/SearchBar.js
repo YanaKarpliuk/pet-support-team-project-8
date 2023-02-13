@@ -1,23 +1,28 @@
-import { useState } from "react"
 import elements from "./SearchBar.styled"
+import { toast, ToastContainer } from 'react-toastify';
+import toastInfoOptions from "../../utils/toastInfoOptions";
 
 const { Form, Input, SearchBtn, SearchBarContainer, MugnifyingGlass, CrissCross, ClearBtn } = elements
 
-const SearchBar = ({ handleQuery, }) => {
-    const [query, setQuery] = useState('')
-
-    const clear = (event) => {
-        setQuery('')
+const SearchBar = ({ handleQuery, clearQuery, value }) => {
+    const submiting = (e) => {
+        e.preventDefault()
+        if (!e.target.search.value) {
+            toast.info("Make sure you've entered your query", toastInfoOptions)
+            return
+        }
     }
+
     return (
         <SearchBarContainer>
-            <Form onSubmit={handleQuery}>
-                <Input type="text" value={query} name="search" placeholder="Search" onChange={e => setQuery(e.currentTarget.value)} />
+            <ToastContainer />
+            <Form onSubmit={submiting}>
+                <Input type="text" value={value} name="search" placeholder="Search" onChange={handleQuery} />
 
-                <SearchBtn exist={query} type="submit">
+                <SearchBtn exist={value} type="submit">
                     <MugnifyingGlass />
                 </SearchBtn>
-                <ClearBtn type="button" onClick={clear} exist={query}>
+                <ClearBtn type="button" onClick={clearQuery} exist={value}>
                     <CrissCross />
                 </ClearBtn>
 

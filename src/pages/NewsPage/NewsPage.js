@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import React from 'react';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchBar from '../../components/SearchBar/SearchBar'
 import NewsList from '../../components/NewsList/NewsList'
@@ -18,7 +17,7 @@ const newsEx = [{
 
 }, {
     id: '2',
-    title: 'В День ветеринара в столиці пройде...',
+    title: 'В День ветеринара в столиці пройде захід',
     text: 'В неділю, 14 серпня, в Тимчасовому притулку для тварин «ВДНГ» пройде тренінг на тему «Надання першої допомоги тваринам». Захід проводиться комунальним підприємством «Київська міська лікарня ветеринарної медицини»,',
     date: '2022/11/10',
     link: 'https://www.youtube.com/'
@@ -50,44 +49,31 @@ const newsEx = [{
 }]
 
 const NewsPage = () => {
-
-    // const [query, setQuery] = useState('')
+    const [query, setQuery] = useState('')
     const [searchParams, setSearchParams] = useSearchParams();
     const [news, setNews] = useState(newsEx)
 
     useEffect(() => {
-        setSearchParams('')
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+        const params = query !== '' ? { query } : {};
+        setSearchParams(params);
+    }, [setSearchParams, query])
 
     const obtainQuery = (e) => {
-        e.preventDefault()
+        const value = e.currentTarget.value;
 
-        const searchQuery = e.target.search.value.trim()
+        setQuery(value)
+    }
 
-        if (!searchQuery) {
-            toast.info("Make sure you've entered your query", { backgroundColor: '#F59256' })
-            return
-        }
-
-        setSearchParams({ query: searchQuery })
+    const clearQuery = () => {
+        setQuery('')
     }
 
     return (
-        <Section>
+        <Section >
             <Container>
                 <Header>News</Header>
-                <ToastContainer position="top-center"
-                    autoClose={3000}
-                    hideProgressBar
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable={false}
-                    pauseOnHover={false} />
-                <SearchBar handleQuery={obtainQuery} />
-                <NewsList query={searchParams.get('query')} contents={news} />
+                <SearchBar handleQuery={obtainQuery} value={query} clearQuery={clearQuery} />
+                <NewsList query={query} contents={news} />
             </Container>
         </Section>
     )
