@@ -4,7 +4,7 @@ import NoticesCategoriesNav from "../../components/NoticesCategoriesNav/NoticesC
 import elements from "./NoticesPage.styled";
 import doggo from '../../images/example.jpg';
 import { useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import NoticesCategoriesList from "../../components/NoticesCategoriesList/NoticesCategoriesList";
 
@@ -68,34 +68,16 @@ const adsEx = [{
 }]
 
 const NoticesPage = () => {
-    const [query, setQuery] = useState('')
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [ads, setAds] = useState(adsEx)
-
-    useEffect(() => {
-        const params = query !== '' ? { query } : {};
-        setSearchParams(params);
-    }, [setSearchParams, query])
-
-    const obtainQuery = (e) => {
-        const value = e.currentTarget.value;
-
-        setQuery(value)
-    }
-
-    const clearQuery = () => {
-        setQuery('')
-    }
     return (
         <Section>
             <Container>
                 <Header style={{ textAlign: "center" }}>Find your favorite pet</Header>
-                <SearchBar handleQuery={obtainQuery} value={query} clearQuery={clearQuery} />
+                <SearchBar />
                 <CategoriesCont>
                     <NoticesCategoriesNav />
                     <AddNoticeButton />
                 </CategoriesCont>
-                <Outlet />
+                <Suspense><Outlet /></Suspense>
             </Container>
         </Section>
     );

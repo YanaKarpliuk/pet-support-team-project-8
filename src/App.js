@@ -31,7 +31,7 @@ function App() {
           />
           <Route path="/user" element={<UserPage />} />
           <Route path="/news" element={<NewsPage />} />
-          <Route path="/notices" element={<Navigate to="/notices/sell" replace />} >
+          <Route path="/notices" element={<NoticesPage />} >
             <Route index element={<NoticesPage />} />
             <Route path='sell' element={<NoticesCategoriesList category={'sell'} />} />
             <Route path="lost-found" element={<NoticesCategoriesList category={'lost-found'} />} />
