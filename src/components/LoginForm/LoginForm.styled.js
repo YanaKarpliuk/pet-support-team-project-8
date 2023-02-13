@@ -24,7 +24,7 @@ export const FormWrap = styled.div`
   }
 
   @media screen and (${theme.media.desktop}) {
-    top: 112px;
+    top: 114px;
     transform: translate(50%, 0%);
     width: 618px;
     padding-bottom: 60px;
@@ -49,7 +49,7 @@ export const Title = styled.h1`
 
 export const InputWrap = styled.div`
   position: relative;
-  margin-bottom: ${({ isError }) => (isError ? '24px' : '16px')};
+  margin-bottom: ${({ isError }) => (isError ? '30px' : '16px')};
 `;
 
 export const InputPassWrap = styled.div`

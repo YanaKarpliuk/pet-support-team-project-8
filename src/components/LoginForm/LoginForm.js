@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik';
+import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -69,38 +70,44 @@ const LoginForm = () => {
   return (
     <FormWrap>
       <Title>Login</Title>
-      <Formik
-        initialValues={initialState}
-        validationSchema={LoginSchema}
-        validateOnChange={false}
-        validateOnBlur={false}
-        onSubmit={handleSubmit}
+      <motion.div
+        initial={{ x: -320, opacity: 0 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        animate={{ x: 0, opacity: 1 }}
       >
-        {({ errors, setFieldValue }) => (
-          <Form autoComplete="off">
-            <InputWrap isError={errors.email}>
-              <Input type="text" name="email" placeholder="Email" />
-              {errors.email && <FormError name="email" />}
-            </InputWrap>
-            <InputPassWrap isError={errors.password} isShownPass={isShownPass}>
-              <InputPass
-                type={isShownPass ? 'text' : 'password'}
-                name="password"
-                placeholder="Password"
-                onChange={e => setFieldValue('password', e.target.value.trim(), false)}
-              />
-              <EyeIcon
-                color={'#F59256'}
-                onClick={togglePassword}
-                title={isShownPass ? 'hide password' : 'show password'}
-              />
-              <EyeIconSlash isShownPass={isShownPass} />
-              {errors.password && <FormError name="password" />}
-            </InputPassWrap>
-            <Button type="submit">Login</Button>
-          </Form>
-        )}
-      </Formik>
+        <Formik
+          initialValues={initialState}
+          validationSchema={LoginSchema}
+          validateOnChange={false}
+          validateOnBlur={false}
+          onSubmit={handleSubmit}
+        >
+          {({ errors, setFieldValue }) => (
+            <Form autoComplete="off">
+              <InputWrap isError={errors.email}>
+                <Input type="text" name="email" placeholder="Email" />
+                {errors.email && <FormError name="email" />}
+              </InputWrap>
+              <InputPassWrap isError={errors.password} isShownPass={isShownPass}>
+                <InputPass
+                  type={isShownPass ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password"
+                  onChange={e => setFieldValue('password', e.target.value.trim(), false)}
+                />
+                <EyeIcon
+                  color={'#F59256'}
+                  onClick={togglePassword}
+                  title={isShownPass ? 'hide password' : 'show password'}
+                />
+                <EyeIconSlash isShownPass={isShownPass} />
+                {errors.password && <FormError name="password" />}
+              </InputPassWrap>
+              <Button type="submit">Login</Button>
+            </Form>
+          )}
+        </Formik>
+      </motion.div>
       <Text>
         Don't have an account?
         <LinkToRegister to="/register">Register</LinkToRegister>
