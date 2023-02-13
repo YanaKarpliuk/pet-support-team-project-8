@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Field, Form } from 'formik';
 
 const Container = styled.div`
   padding: 40px 80px;
+  width: 100%;
+  height: 100%;
   height: 95vh;
   overflow: hidden;
   overflow-y: auto;
@@ -14,6 +16,10 @@ const Forma = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 28px;
+  @media ${p => p.theme.media.mobile} {
+    gap: 16px;
+    width: 240px;
+  }
 `;
 
 const Title = styled.h1`
@@ -25,13 +31,14 @@ const Title = styled.h1`
   align-items: center;
   text-align: center;
   margin-bottom: 40px;
-    @media ${p => p.theme.media.mobile} {
-    margin: 28px;}
+  @media ${p => p.theme.media.mobile} {
+    margin: 28px;
+  }
 `;
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 448px;
+  width: 100%;
   gap: 12px;
   @media ${p => p.theme.media.mobile} {
     width: 100%;
@@ -41,18 +48,21 @@ const Label = styled.label`
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.ml};
-  
 `;
 const Input = styled(Field)`
   width: 100%;
   height: 40px;
+  display: flex;
+  text-align: flex-start;
+  justify-content: start;
+  align-items: start;
   font-family: inherit;
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   font-size: ${({ theme }) => theme.fontSizes.m};
   letter-spacing: 0.04em;
   background-color: ${p => p.theme.colors.bg};
   color: ${({ theme }) => theme.colors.black};
-  padding: 11px 14px 12px 14px;
+  padding: 11px 14px 10px 14px;
   outline: 1px solid ${({ theme }) => theme.colors.accent};
   border: none;
   border-radius: 40px;
@@ -61,9 +71,9 @@ const Input = styled(Field)`
   transition: all 100ms ease-in;
 
   @media ${p => p.theme.media.tablet} {
-    height: 52px;
+    height: 48px;
     font-size: 20px;
-    padding: 14px 14px 13px 32px;
+    padding: 11px 14px 10px 32px;
     background-color: ${({ theme }) => theme.colors.bg};
   }
 
@@ -151,6 +161,92 @@ const AddPhoto = styled.div`
   background-color: ${p => p.theme.colors.bg};
   border-radius: 40px;
 `;
-const steyles = { Container, Forma, Title, Input, Label, InputBox, BtnBox, Btn, AddPhoto };
+const CategoriesBox = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 448px;
+  margin-bottom: 28px;
+  @media ${p => p.theme.media.mobile} {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 240px;
+  }
+`;
 
-export default steyles
+const Option = styled.button`
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  text-align: center;
+  height: 47px;
+  letter-spacing: 0.04em;
+  color: ${p => p.theme.colors.black};
+
+  @media ${p => p.theme.media.mobile} {
+    font-size: ${p => p.theme.fontSizes.s};
+    line-height: 1.357;
+    padding: 8px 28px;
+  }
+
+  font-size: 20px;
+  line-height: 1.35;
+
+  padding: 10px 28px;
+  background-color: ${p => p.theme.colors.white};
+  border: 2px solid ${p => p.theme.colors.accent};
+  border-radius: 40px;
+  transition: background-color 200ms, color 200ms;
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
+  }
+  cursor: pointer;
+`;
+
+const TextBox = styled.div`
+  width: 443px;
+  text-align: center;
+  margin-bottom: 28px;
+  @media ${p => p.theme.media.mobile} {
+    width: 240px;
+  }
+`;
+const Text = styled.span`
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: -0.01em;
+`;
+const LabelMale = styled.label`
+  display: grid;
+  gap: 12;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: 20px;
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+const steyles = {
+  Container,
+  Forma,
+  Title,
+  Input,
+  Label,
+  InputBox,
+  BtnBox,
+  Btn,
+  AddPhoto,
+  CategoriesBox,
+  Option,
+  TextBox,
+  Text,
+  LabelMale,
+};
+
+export default steyles;

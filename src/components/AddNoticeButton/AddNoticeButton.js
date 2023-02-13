@@ -1,13 +1,28 @@
-import elements from "./AddNoticeButton.styled"
+import { useState } from 'react';
+import Modal from '../Modal/Modal';
+import ModalAddSell from '../../components/ModalAddSell/ModalAddSell';
+import elements from './AddNoticeButton.styled';
 
 const { MobBtn, Text, Btn, Cross, MobCross } = elements;
 
 const AddNoticeButton = () => {
-    return (
-        <div><MobBtn type="button"><MobCross /> Add pet</MobBtn>
-            <Text>Add pet <Btn type="button"><Cross /></Btn></Text></div>
+  const [active, setActive] = useState(false);
+  return (
+    <div>
+      <MobBtn type="button" onClick={() => setActive(true)}>
+        <MobCross /> Add pet
+      </MobBtn>
+      <Text>
+        Add pet
+        <Btn type="button" onClick={() => setActive(true)}>
+          <Cross />
+        </Btn>
+      </Text>
+      <Modal active={active} setActive={setActive}>
+        <ModalAddSell />
+      </Modal>
+    </div>
+  );
+};
 
-    )
-}
-
-export default AddNoticeButton
+export default AddNoticeButton;
