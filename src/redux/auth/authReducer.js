@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
-const { register, login } = authOperations;
+const { register, login, logOut } = authOperations;
 
 const initialState = {
   id: '',
@@ -35,6 +35,13 @@ const onAuthLogInSuccess = (s, { payload }) => ({
   error: null,
 });
 
+const onLogOutSuccess = s => ({
+  name: null,
+  email: null,
+  token: null,
+  isLoggedIn: false,
+});
+
 const handleRejected = (s, { payload }) => ({
   ...s,
   isLoading: false,
@@ -58,6 +65,7 @@ const authSlice = createSlice({
     builder
       .addCase(login.fulfilled, onAuthLogInSuccess)
       .addCase(register.fulfilled, onAuthRegisterSuccess)
+      .addCase(logOut.fulfilled, onLogOutSuccess)
       .addMatcher(isAnyOf(register.rejected, login.rejected), handleRejected)
       .addMatcher(isAnyOf(register.pending, login.pending), handlePending);
   },

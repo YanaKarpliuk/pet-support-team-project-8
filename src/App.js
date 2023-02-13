@@ -10,7 +10,7 @@ const HomePage = lazy(() => import('./pages/Home/Home'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
-const UserPage = lazy(() => import('./pages/UserPage'));
+const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage/OurFriendsPage'));
 
