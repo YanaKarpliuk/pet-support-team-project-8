@@ -1,14 +1,41 @@
 import NoticesCategoriesItem from "../NoticesCategoriesItem/NoticeCategoiresItem"
 import elements from "./NoticesCategoriesList.styled"
+import NotFound from "../NotFound/NotFound"
+import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import searchSelectors from "../../redux/search/searchSelectors";
+import noticesSelectors from "../../redux/notices/noticesSelectors";
+import { useEffect } from "react";
 
+const { selectSearchState } = searchSelectors
+const { selectNotices } = noticesSelectors
 const { List } = elements
 
-const NoticesCategoriesList = ({ contents = [] }) => {
-    const items = contents.map((data) => {
-        return <NoticesCategoriesItem key={data.id} info={data} />
+const NoticesCategoriesList = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchValue = useSelector(selectSearchState)
+    const notices = useSelector(selectNotices)
+
+
+    useEffect(() => {
+        const params = searchValue !== '' ? { search: searchValue } : {};
+        setSearchParams(params);
+    }, [setSearchParams, searchValue])
+
+    let contentsNeeded = notices
+    if (searchValue) {
+        contentsNeeded = notices.filter(({ title }) => title.toLowerCase().includes(searchValue))
+    }
+
+    const items = contentsNeeded.map((itemData) => {
+        return <NoticesCategoriesItem key={itemData.id} info={itemData} />
     })
 
-    return (<List>{items}</List>)
+    if (items.length === 0) {
+        return <NotFound />
+    } else {
+        return <List>{items}</List>
+    }
 }
 
 export default NoticesCategoriesList

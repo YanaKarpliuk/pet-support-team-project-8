@@ -1,6 +1,6 @@
 import elements from "./NoticesCategoriesItem.styled";
 
-const { Item, BtnCont, NoticeBtn, Title, AddToFav, InfoList, Info, TextContainer, Category, ImageContainer, Heart } = elements
+const { Item, Trash, BtnCont, NoticeBtn, Title, AddToFav, InfoList, Info, TextContainer, Category, ImageContainer, Heart } = elements
 
 const NoticesCategoriesItem = ({ info }) => {
     const { img, category, title, breed, place, age, price = 0 } = info;
@@ -33,7 +33,7 @@ const NoticesCategoriesItem = ({ info }) => {
                 </Info>
                 <BtnCont>
                     <NoticeBtn type="button">Lear more</NoticeBtn>
-                    {/* <NoticeBtn type="button">Delete</NoticeBtn> */}
+                    <NoticeBtn type="button">Delete <Trash /></NoticeBtn>
                 </BtnCont>
             </TextContainer>
         </Item>

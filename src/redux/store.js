@@ -17,6 +17,9 @@ import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 
 >>>>>>> main
 import authStore from './auth/authReducer';
 import userReducer from './user/slice';
+import { searchReducer } from './search/searchSlice';
+import { newsReducer } from './news/newsSlice';
+import { noticesReducer } from './notices/noticesSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -28,6 +31,9 @@ const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authStore.authReducer),
     user: userReducer,
+    search: searchReducer,
+    news: newsReducer,
+    notices: noticesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
