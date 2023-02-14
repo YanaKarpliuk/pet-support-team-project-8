@@ -5,10 +5,6 @@ const onNumberFieldChange = (e, setFieldValue) => {
   const numLength = numbers.length;
   let newNumber = null;
 
-  if (numLength <= 1) {
-    newNumber = `+38(0${numbers}`;
-    return setFieldValue('number', newNumber, false);
-  }
   if (numLength <= 2) {
     return setFieldValue('number', '', false);
   }

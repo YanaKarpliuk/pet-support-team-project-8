@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+axios.defaults.baseURL = 'https://pets-project.onrender.com/api';
+
+const authHeader = {
+  setAuthHeader: token => (axios.defaults.headers.common.Authorization = `Bearer ${token}`),
+  clearAuthHeader: () => (axios.defaults.headers.common.Authorization = ''),
+};
+
 export const getUserData = createAsyncThunk('user/getUserData', async (_, { rejectWithValue }) => {
   try {
     const result = await axios.get('/user/get');
@@ -29,6 +36,24 @@ export const updateUserData = createAsyncThunk(
         message: data.message,
       };
       return rejectWithValue(error);
+    }
+  }
+);
+
+export const getPets = createAsyncThunk(
+  'pets/getAllCurrentUserPets',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const token = getState().auth.token;
+      if (token === null) {
+        return rejectWithValue('Unable to fetch user');
+      }
+      authHeader.setAuthHeader(token);
+      const { data } = await axios.get('/users/pet/current');
+      console.log(data);
+      return data.userPetsList;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

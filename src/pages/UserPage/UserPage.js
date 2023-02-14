@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserData, removeUserPet } from '../../redux/user/operations';
+import { getUserData, removeUserPet, getPets } from '../../redux/user/operations';
 import { resetIsAddedPetSuccess } from '../../redux/user/slice';
+import MyPets from '../../components/MyPets/MyPets';
 import {
   getUserPets,
   getUserInfo,
@@ -13,18 +14,10 @@ import {
 } from '../../redux/user/selectors';
 import UserData from '../../components/UserData/UserData';
 import styles from './UserPage.styled';
-const {
-  UserPageContainer,
-  UserContainer,
-  PetsContainerWrapper,
-  UserInfo,
-  PetTitle,
-  UserCardWrapper,
-  Title,
-  AddPetBtnContainer,
-} = styles;
+const { UserPageContainer, UserContainer, UserInfo, UserCardWrapper, Title } = styles;
 
 const UserPage = () => {
+  const [viewportWidth, setViewportWidth] = useState(null);
   const dispatch = useDispatch();
 
   const userInfo = useSelector(getUserInfo);
@@ -36,7 +29,8 @@ const UserPage = () => {
   const isAddedPetSuccess = useSelector(getIsAddedPetSuccess);
 
   useEffect(() => {
-    dispatch(getUserData());
+    dispatch(getPets());
+    setViewportWidth(window.innerWidth);
   }, [dispatch]);
 
   useEffect(() => {
@@ -65,16 +59,7 @@ const UserPage = () => {
         </UserInfo>
       </UserCardWrapper>
 
-      <PetsContainerWrapper>
-        <div>
-          <PetTitle>My pets</PetTitle>
-          {/* <PetCard cardData={cardData} /> */}
-        </div>
-        <AddPetBtnContainer>
-          {/* <AddPetButton /> */}
-          <button>+</button>
-        </AddPetBtnContainer>
-      </PetsContainerWrapper>
+      <MyPets userPets={userPets} isPetsLoading={isPetsLoading} viewportWidth={viewportWidth} />
     </UserPageContainer>
   );
 };

@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import authStore from './auth/authReducer';
 import userReducer from './user/slice';
 
@@ -7,6 +8,14 @@ const store = configureStore({
     auth: authStore.authReducer,
     user: userReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
-export default store;
+let persistor = persistStore(store);
+const appStore = { store, persistor };
+export default appStore;
