@@ -46,31 +46,31 @@ const Label = styled.label`
 const Input = styled(Field)`
   width: 100%;
   height: 40px;
-  font-family: inherit;
-  font-weight: ${({ theme }) => theme.fontWeights.normal};
-  font-size: ${({ theme }) => theme.fontSizes.m};
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
   letter-spacing: 0.04em;
   background-color: ${p => p.theme.colors.bg};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${p => p.theme.colors.black};
   padding: 11px 14px 12px 14px;
-  outline: 1px solid ${({ theme }) => theme.colors.accent};
+  outline: 1px solid ${p => p.theme.colors.accent};
   border: none;
   border-radius: 40px;
   cursor: pointer;
-  carent-color: ${({ theme }) => theme.colors.accent};
+  carent-color: ${p => p.theme.colors.accent};
   transition: all 100ms ease-in;
 
   @media ${p => p.theme.media.tablet} {
     height: 52px;
     font-size: 20px;
     padding: 14px 14px 13px 32px;
-    background-color: ${({ theme }) => theme.colors.bg};
+    background-color: ${p => p.theme.colors.bg};
   }
 
   &::placeholder {
-    font-family: inherit;
+    font-family: ${p => p.theme.fonts.manrope};
     font-weight: 400;
-    font-size: ${({ theme }) => theme.fontSizes.s};
+    font-size: ${p => p.theme.fontSizes.s};
     line-height: 1.35;
     letter-spacing: 0.04em;
     color: rgba(17, 17, 17, 0.6);
@@ -88,7 +88,7 @@ const Input = styled(Field)`
 
   &:focus,
   &:hover {
-    outline: 2px solid ${({ theme }) => theme.colors.accent};
+    outline: 2px solid ${p => p.theme.colors.accent};
 
     @media screen and (min-width: 768px) {
       outline-width: 3px;

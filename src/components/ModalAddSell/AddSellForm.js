@@ -122,7 +122,6 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
             style={{
               display: 'flex',
               position: 'relative',
-              // alignItems: 'center',
               marginBottom: 28,
             }}
           >
@@ -161,7 +160,6 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
                 display: 'block',
               }}
             >
-              <option value="red">Red</option>
             </Input>
           </InputBox>
           <BtnBox>
