@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
-const { register, login, logOut } = authOperations;
+const { register, login, logOut, updateUserInformation } = authOperations;
 
 const initialState = {
   id: '',
@@ -28,6 +28,7 @@ const onAuthLogInSuccess = (s, { payload }) => ({
   phone: payload.phone,
   city: payload.city,
   avatarURL: payload.avatarURL,
+  birthday: payload.birthday,
   token: payload.token,
   id: payload._id,
   isLoggedIn: true,
@@ -38,8 +39,42 @@ const onAuthLogInSuccess = (s, { payload }) => ({
 const onLogOutSuccess = s => ({
   name: null,
   email: null,
+  phone: null,
+  city: null,
+  avatarURL: null,
+  birthday: null,
   token: null,
   isLoggedIn: false,
+  isLoading: false,
+});
+
+// const onUpdateUserInformation = (s, { payload }) => ({
+//   ...s,
+//   // id: payload._id,
+//   avatarURL: payload.avatarURL,
+//   name: payload.name,
+//   email: payload.email,
+//   birthday: payload.birthday,
+//   phone: payload.phone,
+//   city: payload.city,
+//   isLoggedIn: true,
+// });
+
+// const onUpdateUserInformation = (s, { payload }) => ({
+//   ...s,
+//   // id: payload._id,
+//   ...payload.avatarURL,
+//   ...payload.name,
+//   ...payload.email,
+//   ...payload.birthday,
+//   ...payload.phone,
+//   ...payload.city,
+//   ...true,
+// });
+
+const onUpdateUserInformation = (s, { payload }) => ({
+  ...s,
+  ...payload,
 });
 
 const handleRejected = (s, { payload }) => ({
@@ -66,8 +101,12 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, onAuthLogInSuccess)
       .addCase(register.fulfilled, onAuthRegisterSuccess)
       .addCase(logOut.fulfilled, onLogOutSuccess)
-      .addMatcher(isAnyOf(register.rejected, login.rejected), handleRejected)
-      .addMatcher(isAnyOf(register.pending, login.pending), handlePending);
+      .addCase(updateUserInformation.fulfilled, onUpdateUserInformation)
+      .addMatcher(
+        isAnyOf(register.rejected, login.rejected, logOut.rejected, updateUserInformation.rejected),
+        handleRejected
+      )
+      .addMatcher(isAnyOf(register.pending, login.pending, logOut.pending), handlePending);
   },
 });
 
