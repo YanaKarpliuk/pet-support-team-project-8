@@ -140,12 +140,15 @@ const NoticesCategoriesItem = ({ info }) => {
           </InfoList>
         </Info>
         <BtnCont>
-          <NoticeBtn type="button">Lear more</NoticeBtn>
-          <NoticeBtn type="button">
-            Delete <Trash />
+          <NoticeBtn type="button" onClick={() => setActive(true)}>
+            Lear more
           </NoticeBtn>
+          {/* <NoticeBtn type="button">Delete</NoticeBtn> */}
         </BtnCont>
       </TextContainer>
+      <Modal active={active} setActive={setActive}>
+        <ModalNotice info={info} capitalizedCategory={capitalizedCategory} />
+      </Modal>
     </Item>
   );
 };
