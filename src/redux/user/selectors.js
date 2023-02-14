@@ -6,6 +6,6 @@ export const getDisabledFields = ({ user }) => user.isDisabledFields;
 export const getUserWithPets = ({ user }) => user.user;
 export const getUserInfo = ({ user }) => user.user.userInfo;
 export const getUserAvatar = ({ user }) => user.user.avatarURL;
-export const getUserPets = ({ user }) => user.user.pets;
+export const getUserPets = ({ user }) => user.pets;
 export const getAddPetError = ({ user }) => user.addPetError;
 export const getIsAddedPetSuccess = ({ user }) => user.isAddedPetSuccess;

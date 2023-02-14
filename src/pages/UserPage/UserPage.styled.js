@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const UserPageContainer = styled.div`
   padding-top: 130px;
   background-color: ${p => p.theme.colors.bg};
-  @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: 1280px) {
     display: flex;
   }
 `;
@@ -108,37 +109,11 @@ const UserContainer = styled.div`
 //   }
 // `;
 
-const PetsContainerWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const PetTitle = styled.h3`
-  font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 20px;
-  line-height: ${p => p.theme.lineHeights.normal};
-  color: #111111;
-  @media screen and (min-width: 768px) {
-    font-size: 28px;
-    /* line-height: {t => }; */
-  }
-  @media screen and (min-width: 1280px) {
-    font-size: 28px;
-    line-height: ${p => p.theme.lineHeights.normal};
-  }
-`;
-
-const AddPetBtnContainer = styled.div``;
-
 const styles = {
   UserPageContainer,
   UserCardWrapper,
   Title,
   UserInfo,
   UserContainer,
-  PetsContainerWrapper,
-  PetTitle,
-  AddPetBtnContainer,
 };
 export default styles;

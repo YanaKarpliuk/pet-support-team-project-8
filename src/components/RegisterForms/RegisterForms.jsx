@@ -108,6 +108,9 @@ const SecondStepRegisterForm = ({
                 type="text"
                 name="number"
                 placeholder="Mobile phone"
+                onFocus={() => {
+                  if (!values.number) return setFieldValue('number', '+38(0');
+                }}
                 onChange={e => onNumberFieldChange(e, setFieldValue)}
               />
               {errors.number && <FormError name="number" />}
