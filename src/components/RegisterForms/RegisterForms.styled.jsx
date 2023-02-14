@@ -1,17 +1,17 @@
-import styled from 'styled-components';
 import { Field } from 'formik';
 import { AiOutlineEye } from 'react-icons/ai';
+import styled from 'styled-components';
 
 const InputWrap = styled.div`
   position: relative;
-  margin-bottom: ${({ isError }) => (isError ? '24px' : '16px')};
+  margin-bottom: ${({ isError }) => (isError ? '30px' : '16px')};
 `;
 
 const InputPassWrap = styled.div`
   position: relative;
   color: ${({ isShownPass, theme }) => (isShownPass ? theme.colors.black : theme.colors.accent)};
   &:not(:last-of-type) {
-    margin-bottom: ${({ isError }) => (isError ? '24px' : '16px')};
+    margin-bottom: ${({ isError }) => (isError ? '30px' : '16px')};
   }
 `;
 

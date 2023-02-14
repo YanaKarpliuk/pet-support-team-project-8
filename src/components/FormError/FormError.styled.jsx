@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import theme from '../../theme';
 
 const ErrorElem = styled.div`
+  padding-top: 5px;
   display: block;
   position: absolute;
   width: 100%;
