@@ -1,10 +1,11 @@
-const selectUser = ({ auth: { email, name, phone, city, avatarURL, id } }) => ({
+const selectUser = ({ auth: { email, name, phone, city, avatarURL, id, birthday } }) => ({
   id,
   email,
   name,
   phone,
   city,
   avatarURL,
+  birthday,
 });
 const selectError = ({ auth }) => auth.error;
 const selectIsLoggedIn = ({ auth }) => auth.isLoggedIn;
