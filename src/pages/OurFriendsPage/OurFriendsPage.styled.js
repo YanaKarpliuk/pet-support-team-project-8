@@ -40,7 +40,7 @@ const Container = styled.div`
   }
 `;
 
-const List = styled.div`
+const List = styled.ul`
   list-style: none;
   max-width: 320px;
   margin: 0 auto;
