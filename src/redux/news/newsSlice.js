@@ -32,13 +32,13 @@ const newsInitialState = {
         link: 'https://www.youtube.com/'
     }, {
         id: '5',
-        title: 'В День ветеринара в столиці пройде...',
+        title: 'В День обережно ветеринара в столиці пройде...',
         text: 'В неділю, 14 серпня, в Тимчасовому притулку для тварин «ВДНГ» пройде тренінг на тему «Надання першої допомоги тваринам». Захід проводиться комунальним підприємством «Київська міська лікарня ветеринарної медицини»,',
         date: '2022/11/10',
         link: 'https://www.youtube.com/'
     }, {
         id: '6',
-        title: 'У Телеграмі запрацював чат-бот',
+        title: 'У Ютубі не запрацював чат-бот',
         text: 'У столиці запрацював спеціальний Telegram-бот «Твій вет Київ», який надає безкоштовні ветеринарні консультації щодо догляду та лікування тварин. Знайти бот можна за посиланням https://t.me/VetHelpKyiv_bot.',
         date: '2022/02/20',
         link: 'https://www.youtube.com/'
@@ -48,7 +48,7 @@ const newsInitialState = {
 }
 
 const newsSlice = createSlice({
-    name: 'search',
+    name: 'news',
     initialState: newsInitialState,
     extraReducers: (builder) => {
         builder
@@ -66,5 +66,4 @@ const newsSlice = createSlice({
     }
 })
 
-export const { getNews } = newsSlice.actions;
 export const newsReducer = newsSlice.reducer;

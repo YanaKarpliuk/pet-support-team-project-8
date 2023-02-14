@@ -7,37 +7,28 @@ const List = styled.ul`
 display: grid;
 justify-content: center;
 
-@media screen and (${theme.media.mobile}) {
-    gap: 40px;
-    ${props => {
-                if (props.items > 1) {
-                        makeHeightAuto()
-                } else {
+${props => {
+                if (props.items <= 3 && window.innerWidth >= 1280) {
                         makeHeightViewport()
+                } else if (props.items <= 2 && window.innerWidth < 1280 && window.innerWidth >= 768) {
+                        makeHeightViewport()
+                } else if (props.items <= 1 && window.innerWidth < 768) {
+                        makeHeightViewport()
+                } else {
+                        makeHeightAuto()
                 }
         }}
+
+@media screen and (${theme.media.mobile}) {
+    gap: 40px;
 };
 
 @media screen and (${theme.media.tablet}) {
         grid-template-columns: repeat(2, 336px);
-         ${props => {
-                if (props.items <= 2) {
-                        makeHeightViewport()
-                } else {
-                        makeHeightAuto()
-                }
-        }}
 };
 
 @media screen and (${theme.media.desktop}) {
         grid-template-columns: repeat(3, 395px);
-         ${props => {
-                if (props.items <= 3) {
-                        makeHeightViewport()
-                } else {
-                        makeHeightAuto()
-                }
-        }}
 };
  gap: 60px 32px;
 

@@ -32,12 +32,12 @@ function App() {
           <Route path="/user" element={<UserPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />} >
-            <Route index element={<NoticesPage />} />
-            <Route path='sell' element={<NoticesCategoriesList category={'sell'} />} />
-            <Route path="lost-found" element={<NoticesCategoriesList category={'lost-found'} />} />
-            <Route path="for-free" element={<NoticesCategoriesList category={'for-free'} />} />
-            <Route path="own" element={<NoticesCategoriesList category={'own'} />} />
-            <Route path="favorite" element={<NoticesCategoriesList category={'favorite'} />} />
+            <Route path='sell' element={<NoticesCategoriesList />} />
+            <Route path="lost-found" element={<NoticesCategoriesList />} />
+            <Route path="for-free" element={<NoticesCategoriesList />} />
+            <Route path="own" element={<NoticesCategoriesList />} />
+            <Route path="favorite" element={<NoticesCategoriesList />} />
+            <Route path="*/:noticeId" element={<NoticesCategoriesList />} />
           </Route>
           <Route path="/friends" element={<OurFriendsPage />} />
         </Route>
