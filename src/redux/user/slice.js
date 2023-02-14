@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserData, updateUserData, addUserPet, removeUserPet } from './operations';
+import { getUserData, updateUserData, addUserPet, removeUserPet, getPets } from './operations';
 
 const initialState = {
   user: { avatarURL: null, userInfo: {} },
+  pets: [],
   loading: false,
   userLoading: false,
   error: null,
@@ -80,6 +81,19 @@ const userSlice = createSlice({
       store.user.pets = store.user.pets.filter(({ _id }) => _id !== payload.id);
     },
     [removeUserPet.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [getPets.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [getPets.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.pets = [...payload];
+      store.error = null;
+    },
+    [getPets.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },

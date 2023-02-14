@@ -10,9 +10,11 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store from './redux/store';
 import { persistor } from './redux/store';
+import appStore from './redux/store';
 
 import theme from './theme';
 import App from './App';
+const { store, persistor } = appStore;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
