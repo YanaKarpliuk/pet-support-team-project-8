@@ -5,10 +5,11 @@ import AuthNav from '../AuthNav/AuthNav';
 import { Box, MobileBtn, Menu, MenuNav } from './Header.styled';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import UserNav from '../UserNav/UserNav';
-import authSelectors from '../../redux/auth/authSelectors';
+import useAuth from '../../hooks/useAuth';
 
-const { isLoggedIn } = authSelectors;
+
 const Header = () => {
+   const { isLoggedIn } = useAuth();
   const [open, setOpen] = useState(false);
   const notOpen = () => setOpen(!open);
   return (
@@ -19,9 +20,8 @@ const Header = () => {
       </MenuNav>
 
       <Menu open={open}>
-        {/* <UserNav noOpen={notOpen} /> */}
-        {isLoggedIn ? <UserNav /> : <AuthNav />}
-        {/* <AuthNav noOpen={notOpen} /> */}
+        {!isLoggedIn && (open ? <AuthNav noOpen={notOpen} /> : <AuthNav />)}
+        {isLoggedIn && (open ? <UserNav noOpen={notOpen} /> : <UserNav />)}
       </Menu>
       <MobileBtn onClick={() => setOpen(!open)}>
         {open ? <IoClose size={40} /> : <IoMenu size={40} />}
