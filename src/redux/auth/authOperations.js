@@ -27,7 +27,7 @@ const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue 
   }
 });
 
-const updateUserInformation = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
+const updateUserData = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
   // console.log(persistedToken);
@@ -44,13 +44,13 @@ const updateUserInformation = createAsyncThunk('auth/update', async (credentials
     console.log('this is update 2');
     console.log(res.data);
 
-    return res.data.result;
+    return res.data.data.result;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-// const updateUserInformation = createAsyncThunk(
+// const updateUserData = createAsyncThunk(
 //   'auth/update',
 //   async (credentials, { rejectWithValue }) => {
 //     try {
@@ -82,5 +82,5 @@ const logOut = createAsyncThunk('auth/logout', async (credential, { rejectWithVa
   }
 });
 
-const authOperations = { register, login, logOut, updateUserInformation };
+const authOperations = { register, login, logOut, updateUserData };
 export default authOperations;

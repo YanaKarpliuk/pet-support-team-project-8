@@ -10,7 +10,7 @@ const authHeader = {
 
 export const getUserData = createAsyncThunk('user/getUserData', async (_, { rejectWithValue }) => {
   try {
-    const result = await axios.get('/user/get');
+    const result = await axios.get('/user/current');
     return result.data;
   } catch ({ response }) {
     const { status, data } = response;
@@ -18,7 +18,7 @@ export const getUserData = createAsyncThunk('user/getUserData', async (_, { reje
       status,
       message: data.message,
     };
-    return rejectWithValue(error);
+    return rejectWithValue(error.message);
   }
 });
 
@@ -35,7 +35,7 @@ export const updateUserData = createAsyncThunk(
         status,
         message: data.message,
       };
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -43,17 +43,19 @@ export const updateUserData = createAsyncThunk(
 export const getPets = createAsyncThunk(
   'pets/getAllCurrentUserPets',
   async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedToken = state.auth.token;
+    // console.log(persistedToken);
+    if (persistedToken === null) {
+      return rejectWithValue('Unable to fetch users pets');
+    }
+    authHeader.setAuthHeader(persistedToken);
     try {
-      const token = getState().auth.token;
-      if (token === null) {
-        return rejectWithValue('Unable to fetch user');
-      }
-      authHeader.setAuthHeader(token);
-      const { data } = await axios.get('/users/pet/current');
-      console.log(data);
-      return data.userPetsList;
+      const result = await axios.get('/pet/current');
+      // console.log(result);
+      return result.data;
     } catch (error) {
-      return rejectWithValue(error.response.data.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -68,7 +70,7 @@ export const addUserPet = createAsyncThunk('user/addUserPet', async (data, { rej
       status,
       message: data.message,
     };
-    return rejectWithValue(error);
+    return rejectWithValue(error.message);
   }
 });
 
@@ -85,7 +87,7 @@ export const removeUserPet = createAsyncThunk(
         status,
         message: data.message,
       };
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );

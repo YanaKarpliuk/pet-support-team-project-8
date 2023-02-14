@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authOperations from './authOperations';
-const { register, login, logOut, updateUserInformation } = authOperations;
+const { register, login, logOut, updateUserData } = authOperations;
 
 const initialState = {
   id: '',
@@ -50,19 +50,19 @@ const onLogOutSuccess = s => ({
   isLoading: false,
 });
 
-// const onUpdateUserInformation = (s, { payload }) => ({
-//   ...s,
-//   // id: payload._id,
-//   avatarURL: payload.avatarURL,
-//   name: payload.name,
-//   email: payload.email,
-//   birthday: payload.birthday,
-//   phone: payload.phone,
-//   city: payload.city,
-//   isLoggedIn: true,
-// });
+const onUpdateUserData = (s, { payload }) => ({
+  ...s,
+  // id: payload._id,
+  avatarURL: payload.avatarURL,
+  name: payload.name,
+  email: payload.email,
+  birthday: payload.birthday,
+  phone: payload.phone,
+  city: payload.city,
+  isLoggedIn: true,
+});
 
-// const onUpdateUserInformation = (s, { payload }) => ({
+// const onUpdateUserData = (s, { payload }) => ({
 //   ...s,
 //   // id: payload._id,
 //   ...payload.avatarURL,
@@ -74,10 +74,10 @@ const onLogOutSuccess = s => ({
 //   ...true,
 // });
 
-const onUpdateUserInformation = (s, { payload }) => ({
-  ...s,
-  ...payload,
-});
+// const onUpdateUserData = (s, { payload }) => ({
+//   ...s,
+//   ...payload,
+// });
 
 const handleRejected = (s, { payload }) => ({
   ...s,
@@ -103,22 +103,23 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, onAuthLogInSuccess)
       .addCase(register.fulfilled, onAuthRegisterSuccess)
       .addCase(logOut.fulfilled, onLogOutSuccess)
-      .addCase(updateUserInformation.fulfilled, onUpdateUserInformation)
+      .addCase(updateUserData.fulfilled, onUpdateUserData)
       .addMatcher(
-        isAnyOf(register.rejected, login.rejected, logOut.rejected, updateUserInformation.rejected),
+        isAnyOf(register.rejected, login.rejected, logOut.rejected, updateUserData.rejected),
         handleRejected
       )
       .addMatcher(isAnyOf(register.pending, login.pending, logOut.pending), handlePending);
   },
 });
 
-const persistConfig = {
-  key: 'token',
-  storage,
-  whitelist: ['token'],
-};
+// const persistConfig = {
+//   key: 'token',
+//   storage,
+//   whitelist: ['token'],
+// };
 
-const authReducer = persistReducer(persistConfig, authSlice.reducer);
+// const authReducer = persistReducer(persistConfig, authSlice.reducer);
+const authReducer = authSlice.reducer;
 const { removeError } = authSlice.actions;
 const authStore = { authReducer, removeError };
 export default authStore;

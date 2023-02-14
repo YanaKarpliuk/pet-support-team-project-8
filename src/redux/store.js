@@ -50,6 +50,10 @@ const store = configureStore({
 //   "city": "Odesa, Odesa",
 //   "phone": "+380631234567"
 // }
-let persistor = persistStore(store);
+// let persistor = persistStore(store);
+// const appStore = { store, persistor };
+// export default appStore;
+
+const persistor = persistStore(store);
 const appStore = { store, persistor };
 export default appStore;

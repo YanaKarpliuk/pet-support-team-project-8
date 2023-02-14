@@ -1,4 +1,6 @@
-const selectUser = ({ auth: { email, name, phone, city, avatarURL, id, birthday } }) => ({
+const selectUser = ({
+  auth: { email, name, phone, city, avatarURL, id, birthday, token, isLoggedIn },
+}) => ({
   id,
   email,
   name,
@@ -6,6 +8,8 @@ const selectUser = ({ auth: { email, name, phone, city, avatarURL, id, birthday 
   city,
   avatarURL,
   birthday,
+  token,
+  isLoggedIn,
 });
 const selectError = ({ auth }) => auth.error;
 const selectIsLoggedIn = ({ auth }) => auth.isLoggedIn;

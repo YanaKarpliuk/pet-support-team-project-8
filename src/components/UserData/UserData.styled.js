@@ -229,12 +229,13 @@ export const LogOutButton = styled.button`
   color: rgba(17, 17, 17, 0.6);
   &:hover,
   :focus {
-    span {
+    /* span {
       color: black;
-    }
-    color: black;
-    stroke: black;
-    transform: scale(1.1);
+    } */
+    cursor: pointer;
+    color: ${theme.colors.accent};
+    stroke: ${theme.colors.accent};
+    /* transform: scale(1.1); */
   }
   @media screen and (${theme.media.mobile}) {
     margin-top: 42px;
@@ -276,12 +277,12 @@ export const ButtonEdit = styled.button`
   background-color: ${theme.colors.white};
   &:hover,
   :focus {
-    span {
+    /* span {
       color: black;
-    }
+    } */
     color: ${theme.colors.accent};
-    stroke: black;
-    transform: scale(1.1);
+    stroke: ${theme.colors.accent};
+    /* transform: scale(1.); */
   }
   @media screen and (${theme.media.tablet}) {
     margin-top: 8px;
