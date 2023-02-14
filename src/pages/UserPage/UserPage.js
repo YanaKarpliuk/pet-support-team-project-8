@@ -1,11 +1,3 @@
-import { Helmet } from 'react-helmet';
-
-import UserData from '../../components/UserData2/UserData';
-// import UserPets from '../components/PetsElements/UserPets';
-
-import { UserInfoContainer } from './UserPage2.styled';
-
-
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, removeUserPet, getPets } from '../../redux/user/operations';
@@ -20,7 +12,7 @@ import {
   getIsAddedPetSuccess,
   getUserError,
 } from '../../redux/user/selectors';
-// import UserData from '../../components/UserData/UserData';
+import UserData from '../../components/UserData/UserData';
 import styles from './UserPage.styled';
 const { UserPageContainer, UserContainer, UserInfo, UserCardWrapper, Title } = styles;
 
@@ -57,16 +49,18 @@ const UserPage = () => {
   const cardData = { userPets, onDeletePet, isPetsLoading };
 
   return (
-    <div>
-      {/* <Helmet>
-      <title>UserPage</title>
-      </Helmet> */}
+    <UserPageContainer>
+      <UserCardWrapper>
+        <Title>My information</Title>
+        <UserInfo>
+          <UserContainer>
+            <UserData formData={formData} />
+          </UserContainer>
+        </UserInfo>
+      </UserCardWrapper>
 
-      <UserInfoContainer>
-        <UserData />
-        <MyPets userPets={userPets} isPetsLoading={isPetsLoading} viewportWidth={viewportWidth} />
-      </UserInfoContainer>
-    </div>
+      <MyPets userPets={userPets} isPetsLoading={isPetsLoading} viewportWidth={viewportWidth} />
+    </UserPageContainer>
   );
 };
 

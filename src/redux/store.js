@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-<<<<<<< HEAD
 import {
   persistStore,
   persistReducer,
@@ -12,9 +11,6 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-=======
-import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
->>>>>>> main
 import authStore from './auth/authReducer';
 import userReducer from './user/slice';
 import { searchReducer } from './search/searchSlice';
@@ -38,18 +34,14 @@ const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-<<<<<<< HEAD
         ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-=======
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
->>>>>>> main
+        // ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
 
-<<<<<<< HEAD
 // export const persistor = persistStore(store);
-export default store;
+// export default store;
 
 // {
 //   "email": "auser@example.com",
@@ -58,8 +50,6 @@ export default store;
 //   "city": "Odesa, Odesa",
 //   "phone": "+380631234567"
 // }
-=======
 let persistor = persistStore(store);
 const appStore = { store, persistor };
 export default appStore;
->>>>>>> main
