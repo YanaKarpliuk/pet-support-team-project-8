@@ -35,8 +35,16 @@ const theme = {
   },
   lineHeights: {
     body: 1.5,
+    normal: 1.35,
     heading: 1.125,
   },
+
+  letterSpacings: {
+    min: '-0.01em',
+    normal: '0.0em',
+    max: '0.07em',
+  },
+
   borders: {
     none: 'none',
     box: '2px solid #F59256',

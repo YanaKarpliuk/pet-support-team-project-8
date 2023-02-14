@@ -31,6 +31,7 @@ const Input = styled.input`
 height: 40px;
 font-size: ${theme.fontSizes.m};
 line-height: 1.375;
+padding: 9px 0 9px 12px;
 };
 
 width: 100%;
@@ -51,7 +52,7 @@ box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border: ${theme.borders.none};
 border-radius: 20px;
 
-padding: 0 0 0 10px;
+padding: 8px 0 8px 20px;
 
 color: #535353;
 font-family: ${theme.fonts.manrope};
@@ -68,7 +69,8 @@ outline: none;
 `;
 
 const SearchBtn = styled.button`
-display:block;
+display: ${props => props.exist ? 'none' : "block"};
+cursor: pointer;
 position: absolute;
 top: 50%;
 right: 0;
@@ -88,19 +90,29 @@ background: transparent;
 border: ${theme.borders.none};
 border-top-right-radius: 20px;
 border-bottom-right-radius: 20px;
+`
 
- input:focus ~ & {
-    display: none;
-  }
+const ClearBtn = styled.button`
+display: ${props => props.exist ? 'block' : "none"};
+cursor: pointer;
+position: absolute;
+top: 50%;
+right: 0;
+padding: 0;
+padding-right: 3%;
+transform: translate(0, -50%);
 
-cursor: pointer;`
+@media screen and (${theme.media.mobile}) {
+height: 40px;
+padding-right: 5%;
+};
+height: 44px;
+background: transparent;
 
-const ClearBtn = styled(SearchBtn)`
-display: none;
-
- input:focus ~ & {
-    display: block;
-  }`
+border: ${theme.borders.none};
+border-top-right-radius: 20px;
+border-bottom-right-radius: 20px;
+  `
 
 const MugnifyingGlass = styled(AiOutlineSearch)`
 display: block;
@@ -110,11 +122,7 @@ height: 20px;
  }
 
   width: 24px; 
-  height: 24px;
-  
-  ${Input}:focus & {
-    display: none;
-  }`
+  height: 24px;`
 
 const CrissCross = styled(AiOutlineCloseCircle)`
 display: block;

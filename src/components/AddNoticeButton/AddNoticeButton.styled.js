@@ -33,7 +33,7 @@ transition: background-color 200ms ease-in-out;
     background-color: #FF6101
 }`
 
-const Text = styled.p`
+const Text = styled.span`
 display: flex;
 align-items: center;
 font-family: ${theme.fonts.manrope};
@@ -53,6 +53,7 @@ justify-content: center;
 align-items: center;
 width: 44px;
 height: 44px;
+padding: 0;
 margin-left: 12px;
 background: ${theme.colors.accent};
 border-radius: 50%;

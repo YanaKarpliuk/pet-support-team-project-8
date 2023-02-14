@@ -2,8 +2,8 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import AddNoticeButton from "../../components/AddNoticeButton/AddNoticeButton";
 import NoticesCategoriesNav from "../../components/NoticesCategoriesNav/NoticesCategoriesNav";
 import elements from "./NoticesPage.styled";
-import doggo from '../../img/example.jpg'
-import NoticesCategoriesList from "../../components/NoticesCategoriesList/NoticesCategoriesList";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
 const { Section, Header, Container, CategoriesCont } = elements;
 
@@ -74,7 +74,7 @@ const ads = [
 
 const NoticesPage = () => {
     return (
-        <Section contents={ads.length}>
+        <Section>
             <Container>
                 <Header style={{ textAlign: "center" }}>Find your favorite pet</Header>
                 <SearchBar />
@@ -82,7 +82,7 @@ const NoticesPage = () => {
                     <NoticesCategoriesNav />
                     <AddNoticeButton />
                 </CategoriesCont>
-                <NoticesCategoriesList contents={ads} />
+                <Suspense><Outlet /></Suspense>
             </Container>
         </Section>
     );

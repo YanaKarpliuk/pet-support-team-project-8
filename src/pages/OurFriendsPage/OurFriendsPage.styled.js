@@ -11,14 +11,14 @@ const Title = styled.h2`
   line-height: 33px;
   text-align: center;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     font-size: 48px;
     line-height: 66px;
     margin-top: 88px;
     margin-bottom: 40px;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     font-size: 48px;
     line-height: 66px;
     margin-top: 72px;
@@ -31,26 +31,26 @@ const Container = styled.div`
   padding: 20px 20px 100px;
   margin-top: 67px;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     margin-top: 82px;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     margin-top: 82px;
   }
 `;
 
-const List = styled.div`
+const List = styled.ul`
   list-style: none;
   max-width: 320px;
   margin: 0 auto;
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 32px;
     max-width: 768px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 32px;
@@ -66,12 +66,12 @@ const Card = styled.li`
   &:not(:last-child) {
     margin-bottom: 12px;
   }
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     &:not(:last-child) {
       margin-bottom: 0;
     }
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     &:not(:last-child) {
       margin-bottom: 0;
     }
@@ -89,11 +89,11 @@ const ContentBox = styled.div`
   font-weight: ${theme.fontWeights.normal};
   line-height: 16px;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     line-height: 19px;
     font-size: 14px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     line-height: 22px;
     font-size: 16px;
   }
@@ -101,16 +101,24 @@ const ContentBox = styled.div`
 
 const ImageBox = styled.div`
   margin-right: 12px;
-  background: black;
   width: 110px;
   height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  @media screen and (${theme.media.tablet}) {
+  & > img {
+    height: 100%;
+    width: 100%;
+  }
+
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     width: 120px;
     height: 85px;
     margin-right: 14px;
   }
-  @media screen and (${theme.media.desktop}) {
+
+  @media screen and ((min-width: 1280px)) {
     width: 158px;
     height: 112px;
     margin-right: 16px;
@@ -128,12 +136,12 @@ const TitleLink = styled(Link)`
   margin-bottom: 10px;
   text-align: center;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     margin-bottom: 16px;
     line-height: 19px;
     font-size: 14px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     margin-bottom: 16px;
     line-height: 22px;
     font-size: 16px;
@@ -159,12 +167,12 @@ const ContentItem = styled.div`
     margin-bottom: 4px;
   }
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     &:not(:last-child) {
       margin-bottom: 8px;
     }
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     &:not(:last-child) {
       margin-bottom: 12px;
     }
@@ -197,11 +205,11 @@ const ContentItemTime = styled.div`
     display: flex;
   }
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and ((max-width: 1279px) and (min-width: 768px)) {
     margin-bottom: 8px;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and ((min-width: 1280px)) {
     margin-bottom: 12px;
   }
 `;

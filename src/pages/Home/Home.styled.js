@@ -76,7 +76,7 @@ const Container = styled.section`
   background-position: center;
   background-size: cover;
   position: relative;
-  height: 100%;
+  height: 100vh;
   margin-top: 67px;
 
   @media screen and (${theme.media.tablet}) {
@@ -86,7 +86,7 @@ const Container = styled.section`
 
   @media screen and (${theme.media.desktop}) {
     background-image: url(${desktopBg});
-    margin-top: 82px;
+    background-position: 0 67px;
   }
 `;
 

@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authOperations from './authOperations';
-const { register, login } = authOperations;
+const { register, login, logOut, updateUserInformation } = authOperations;
 
 const initialState = {
   id: '',
@@ -17,24 +17,66 @@ const initialState = {
   error: null,
 };
 
-const onAuthRegisterSuccess = (s, { payload }) => ({
+const onAuthRegisterSuccess = s => ({
   ...s,
-  name: payload.name,
-  email: payload.email,
-  phone: payload.phone,
-  city: payload.city,
-  avatarURL: payload.avatarURL,
   isLoading: false,
   error: null,
 });
 
 const onAuthLogInSuccess = (s, { payload }) => ({
   ...s,
+  name: payload.name,
+  email: payload.email,
+  phone: payload.phone,
+  city: payload.city,
+  avatarURL: payload.avatarURL,
+  birthday: payload.birthday,
   token: payload.token,
-  id: payload.id,
+  id: payload._id,
   isLoggedIn: true,
   isLoading: false,
   error: null,
+});
+
+const onLogOutSuccess = s => ({
+  name: null,
+  email: null,
+  phone: null,
+  city: null,
+  avatarURL: null,
+  birthday: null,
+  token: null,
+  isLoggedIn: false,
+  isLoading: false,
+});
+
+// const onUpdateUserInformation = (s, { payload }) => ({
+//   ...s,
+//   // id: payload._id,
+//   avatarURL: payload.avatarURL,
+//   name: payload.name,
+//   email: payload.email,
+//   birthday: payload.birthday,
+//   phone: payload.phone,
+//   city: payload.city,
+//   isLoggedIn: true,
+// });
+
+// const onUpdateUserInformation = (s, { payload }) => ({
+//   ...s,
+//   // id: payload._id,
+//   ...payload.avatarURL,
+//   ...payload.name,
+//   ...payload.email,
+//   ...payload.birthday,
+//   ...payload.phone,
+//   ...payload.city,
+//   ...true,
+// });
+
+const onUpdateUserInformation = (s, { payload }) => ({
+  ...s,
+  ...payload,
 });
 
 const handleRejected = (s, { payload }) => ({
@@ -60,8 +102,13 @@ const authSlice = createSlice({
     builder
       .addCase(login.fulfilled, onAuthLogInSuccess)
       .addCase(register.fulfilled, onAuthRegisterSuccess)
-      .addMatcher(isAnyOf(register.rejected, login.rejected), handleRejected)
-      .addMatcher(isAnyOf(register.pending, login.pending), handlePending);
+      .addCase(logOut.fulfilled, onLogOutSuccess)
+      .addCase(updateUserInformation.fulfilled, onUpdateUserInformation)
+      .addMatcher(
+        isAnyOf(register.rejected, login.rejected, logOut.rejected, updateUserInformation.rejected),
+        handleRejected
+      )
+      .addMatcher(isAnyOf(register.pending, login.pending, logOut.pending), handlePending);
   },
 });
 

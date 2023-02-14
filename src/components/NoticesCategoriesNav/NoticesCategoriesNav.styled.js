@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import theme from "../../theme";
+import { NavLink } from "react-router-dom";
 
-const Container = styled.ul`
+const Container = styled.div`
 display: flex;
 flex-wrap: wrap;
 gap: 12px;
 `
 
-const Option = styled.button`
+const Option = styled(NavLink)`
 font-family: ${theme.fonts.manrope};
 font-weight: ${theme.fontWeights.normal};
 text-align: center;
@@ -29,7 +30,7 @@ border: 2px solid ${theme.colors.accent};
 border-radius: 40px;
 transition: background-color 200ms, color 200ms;
 
-&:hover, &:focus {
+&:hover, &:focus, &.active {
     background-color: ${theme.colors.accent};
     color: ${theme.colors.white};
 };
