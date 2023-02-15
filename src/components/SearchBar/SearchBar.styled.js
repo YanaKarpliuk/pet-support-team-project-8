@@ -2,7 +2,7 @@ import styled from "styled-components";
 import theme from '../../theme';
 import { AiOutlineSearch } from "react-icons/ai"
 import { AiOutlineCloseCircle } from "react-icons/ai"
-import { Form, Field, ErrorMessage } from 'formik';
+import { Form, Field } from 'formik';
 
 const SearchBarContainer = styled.div`
 display: flex;

@@ -8,14 +8,15 @@ import noticesSelectors from "../../redux/notices/noticesSelectors";
 import { useEffect } from "react";
 
 const { selectSearchState } = searchSelectors
-const { selectNotices } = noticesSelectors
+const { selectNotices, selectFavoriteNotices, selectOwnNotices } = noticesSelectors
 const { List } = elements
 
 const NoticesCategoriesList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const searchValue = useSelector(selectSearchState)
     const notices = useSelector(selectNotices)
-
+    const favorite = useSelector(selectFavoriteNotices)
+    const own = useSelector(selectOwnNotices)
 
     useEffect(() => {
         const params = searchValue !== '' ? { search: searchValue } : {};
@@ -28,7 +29,7 @@ const NoticesCategoriesList = () => {
     }
 
     const items = contentsNeeded.map((itemData) => {
-        return <NoticesCategoriesItem key={itemData.id} info={itemData} />
+        return <NoticesCategoriesItem key={itemData._id} info={itemData} />
     })
 
     if (items.length === 0) {
