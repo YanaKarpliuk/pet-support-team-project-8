@@ -2,6 +2,11 @@ import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import ModalNotice from '../../components/ModalNotice/ModalNotice';
 import elements from './NoticesCategoriesItem.styled';
+import CATEGORIES from '../../utils/categories';
+import { useSelector, useDispatch } from 'react-redux';
+import noticesOperations from '../../redux/notices/noticesOperations';
+import authSelectors from "../../redux/auth/authSelectors";
+import { useNavigate } from 'react-router-dom';
 
 const {
   Item,
@@ -17,11 +22,28 @@ const {
   Heart,
 } = elements;
 
+const { selectIsLoggedIn } = authSelectors
+const { addToFavorite, deleteFromFavorite } = noticesOperations
+
 const NoticesCategoriesItem = ({ info }) => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector(selectIsLoggedIn)
   const [active, setActive] = useState(false);
-  const { avatar, category, title, breed, location, birthdate, price = 0 } = info;
+  let { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null } = info;
 
   const capitalizedCategory = () => {
+    if (category === CATEGORIES.sell) {
+      category = 'sell'
+    }
+
+    if (category === CATEGORIES.lostFound) {
+      category = 'lost/found'
+    }
+
+    if (category === CATEGORIES.inGoodHands) {
+      category = 'in good hands'
+    }
     return category.charAt(0).toUpperCase() + category.slice(1);
   };
 
@@ -33,12 +55,24 @@ const NoticesCategoriesItem = ({ info }) => {
     return Math.abs(ageDt.getUTCFullYear() - 1970);
   }
 
+  const addToFav = () => {
+    if (!isLoggedIn) {
+      return navigate('/register')
+    }
+    if (!favorite) {
+      return dispatch(addToFavorite(_id))
+    }
+    if (!favorite) {
+      return dispatch(deleteFromFavorite(_id))
+    }
+  }
+
   return (
     <Item>
       <ImageContainer>
         <img src={avatar.url} alt="a pet" />
         <Category>{capitalizedCategory()}</Category>
-        <AddToFav type="button">
+        <AddToFav type="button" active={favorite} onClick={addToFav}>
           <Heart />
         </AddToFav>
       </ImageContainer>

@@ -16,9 +16,9 @@ const NoticesCategoriesNav = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn)
 
     useEffect(() => {
+        console.log("=====")
         navigate("/notices/sell", { replace: true });
-        dispatch(fetchNoticesByCategory(CATEGORIES.sell));
-    }, [dispatch, navigate])
+    }, [navigate])
 
     const handleClick = (filter) => {
         dispatch(fetchNoticesByCategory(filter))

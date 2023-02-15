@@ -19,7 +19,7 @@ const SearchBar = () => {
     }, [dispatch])
 
     const handleChange = (e) => {
-        const input = e.target.value.trim().toLowerCase();
+        const input = e.target.value.toLowerCase();
         dispatch(setSearch(input));
     }
 
