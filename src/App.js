@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-// import RestrictedRoute from "./components/RestrictedRoute ";
+import PrivateRoute from './components/PrivateRouter';
 import RestrictedRoute from './components/RestrictedRoute ';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 // import About from "path/to/pages/About";
@@ -31,8 +31,8 @@ function App() {
           />
           <Route
             path="/user"
-            // element={<RestrictedRoute redirectTo="/user" component={<UserPage />} />}
-            element={<UserPage />}
+            element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
+            // element={<UserPage />}
           />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />} >

@@ -10,7 +10,7 @@ export const FormWrap = styled.div`
   padding: 0px 20px 0px 20px;
   overflow: hidden;
 
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     position: fixed;
     top: 50%;
     right: 50%;
@@ -23,7 +23,7 @@ export const FormWrap = styled.div`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     top: 114px;
     transform: translate(50%, 0%);
     width: 618px;
@@ -40,7 +40,7 @@ export const Title = styled.h1`
   margin-bottom: 40px;
   color: ${theme.colors.black};
 
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     font-size: 36px;
     font-weight: ${theme.fontWeights.normal};
     line-height: 1.36;
@@ -74,7 +74,7 @@ export const Input = styled(Field)`
   caret-color: ${theme.colors.accent};
   transition: all 100ms ease-in;
 
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     height: 52px;
     font-size: 20px;
     padding: 14px 14px 13px 32px;
@@ -89,7 +89,7 @@ export const Input = styled(Field)`
     letter-spacing: 0.04em;
     color: rgba(17, 17, 17, 0.6);
 
-    @media screen and (${theme.media.fromTablet}) {
+    @media screen and (min-width: 768px) {
       font-size: 18px;
       line-height: 1.38;
     }
@@ -99,7 +99,7 @@ export const Input = styled(Field)`
   &:hover {
     outline: 2px solid ${theme.colors.accent};
 
-    @media screen and (${theme.media.fromTablet}) {
+    @media screen and (min-width: 768px) {
       outline-width: 3px;
     }
   }
@@ -109,7 +109,7 @@ export const InputPass = styled(Input)`
   color: inherit;
   padding-right: 40px;
 
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     padding-right: 50px;
   }
 `;
@@ -142,7 +142,7 @@ export const EyeIcon = styled(AiOutlineEye)`
   top: 8px;
   cursor: pointer;
 
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     width: 30px;
     height: 30px;
     right: 15px;
@@ -199,11 +199,11 @@ export const Button = styled.button`
     transform: scale(1.01);
   }
 
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     margin-top: 40px;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     height: 48px;
   }
 `;
@@ -220,7 +220,7 @@ export const StyledToastContainer = styled(ToastContainer)`
       width: 250px;
       min-height: 60px;
     }
-    @media screen and (${theme.media.desktop}) {
+    @media screen and (min-width: 768px) {
       width: 300px;
       min-height: 70px;
     }

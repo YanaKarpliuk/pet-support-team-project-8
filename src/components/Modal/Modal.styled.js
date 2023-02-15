@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const Backdrop = styled.div`
-  height: 100vh;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   background-color: rgba(17, 17, 17, 0.6);
   position: fixed;
-  z-index: 100;
+  z-index: 200;
   top: 0;
   left: 0;
   display: flex;
@@ -13,18 +13,18 @@ const Backdrop = styled.div`
   justify-content: center;
   backdrop-filter: blur(10px);
   opacity: ${p => (p.active ? 1 : 0)};
-  pointer-events: ${p => (p.active ? "all" : 'none')};
+  pointer-events: ${p => (p.active ? 'all' : 'none')};
   transition: 0.5s;
 `;
 
 const Content = styled.div`
   border-radius: 40px;
-  background: #ffffff;
-  // height: 400px;
-  // width: 300px;
+  background: ${p => p.theme.colors.white};
   transform: ${p => (p.active ? 'scale(1)' : 'scale(0.5)')};
   transition: 0.4s all;
-
+  @media ${p => p.theme.media.mobile} {
+    border-radius: 20px;
+  }
 `;
 
 const CloseBtn = styled.div`

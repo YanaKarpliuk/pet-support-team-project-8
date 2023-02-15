@@ -15,12 +15,12 @@ export const Container = styled.div`
   background-size: contain;
   background-position: bottom;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (min-width: 768px) {
     padding-top: 276px;
     background-image: url(${tabletBgImg});
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     padding-top: 148px;
     background-image: url(${desktopBgImg});
   }

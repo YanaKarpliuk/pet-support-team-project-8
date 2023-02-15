@@ -1,6 +1,20 @@
 import steyles from './ModalNotice.styled';
 
-const ModalNotice = () => {
+const ModalNotice = ({ info, capitalizedCategory }) => {
+  const {
+    img,
+    category,
+    title,
+    breed,
+    name,
+    birthday,
+    sex,
+    email,
+    phone,
+    coments,
+    place,
+    price = 0,
+  } = info;
   const {
     Container,
     Box,
@@ -8,6 +22,7 @@ const ModalNotice = () => {
     InfoBox,
     Title,
     List,
+    Item,
     ComentsBox,
     Coments,
     ComentsContent,
@@ -15,32 +30,79 @@ const ModalNotice = () => {
     AddBtn,
     IconHeart,
     ContactLink,
+    Key,
+    Value,
+    Category,
   } = steyles;
   return (
     <Container>
       <Box>
-        <ImgBox></ImgBox>
+        <ImgBox>
+          <img src={img} alt="a pet" />
+          <Category>{capitalizedCategory()}</Category>
+        </ImgBox>
         <InfoBox>
-          <Title>Сute dog looking for a home</Title>
+          <Title>{title}</Title>
           <List>
-            <li>Name: </li>
+            <tbody>
+              <Item>
+                <Key>Name: </Key>
+                <Value>{name} </Value>
+              </Item>
+              <Item>
+                <Key>Birthday: </Key>
+                <Value>{birthday} </Value>
+              </Item>
+              <Item>
+                <Key>Breed: </Key>
+                <Value>{breed} </Value>
+              </Item>
+              <Item>
+                <Key>Plase: </Key>
+                <Value>{place} </Value>
+              </Item>
+              <Item>
+                <Key>The sex: </Key>
+                <Value>{sex} </Value>
+              </Item>
+              <Item>
+                <Key>Email: </Key>
+                <Value>
+                  <a href="mailto:{email}">{email}</a>{' '}
+                </Value>
+              </Item>
+              <Item>
+                <Key>Phone: </Key>
+                <Value>
+                  <a href="tel:{phone}">{phone}</a>
+                </Value>
+              </Item>
+              {category === 'sell' ? (
+                <Item>
+                  <Key>Price: </Key>
+                  <Value>{price} </Value>
+                </Item>
+              ) : (
+                ''
+              )}
+            </tbody>
           </List>
         </InfoBox>
       </Box>
       <ComentsBox>
         <ComentsContent>
           <Coments>Coments: </Coments>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
-          ipsum dolor sit amet, consectetur Lorem Lorem ipsum dolor sit amet, consectetur Lorem
-          ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
+          {coments}
         </ComentsContent>
       </ComentsBox>
       <BtnBox>
-        <AddBtn>
+        <AddBtn type="button">
           Add to
           <IconHeart />
         </AddBtn>
-        <ContactLink>Contact</ContactLink>
+        <a href="tel:{phone}">
+          <ContactLink>Contact</ContactLink>
+        </a>
       </BtnBox>
     </Container>
   );
