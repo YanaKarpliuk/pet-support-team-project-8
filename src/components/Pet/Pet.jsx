@@ -1,6 +1,9 @@
 import React from 'react';
+import { RotatingLines } from 'react-loader-spinner';
+import { useSelector, useDispatch } from 'react-redux';
+import { getIsDeletePetLoading } from '../../redux/user/selectors';
+import { removeUserPet } from '../../redux/user/operations';
 import styles from './Pet.styled';
-import dog from '../../images/user/dog.jpg';
 const {
   PetImage,
   PetImgWrap,
@@ -10,9 +13,20 @@ const {
   PetBreed,
   PetComments,
   InfoTitle,
+  DeleteBtn,
+  DeleteIcon,
+  LoaderWrap,
 } = styles;
 
-const Pet = ({ pet: { _id, name, birthday, breed, photoPet, comments } }) => {
+const Pet = ({
+  pet: { _id, name, birthday, breed, photoPet, comments },
+  viewportWidth,
+  deletePetId,
+  setDeletePetId,
+}) => {
+  const isDeletePetLoading = useSelector(getIsDeletePetLoading);
+  const dispatch = useDispatch();
+
   return (
     <>
       <PetImgWrap>
@@ -36,6 +50,33 @@ const Pet = ({ pet: { _id, name, birthday, breed, photoPet, comments } }) => {
           {comments}
         </PetComments>
       </PetInfoWrap>
+      {!isDeletePetLoading && (
+        <DeleteBtn
+          onClick={async () => {
+            setDeletePetId(_id);
+            await dispatch(removeUserPet(_id));
+          }}
+          aria-label="delete pet"
+        >
+          <DeleteIcon />
+        </DeleteBtn>
+      )}
+      {isDeletePetLoading && deletePetId === _id && (
+        <LoaderWrap>
+          <RotatingLines
+            strokeColor="#fc731e"
+            strokeWidth="3.7"
+            animationDuration="0"
+            visible={true}
+            width={(() => {
+              if (!viewportWidth) return '30';
+              if (Number(viewportWidth) <= 767) return '20';
+              if (Number(viewportWidth) >= 768) return '44';
+            })()}
+            ariaLabel="pet delete loading"
+          />
+        </LoaderWrap>
+      )}
     </>
   );
 };

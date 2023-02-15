@@ -1,15 +1,16 @@
 import { Helmet } from 'react-helmet';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import toastOptions from '../../utils/toastErrorOptions';
 import UserData from '../../components/UserData2/UserData';
 // import UserPets from '../components/PetsElements/UserPets';
 
 import { UserInfoContainer } from './UserPage2.styled';
 
-
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, removeUserPet, getPets } from '../../redux/user/operations';
-import { resetIsAddedPetSuccess } from '../../redux/user/slice';
+import { resetIsAddedPetSuccess, resetError } from '../../redux/user/slice';
 import MyPets from '../../components/MyPets/MyPets';
 import {
   getUserPets,
@@ -42,6 +43,13 @@ const UserPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (error) {
+      toast.error(error, toastOptions);
+      dispatch(resetError());
+    }
+  }, [error, dispatch]);
+
+  useEffect(() => {
     if (isAddedPetSuccess) {
       dispatch(resetIsAddedPetSuccess());
     }
@@ -64,7 +72,7 @@ const UserPage = () => {
 
       <UserInfoContainer>
         <UserData />
-        <MyPets userPets={userPets} isPetsLoading={isPetsLoading} viewportWidth={viewportWidth} />
+        <MyPets viewportWidth={viewportWidth} />
       </UserInfoContainer>
     </div>
   );
