@@ -30,21 +30,19 @@ const NoticesCategoriesItem = ({ info }) => {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const [active, setActive] = useState(false);
-  let { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null } = info;
-
+  const { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null, owner } = info;
   const capitalizedCategory = () => {
     if (category === CATEGORIES.sell) {
-      category = 'sell'
+      return 'Sell'
     }
 
     if (category === CATEGORIES.lostFound) {
-      category = 'lost/found'
+      return 'Lost/found'
     }
 
     if (category === CATEGORIES.inGoodHands) {
-      category = 'in good hands'
+      return 'In good hands'
     }
-    return category.charAt(0).toUpperCase() + category.slice(1);
   };
 
   const calculateAge = (dob) => {
@@ -72,7 +70,7 @@ const NoticesCategoriesItem = ({ info }) => {
       <ImageContainer>
         <img src={avatar.url} alt="a pet" />
         <Category>{capitalizedCategory()}</Category>
-        <AddToFav type="button" active={favorite} onClick={addToFav}>
+        <AddToFav type="button" selected={favorite} onClick={addToFav}>
           <Heart />
         </AddToFav>
       </ImageContainer>

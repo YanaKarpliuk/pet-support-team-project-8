@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import noticesOperations from "../../redux/notices/noticesOperations";
 import CATEGORIES from "../../utils/categories";
 
-const { fetchNoticesByCategory } = noticesOperations
+const { fetchNoticesByCategory, fetchOwnNotices, fetchFavorite } = noticesOperations
 const { Option, Container } = elements;
 
 const NoticesCategoriesNav = () => {
@@ -16,20 +16,29 @@ const NoticesCategoriesNav = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn)
 
     useEffect(() => {
-        console.log("=====")
         navigate("/notices/sell", { replace: true });
-    }, [navigate])
+        dispatch(fetchNoticesByCategory(CATEGORIES.sell))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
-    const handleClick = (filter) => {
+    const handleCategoryFetch = (filter) => {
         dispatch(fetchNoticesByCategory(filter))
     }
 
+    const handleFavoriteFetch = () => {
+        dispatch(fetchFavorite())
+    }
+
+    const handleOwnFetch = () => {
+        dispatch(fetchOwnNotices())
+    }
+
     return (<Container>
-        <Option to="lost-found" onClick={() => handleClick(CATEGORIES.lostFound)}>lost/found</Option>
-        <Option to="for-free" onClick={() => handleClick(CATEGORIES.inGoodHands)}>in good hands</Option>
-        <Option to="sell" onClick={() => handleClick(CATEGORIES.sell)}>sell</Option>
-        {isLoggedIn ? <><Option to="favorite" onClick={() => handleClick(CATEGORIES.favoriteAds)}>favorite ads</Option>
-            <Option to="own" onClick={() => handleClick(CATEGORIES.myAds)}>my ads</Option></> : ''}
+        <Option to="lost-found" onClick={() => handleCategoryFetch(CATEGORIES.lostFound)}>lost/found</Option>
+        <Option to="for-free" onClick={() => handleCategoryFetch(CATEGORIES.inGoodHands)}>in good hands</Option>
+        <Option to="sell" onClick={() => handleCategoryFetch(CATEGORIES.sell)}>sell</Option>
+        {isLoggedIn ? <><Option to="favorite" onClick={handleFavoriteFetch}>favorite ads</Option>
+            <Option to="own" onClick={handleOwnFetch}>my ads</Option></> : ''}
     </Container>)
 }
 
