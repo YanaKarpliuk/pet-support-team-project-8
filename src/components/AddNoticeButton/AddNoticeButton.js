@@ -8,7 +8,7 @@ const { MobBtn, Text, Btn, Cross, MobCross } = elements;
 const AddNoticeButton = () => {
   const [active, setActive] = useState(false);
   return (
-    <div>
+    <div style={{ flexShrink: 0 }}>
       <MobBtn type="button" onClick={() => setActive(true)}>
         <MobCross /> Add pet
       </MobBtn>
@@ -24,8 +24,8 @@ const AddNoticeButton = () => {
     </div>
   );
 };
-    // return (
-    //     <div style={{ flexShrink: 0 }}><MobBtn type="button"><MobCross /> Add pet</MobBtn>
-    //         <Text>Add pet <Btn type="button"><Cross /></Btn></Text></div>
+// return (
+//     <div style={{ flexShrink: 0 }}><MobBtn type="button"><MobCross /> Add pet</MobBtn>
+//         <Text>Add pet <Btn type="button"><Cross /></Btn></Text></div>
 
 export default AddNoticeButton;

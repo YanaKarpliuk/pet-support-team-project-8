@@ -2,66 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import operations from "./noticesOperations";
 import doggo from '../../images/example.jpg';
 
-const { fetchNoticesByCategory, fetchSingleNotice, addToFavorite, deleteFromFavorite, addNotice, deleteOwnNotice } = operations
+const { fetchNoticesByCategory, fetchSingleNotice, addToFavorite, deleteFromFavorite, addNotice, deleteOwnNotice, fetchOwnNotices, fetchFavorite } = operations
 
 const noticesInitialState = {
-    notices: [{
-        id: 1,
-        title: "Сute dog looking for a home",
-        category: "in good hands",
-        img: doggo,
-        breed: 'Pomeranian',
-        age: 'one',
-        place: 'Lviv'
-    },
-    {
-        id: 2,
-        title: "Сute not dog looking for a home",
-        category: "sell",
-        price: 13,
-        img: doggo,
-        breed: 'Pomeranian',
-        age: 'one',
-        place: 'Lviv'
-    },
-    {
-        id: 3,
-        title: "Сute dog looking for a home",
-        category: "lost/found",
-        img: doggo,
-        breed: 'Pomeranian',
-        age: 'one',
-        place: 'Lviv'
-    },
-    {
-        id: 4,
-        title: "Сute not dog looking for a home",
-        category: "in good hands",
-        img: doggo,
-        breed: 'Pomeranian',
-        age: 'one',
-        place: 'Lviv'
-    },
-    {
-        id: 5,
-        title: "Сute dog looking for a house",
-        category: "sell",
-        price: 13,
-        img: doggo,
-        breed: 'Pomeranian',
-        age: 'one',
-        place: 'Lviv'
-    },
-    {
-        id: 6,
-        title: "Сute dog looking for a home",
-        category: "lost/found",
-        img: doggo,
-        breed: 'Pomeranian',
-        age: 'one',
-        place: 'Lviv'
-    }],
+    notices: [],
     singleNotice: {},
+    favorite: [],
+    own: [],
     error: null,
     isLoading: false
 }
@@ -85,7 +32,7 @@ const noticesSlice = createSlice({
             })
             .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.notices = [...state.notices, ...action.payload]
+                state.notices = action.payload
             })
             .addCase(fetchNoticesByCategory.rejected, (state, action) => {
                 handleReject(state, action)
@@ -109,6 +56,16 @@ const noticesSlice = createSlice({
             .addCase(addToFavorite.rejected, (state, action) => {
                 handleReject(state, action)
             })
+            .addCase(fetchFavorite.pending, state => {
+                handlePending(state)
+            })
+            .addCase(fetchFavorite.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.favorite = action.payload
+            })
+            .addCase(fetchFavorite.rejected, (state, action) => {
+                handleReject(state, action)
+            })
             .addCase(deleteFromFavorite.pending, state => {
                 handlePending(state)
             })
@@ -125,6 +82,16 @@ const noticesSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(addNotice.rejected, (state, action) => {
+                handleReject(state, action)
+            })
+            .addCase(fetchOwnNotices.pending, state => {
+                handlePending(state)
+            })
+            .addCase(fetchOwnNotices.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.own = action.payload
+            })
+            .addCase(fetchOwnNotices.rejected, (state, action) => {
                 handleReject(state, action)
             })
             .addCase(deleteOwnNotice.pending, state => {

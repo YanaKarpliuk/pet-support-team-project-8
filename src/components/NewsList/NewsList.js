@@ -14,8 +14,8 @@ const { selectNews } = newsSelectors
 const { fetchNews } = newsOperations
 
 const NewsList = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch()
+    const [_, setSearchParams] = useSearchParams();
     const searchValue = useSelector(selectSearchState)
     const news = useSelector(selectNews)
 
@@ -34,7 +34,7 @@ const NewsList = () => {
     }
 
     const items = contentsNeeded.map((itemData) => {
-        return <NewsEl key={itemData.id} info={itemData} />
+        return <NewsEl key={itemData._id} info={itemData} />
     })
     if (items.length === 0) {
         return <NotFound />
