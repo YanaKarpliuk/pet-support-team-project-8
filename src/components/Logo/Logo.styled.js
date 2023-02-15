@@ -6,9 +6,8 @@ export const Log = styled(NavLink)`
     color: ${p => p.theme.colors.black};
     font-size: 28px;
     line-height: 42px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
     font-weight: 700;
-    letter-spacing: 0.07em;
   }
   @media ${p => p.theme.media.tablet} {
     font-family: ${p => p.theme.fonts.logo};
@@ -16,7 +15,7 @@ export const Log = styled(NavLink)`
     font-weight: 700;
     font-size: 32px;
     line-height: 48px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
   }
   @media ${p => p.theme.media.desktop} {
     font-family: ${p => p.theme.fonts.logo};
@@ -24,7 +23,7 @@ export const Log = styled(NavLink)`
     font-weight: 700;
     font-size: 32px;
     line-height: 48px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
   }
 `;
 export const LogAccent = styled.span`
@@ -33,9 +32,8 @@ export const LogAccent = styled.span`
     color: ${p => p.theme.colors.accent};
     font-size: 28px;
     line-height: 42px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
     font-weight: 700;
-    letter-spacing: 0.07em;
   }
   @media ${p => p.theme.media.tablet} {
     font-family: ${p => p.theme.fonts.logo};
@@ -43,7 +41,7 @@ export const LogAccent = styled.span`
     font-weight: 700;
     font-size: 32px;
     line-height: 48px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
   }
   @media ${p => p.theme.media.desktop} {
     font-family: ${p => p.theme.fonts.logo};
@@ -51,6 +49,6 @@ export const LogAccent = styled.span`
     font-weight: 700;
     font-size: 32px;
     line-height: 48px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
   }
 `;
