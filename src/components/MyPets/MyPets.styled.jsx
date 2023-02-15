@@ -31,6 +31,7 @@ const PetsTitleAndButtonWrap = styled.div`
 
   @media screen and (min-width: 1280px) {
     padding-right: 16px;
+    margin-top: 20px;
   }
 `;
 
@@ -64,7 +65,7 @@ const AddPetBtnText = styled.p`
   color: #111111;
 `;
 
-const AddPetBtn = styled.div`
+const AddPetBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,6 +74,7 @@ const AddPetBtn = styled.div`
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.accent};
   border-radius: 50%;
+  border: none;
   cursor: pointer;
   transition: all 150ms ease-out;
 
@@ -140,6 +142,7 @@ const PetsList = styled.ul`
 const PetItem = styled.li`
   position: relative;
   width: 280px;
+  height: auto;
   padding: 20px 20px 40px 20px;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
@@ -147,6 +150,15 @@ const PetItem = styled.li`
 
   @media screen and (min-width: 500px) {
     width: 350px;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    column-gap: 32px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   }
 `;
 

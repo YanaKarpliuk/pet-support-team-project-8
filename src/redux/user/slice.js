@@ -4,6 +4,7 @@ import { getUserData, updateUserData, addUserPet, removeUserPet, getPets } from 
 const initialState = {
   user: { avatarURL: null, userInfo: {} },
   pets: [],
+  isDeletePetLoading: false,
   loading: false,
   userLoading: false,
   error: null,
@@ -22,6 +23,9 @@ const userSlice = createSlice({
     },
     resetIsAddedPetSuccess: state => {
       state.isAddedPetSuccess = false;
+    },
+    resetError: state => {
+      state.error = null;
     },
   },
   extraReducers: {
@@ -73,15 +77,17 @@ const userSlice = createSlice({
       store.addPetError = true;
     },
     [removeUserPet.pending]: store => {
-      store.loading = true;
+      store.isDeletePetLoading = true;
       store.error = null;
     },
-    [removeUserPet.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.user.pets = store.user.pets.filter(({ _id }) => _id !== payload.id);
-    },
+    [removeUserPet.fulfilled]: (s, { payload }) => ({
+      ...s,
+      isDeletePetLoading: false,
+      error: null,
+      pets: s.pets.filter(({ _id }) => _id !== payload.id),
+    }),
     [removeUserPet.rejected]: (store, { payload }) => {
-      store.loading = false;
+      store.isDeletePetLoading = false;
       store.error = payload;
     },
     [getPets.pending]: store => {
@@ -100,6 +106,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { toggleIsDisablet, resetIsAddedPetSuccess } = userSlice.actions;
+export const { toggleIsDisablet, resetIsAddedPetSuccess, resetError, deletePet } =
+  userSlice.actions;
 const userReducer = userSlice.reducer;
 export default userReducer;

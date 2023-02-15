@@ -17,12 +17,9 @@ const firstStepRegisterSchema = Yup.object().shape({
 
 const secondStepRegisterSchema = Yup.object().shape({
   name: Yup.string()
-    .matches(/\S{2,}/, 'name too short (min 2)')
+    .matches(/\S{2,}/, 'Name too short (min 2)')
     .matches(/((\s*[a-zA-Z]+\s*){2,}|[a-zA-Z]{2,})/, 'Name must includes only Latin alphabet')
-    .required('require field'),
-    // .min(2, 'Name too short (min 2)')
-    // .matches(/((\s*\S+\s*){2,}|\S{2,})/, 'Name too short (min 2)')
-    // .required('Require field'),
+    .required('Require field'),
   location: Yup.string()
     .matches(
       /^(\s*[a-zA-Z-]{2,}(?!,)\s*|\s*[a-zA-Z-]{2,},\s+([a-zA-Z-]+\s*)+\s*)$/,
