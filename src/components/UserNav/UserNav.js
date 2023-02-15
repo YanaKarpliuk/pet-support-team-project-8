@@ -1,12 +1,11 @@
-// import { NavLink } from "react-router-dom";
-import { Box, Link} from "./UserNav.styled";
-import { HiUserCircle } from "react-icons/hi";
+import { Box, Link, Icons} from "./UserNav.styled";
+
 
 const UserNav = ({noOpen}) => {
  return (
   <Box>
    <Link to="/user" onClick={noOpen}>
-    <HiUserCircle size={20} />
+    <Icons/>
     Account
    </Link>
   </Box>
