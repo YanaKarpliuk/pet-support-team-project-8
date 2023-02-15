@@ -34,15 +34,15 @@ const addToFavorite = createAsyncThunk('notices/addFavorite', async (noticeId, {
     }
 })
 
-// const fetchFavorite = createAsyncThunk('notices/fetchFavorite', async (_, { rejectWithValue }) => {
-//     try {
-//         const response = await axios.get("/notices");
-//         // return response.data;
-//         return []
-//     } catch (error) {
-//         rejectWithValue(error)
-//     }
-// })
+const fetchFavorite = createAsyncThunk('notices/fetchFavorite', async (_, { rejectWithValue }) => {
+    try {
+        const response = await axios.get("/notices");
+        // return response.data;
+        return []
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})
 
 const deleteFromFavorite = createAsyncThunk('notices/deleteFavorite', async (noticeId, { rejectWithValue }) => {
     try {
@@ -64,15 +64,15 @@ const addNotice = createAsyncThunk('notices/addNotice', async (noticeId, { rejec
     }
 })
 
-// const fetchOwnNotices = createAsyncThunk('notices/fetchOwn', async (_, { rejectWithValue }) => {
-//     try {
-//         const response = await axios.get("/notices");
-//         // return response.data;
-//         return []
-//     } catch (error) {
-//         rejectWithValue(error)
-//     }
-// })
+const fetchOwnNotices = createAsyncThunk('notices/fetchOwn', async (_, { rejectWithValue }) => {
+    try {
+        const response = await axios.get("/notices");
+        // return response.data;
+        return []
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})
 
 const deleteOwnNotice = createAsyncThunk('notices/deleteOwn', async (noticeId, { rejectWithValue }) => {
     try {
@@ -84,6 +84,6 @@ const deleteOwnNotice = createAsyncThunk('notices/deleteOwn', async (noticeId, {
     }
 })
 
-const noticesOperations = { fetchNoticesByCategory, fetchSingleNotice, addToFavorite, deleteFromFavorite, addNotice, deleteOwnNotice }
+const noticesOperations = { fetchNoticesByCategory, fetchSingleNotice, fetchOwnNotices, fetchFavorite, addToFavorite, deleteFromFavorite, addNotice, deleteOwnNotice }
 
 export default noticesOperations

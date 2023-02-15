@@ -2,6 +2,7 @@ import styled from "styled-components";
 import theme from '../../theme';
 import { AiOutlineSearch } from "react-icons/ai"
 import { AiOutlineCloseCircle } from "react-icons/ai"
+import { Form, Field, ErrorMessage } from 'formik';
 
 const SearchBarContainer = styled.div`
 display: flex;
@@ -15,7 +16,7 @@ margin-bottom: 40px;
 margin-top: 40px;
 `
 
-const Form = styled.form`
+const StyledForm = styled(Form)`
 position: relative;
 display: inline-block;
 
@@ -26,7 +27,7 @@ width: 280px;
 width: 608px;
 `
 
-const Input = styled.input`
+const Input = styled(Field)`
 @media screen and (${theme.media.mobile}) {
 height: 40px;
 font-size: ${theme.fontSizes.m};
@@ -134,6 +135,6 @@ height: 20px;
   width: 24px; 
   height: 24px;
 `
-const elements = { Form, Input, SearchBtn, SearchBarContainer, MugnifyingGlass, CrissCross, ClearBtn }
+const elements = { StyledForm, Input, SearchBtn, SearchBarContainer, MugnifyingGlass, CrissCross, ClearBtn }
 
 export default elements
