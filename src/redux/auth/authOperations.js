@@ -26,6 +26,14 @@ const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue 
   }
 });
 
+const verifyEmail = createAsyncThunk('auth/verifyEmail', async (email, { rejectWithValue }) => {
+  try {
+    await axios.post('/auth/verification', email);
+  } catch (error) {
+    return rejectWithValue(error.response.data.message);
+  }
+});
+
 const updateUserInformation = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
@@ -81,5 +89,5 @@ const logOut = createAsyncThunk('auth/logout', async (credential, { rejectWithVa
   }
 });
 
-const authOperations = { register, login, logOut, updateUserInformation };
+const authOperations = { register, login, verifyEmail, logOut, updateUserInformation };
 export default authOperations;

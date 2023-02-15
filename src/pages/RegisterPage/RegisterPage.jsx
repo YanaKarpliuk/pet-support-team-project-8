@@ -13,7 +13,7 @@ import styles from './RegisterPage.styled';
 const { Container, FormWrap, Title, Text, LinkToLogin, StyledToastContainer } = styles;
 const { FirstStepRegisterForm, SecondStepRegisterForm } = forms;
 const { selectError, selectIsLoading } = authSelectors;
-const { register, login } = authOperations;
+const { register, login, verifyEmail } = authOperations;
 const { removeError } = authStore;
 
 const firstStepInitialState = {
@@ -50,7 +50,9 @@ const RegisterPage = () => {
     }
   }, [error, dispatch]);
 
-  const handleSubmitFirstStep = ({ email: userEmail, password, confirmPassword }) => {
+  const handleSubmitFirstStep = async ({ email: userEmail, password, confirmPassword }) => {
+    const { error } = await dispatch(verifyEmail({ email: userEmail.trim() }));
+    if (error) return;
     setFirstStep({ email: userEmail.trim(), password, confirmPassword });
     setIsFirstStepComplete(true);
   };
