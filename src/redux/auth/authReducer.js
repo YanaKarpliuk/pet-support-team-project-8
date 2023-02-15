@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authOperations from './authOperations';
-const { register, login, logOut, updateUserInformation } = authOperations;
+const { register, login, verifyEmail, logOut, updateUserInformation } = authOperations;
 
 const initialState = {
   id: '',
@@ -36,6 +36,11 @@ const onAuthLogInSuccess = (s, { payload }) => ({
   isLoggedIn: true,
   isLoading: false,
   error: null,
+});
+
+const onVerifyEmailSuccess = s => ({
+  ...s,
+  isLoading: false,
 });
 
 const onLogOutSuccess = s => ({
@@ -100,15 +105,25 @@ const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(verifyEmail.fulfilled, onVerifyEmailSuccess)
       .addCase(login.fulfilled, onAuthLogInSuccess)
       .addCase(register.fulfilled, onAuthRegisterSuccess)
       .addCase(logOut.fulfilled, onLogOutSuccess)
       .addCase(updateUserInformation.fulfilled, onUpdateUserInformation)
       .addMatcher(
-        isAnyOf(register.rejected, login.rejected, logOut.rejected, updateUserInformation.rejected),
+        isAnyOf(
+          register.rejected,
+          login.rejected,
+          verifyEmail.rejected,
+          logOut.rejected,
+          updateUserInformation.rejected
+        ),
         handleRejected
       )
-      .addMatcher(isAnyOf(register.pending, login.pending, logOut.pending), handlePending);
+      .addMatcher(
+        isAnyOf(register.pending, login.pending, verifyEmail.pending, logOut.pending),
+        handlePending
+      );
   },
 });
 
