@@ -20,15 +20,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      <HashRouter>
-        {/* <BrowserRouter basename="pet-support-team-project-8"> */}
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-        {/* </BrowserRouter> */}
-      </HashRouter>
-      {/* </PersistGate> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <HashRouter>
+          {/* <BrowserRouter basename="pet-support-team-project-8"> */}
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+          {/* </BrowserRouter> */}
+        </HashRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

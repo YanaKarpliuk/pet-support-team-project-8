@@ -76,16 +76,10 @@ export const removeUserPet = createAsyncThunk(
   'user/removeUserPet',
   async (id, { rejectWithValue }) => {
     try {
-      //   const result = await axios.removeUserPet(id);
-      const result = await axios.delete(`/pet/${id}`);
-      return result.data;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+      await axios.delete(`/users/pet/${id}`);
+      return { id };
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

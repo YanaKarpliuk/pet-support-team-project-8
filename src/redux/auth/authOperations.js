@@ -19,7 +19,6 @@ const register = createAsyncThunk('auth/register', async (userData, { rejectWith
 const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue }) => {
   try {
     const { data } = await axios.post('/auth/login', userData);
-    console.log('this is login');
     authHeader.setAuthHeader(data.data.result.token);
     return data.data.result;
   } catch (error) {

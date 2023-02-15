@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getUserPets, getPetsLoading } from '../../redux/user/selectors';
 import { ReactComponent as PlusIcon } from '../../images/user/addPetBtn-plus-icon.svg';
 import { RotatingLines } from 'react-loader-spinner';
 import Pet from '../Pet/Pet';
@@ -17,7 +19,11 @@ const {
   PetItem,
 } = styles;
 
-const MyPets = ({ userPets, isPetsLoading, viewportWidth }) => {
+const MyPets = ({ viewportWidth }) => {
+  const [deletePetId, setDeletePetId] = useState(null);
+  const userPets = useSelector(getUserPets);
+  const isPetsLoading = useSelector(getPetsLoading);
+
   return (
     <PetsContainerWrapper>
       <PetsTitleAndButtonWrap>
@@ -53,7 +59,12 @@ const MyPets = ({ userPets, isPetsLoading, viewportWidth }) => {
           <PetsList>
             {userPets.map(pet => (
               <PetItem key={pet._id}>
-                <Pet pet={pet} />
+                <Pet
+                  pet={pet}
+                  deletePetId={deletePetId}
+                  setDeletePetId={setDeletePetId}
+                  viewportWidth={viewportWidth}
+                />
               </PetItem>
             ))}
           </PetsList>

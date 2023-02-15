@@ -1,5 +1,6 @@
 export const getUserError = ({ user }) => user.error;
 export const getPetsLoading = ({ user }) => user.loading;
+export const getIsDeletePetLoading = ({ user }) => user.isDeletePetLoading;
 export const getUserLoading = ({ user }) => user.userLoading;
 export const getLoadingUpdate = ({ user }) => user.isLoadingUpdate;
 export const getDisabledFields = ({ user }) => user.isDisabledFields;
