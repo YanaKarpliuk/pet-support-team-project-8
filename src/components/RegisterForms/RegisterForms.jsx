@@ -32,7 +32,12 @@ const FirstStepRegisterForm = ({ state, handleSubmit }) => {
         {({ errors, setFieldValue }) => (
           <Form autoComplete="off">
             <InputWrap isError={errors.email}>
-              <Input type="text" name="email" placeholder="Email" />
+              <Input
+                type="text"
+                name="email"
+                placeholder="Email"
+                onChange={e => setFieldValue('email', e.target.value.trim(), false)}
+              />
               {errors.email && <FormError name="email" />}
             </InputWrap>
             <InputPassWrap isError={errors.password} isShownPass={isShownPass}>
