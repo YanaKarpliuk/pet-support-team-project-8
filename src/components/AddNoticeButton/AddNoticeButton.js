@@ -2,8 +2,10 @@ import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import ModalAddSell from '../../components/ModalAddSell/ModalAddSell';
 import elements from './AddNoticeButton.styled';
+import noticesOperations from '../../redux/notices/noticesOperations';
 
 const { MobBtn, Text, Btn, Cross, MobCross } = elements;
+const { addNotice } = noticesOperations
 
 const AddNoticeButton = () => {
   const [active, setActive] = useState(false);

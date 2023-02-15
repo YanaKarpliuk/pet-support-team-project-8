@@ -2,6 +2,11 @@ import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import ModalNotice from '../../components/ModalNotice/ModalNotice';
 import elements from './NoticesCategoriesItem.styled';
+import CATEGORIES from '../../utils/categories';
+import { useSelector, useDispatch } from 'react-redux';
+import noticesOperations from '../../redux/notices/noticesOperations';
+import authSelectors from "../../redux/auth/authSelectors";
+import { useNavigate } from 'react-router-dom';
 
 const {
   Item,
@@ -17,12 +22,27 @@ const {
   Heart,
 } = elements;
 
-const NoticesCategoriesItem = ({ info }) => {
-  const [active, setActive] = useState(false);
-  const { avatar, category, title, breed, location, birthdate, price = 0 } = info;
+const { selectIsLoggedIn } = authSelectors
+const { addToFavorite, deleteFromFavorite } = noticesOperations
 
+const NoticesCategoriesItem = ({ info }) => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const [active, setActive] = useState(false);
+  const { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null, owner } = info;
   const capitalizedCategory = () => {
-    return category.charAt(0).toUpperCase() + category.slice(1);
+    if (category === CATEGORIES.sell) {
+      return 'Sell'
+    }
+
+    if (category === CATEGORIES.lostFound) {
+      return 'Lost/found'
+    }
+
+    if (category === CATEGORIES.inGoodHands) {
+      return 'In good hands'
+    }
   };
 
   const calculateAge = (dob) => {
@@ -33,12 +53,24 @@ const NoticesCategoriesItem = ({ info }) => {
     return Math.abs(ageDt.getUTCFullYear() - 1970);
   }
 
+  const addToFav = () => {
+    if (!isLoggedIn) {
+      return navigate('/register')
+    }
+    if (!favorite) {
+      return dispatch(addToFavorite(_id))
+    }
+    if (!favorite) {
+      return dispatch(deleteFromFavorite(_id))
+    }
+  }
+
   return (
     <Item>
       <ImageContainer>
         <img src={avatar.url} alt="a pet" />
         <Category>{capitalizedCategory()}</Category>
-        <AddToFav type="button">
+        <AddToFav type="button" selected={favorite} onClick={addToFav}>
           <Heart />
         </AddToFav>
       </ImageContainer>
