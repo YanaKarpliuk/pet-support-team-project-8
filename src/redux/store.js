@@ -20,7 +20,7 @@ import { noticesReducer } from './notices/noticesSlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken'],
 };
 
 const store = configureStore({

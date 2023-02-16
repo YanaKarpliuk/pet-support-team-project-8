@@ -44,7 +44,7 @@ export const getPets = createAsyncThunk(
   'pets/getAllCurrentUserPets',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const token = getState().auth.token;
+      const token = getState().auth.accessToken;
       if (token === null) {
         return rejectWithValue('Unable to fetch user');
       }
