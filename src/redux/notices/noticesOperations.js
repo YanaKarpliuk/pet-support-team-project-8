@@ -7,8 +7,13 @@ const fetchNoticesByCategory = createAsyncThunk('notices/fetchByGategory', async
     try {
         const response = await axios.get(`/notices/${category}`);
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
@@ -16,8 +21,13 @@ const fetchSingleNotice = createAsyncThunk('notices/fetchSingle', async (noticeI
     try {
         const response = await axios.get(`/notices/id/${noticeId}`);
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
@@ -25,8 +35,13 @@ const addToFavorite = createAsyncThunk('notices/addFavorite', async (noticeId, {
     try {
         const response = await axios.patch(`/notices/favorite/${noticeId}`);
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
@@ -34,8 +49,13 @@ const fetchFavorite = createAsyncThunk('notices/fetchFavorite', async (_, { reje
     try {
         const response = await axios.get("/notices/notice/favorite");
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
@@ -43,8 +63,13 @@ const deleteFromFavorite = createAsyncThunk('notices/deleteFavorite', async (not
     try {
         const response = await axios.delete(`/notices/favorite/${noticeId}`);
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
@@ -52,8 +77,13 @@ const addNotice = createAsyncThunk('notices/addNotice', async (data, { rejectWit
     try {
         const response = await axios.post("/notices/notice");
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
@@ -61,8 +91,13 @@ const fetchOwnNotices = createAsyncThunk('notices/fetchOwn', async (_, { rejectW
     try {
         const response = await axios.get("/notices/user/ads");
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
@@ -70,8 +105,13 @@ const deleteOwnNotice = createAsyncThunk('notices/deleteOwn', async (noticeId, {
     try {
         const response = await axios.delete(`/notices/user/${noticeId}`);
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
