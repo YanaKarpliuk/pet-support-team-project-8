@@ -8,6 +8,7 @@ import siriusImg from '../../images/friends/sirius.png';
 import purinaImg from '../../images/friends/purina.png';
 import joseraImg from '../../images/friends/josera.png';
 import licoImg from '../../images/friends/LIKO.png';
+import { Helmet } from 'react-helmet';
 
 const {
   Container,
@@ -134,6 +135,9 @@ const OurFriendsPage = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Our friends</title>
+      </Helmet>
       <Title>Our friends</Title>
       <List>
         {friendsData.map(item => {
