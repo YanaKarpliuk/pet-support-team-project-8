@@ -11,9 +11,6 @@ const selectUser = ({
   token,
   isLoggedIn,
 });
-// const selectError = ({ auth }) => auth.error;
-// const selectIsLoggedIn = ({ auth }) => auth.isLoggedIn;
-// const selectIsLoading = ({ auth }) => auth.isLoading;
 
 const selectError = s => s.auth.error;
 const selectIsLoggedIn = s => s.auth.isLoggedIn;
