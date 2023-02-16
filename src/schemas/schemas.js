@@ -4,7 +4,7 @@ const firstStepRegisterSchema = Yup.object().shape({
   email: Yup.string()
     .matches(/^\s*\S+\s*$/, 'Email must be without spaces')
     .matches(/\S{7,}/, 'Email too short (min 7 symbols)')
-    .matches(/^(?=.{7,63}$)(.+@([a-zA-Z]+\.)+[a-zA-z]{2,3})$/g, 'Invalid email')
+    .matches(/^(?=.{7,63}$)([^а-яА-Я]+@([a-zA-Z]+\.)+[a-zA-z]{2,3})$/g, 'Invalid email')
     .required('Require field'),
   password: Yup.string()
     .min(7, 'Password too short (min 7)')

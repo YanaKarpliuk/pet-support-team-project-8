@@ -7,17 +7,20 @@ import searchSelectors from "../../redux/search/searchSelectors";
 import newsSelectors from "../../redux/news/newsSelectors";
 import { useEffect } from "react";
 import newsOperations from "../../redux/news/newsOperation";
+import Loader from "../Loader/Loader";
 
 const { List } = elements
 const { selectSearchState } = searchSelectors
-const { selectNews } = newsSelectors
+const { selectNews, selectNewsError, selectIsNewsLoading } = newsSelectors
 const { fetchNews } = newsOperations
 
 const NewsList = () => {
     const dispatch = useDispatch()
     const [_, setSearchParams] = useSearchParams();
-    const searchValue = useSelector(selectSearchState)
+    const searchValue = useSelector(selectSearchState).trim().toLowerCase()
     const news = useSelector(selectNews)
+    const error = useSelector(selectNewsError)
+    const loading = useSelector(selectIsNewsLoading)
 
     useEffect(() => {
         dispatch(fetchNews())
@@ -30,13 +33,16 @@ const NewsList = () => {
 
     let contentsNeeded = news
     if (searchValue) {
-        contentsNeeded = news.filter(({ title }) => title.toLowerCase().includes(searchValue))
+        contentsNeeded = contentsNeeded.filter(({ title }) => title.includes(searchValue))
     }
 
     const items = contentsNeeded.map((itemData) => {
         return <NewsEl key={itemData._id} info={itemData} />
     })
-    if (items.length === 0) {
+
+    if (loading) {
+        return <Loader />
+    } else if (items.length === 0 && !loading) {
         return <NotFound />
     } else {
         return <List items={items.length}>{items}</List>
