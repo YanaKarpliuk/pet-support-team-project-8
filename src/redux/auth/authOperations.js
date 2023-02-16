@@ -4,7 +4,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 axios.defaults.baseURL = 'https://pets-project.onrender.com/api';
 
 const authHeader = {
-  setAuthHeader: token => (axios.defaults.headers.common.Authorization = `Bearer ${token}`),
+  setAuthHeader: accessToken =>
+    (axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`),
   clearAuthHeader: () => (axios.defaults.headers.common.Authorization = ''),
 };
 
@@ -19,7 +20,8 @@ const register = createAsyncThunk('auth/register', async (userData, { rejectWith
 const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue }) => {
   try {
     const { data } = await axios.post('/auth/login', userData);
-    authHeader.setAuthHeader(data.data.result.token);
+    authHeader.setAuthHeader(data.data.result.accessToken);
+    console.log(data.data.result);
     return data.data.result;
   } catch (error) {
     return rejectWithValue(error.response.data.message);
@@ -34,11 +36,13 @@ const verifyEmail = createAsyncThunk('auth/verifyEmail', async (email, { rejectW
   }
 });
 
-const updateUserInformation = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
+const updateUserData = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
   const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
+  const persistedToken = state.auth.accessToken;
   // console.log(persistedToken);
   authHeader.setAuthHeader(persistedToken);
+
+  console.log(persistedToken);
   console.log('this is update 0');
 
   if (persistedToken === null) {
@@ -46,48 +50,60 @@ const updateUserInformation = createAsyncThunk('auth/update', async (credentials
   }
   console.log('this is update 1');
   try {
-    authHeader.setAuthHeader(persistedToken);
-    const res = await axios.patch('/auth/update', credentials);
+    // authHeader.setAuthHeader(persistedToken);
+    const res = await axios.patch('auth/update', credentials);
     console.log('this is update 2');
     console.log(res.data);
 
-    return res.data.result;
+    return res.data.data.result;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-// const updateUserInformation = createAsyncThunk(
-//   'auth/update',
-//   async (credentials, { rejectWithValue }) => {
-//     try {
-//       authHeader.setAuthHeader(data.data.result.token);
-//       console.log('this is update 1');
-//       const { data } = await axios.patch('/auth/update', credentials);
-//       console.log('this is update 2');
+const refreshUserData = createAsyncThunk('auth/refresh', async (credentials, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.accessToken;
+  // console.log(persistedToken);
+  authHeader.setAuthHeader(persistedToken);
 
-//       if (data.data.result.token === null) {
-//         return rejectWithValue('Unable to fetch user');
-//       }
-//       console.log('this is update 3');
-//       // authHeader.setAuthHeader(data.data.result.token);
+  // console.log(persistedToken);
+  console.log('this is refresh 0');
 
-//       return data.data.result;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data.message);
-//     }
-//   }
-// );
-
-const logOut = createAsyncThunk('auth/logout', async (credential, { rejectWithValue }) => {
+  if (persistedToken === null) {
+    return thunkAPI.rejectWithValue('Unable to fetch user');
+  }
+  console.log('this is refresh 1');
   try {
-    await axios.post('/auth/logout', credential);
-    authHeader.clearAuthHeader();
-    console.log('this is logout');
+    // authHeader.setAuthHeader(persistedToken);
+    // axios.get we need here at backend
+    const res = await axios.post('/auth/refresh', credentials);
+    console.log('this is refresh 2');
+    console.log(res.data);
+
+    return res.data.data.result;
   } catch (error) {
-    return rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-const authOperations = { register, login, verifyEmail, logOut, updateUserInformation };
+const logOut = createAsyncThunk(
+  'auth/logout',
+  async (credential, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedToken = state.auth.accessToken;
+    // console.log(persistedToken);
+    authHeader.setAuthHeader(persistedToken);
+
+    try {
+      await axios.post('/auth/logout', credential);
+      authHeader.clearAuthHeader();
+      console.log('this is logout');
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+const authOperations = { register, login, verifyEmail, logOut, updateUserData, refreshUserData };
 export default authOperations;

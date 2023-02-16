@@ -5,6 +5,39 @@ import { MdModeEdit } from 'react-icons/md';
 import { BsCheckLg, BsCameraFill } from 'react-icons/bs';
 import theme from '../../theme';
 
+export const UserDataWrap = styled.div`
+  @media screen and (${theme.media.mobile}) {
+    /* background-color: red; */
+    margin-top: 49px;
+
+    padding: 18px 20px 0px 20px;
+  }
+  @media screen and (${theme.media.tablet}) {
+    /* max-width: 1000px; */
+
+    /* margin-top: 72px; */
+    /* margin-left: -32px;
+    position: relative;
+    
+    border-radius: 0px 40px 40px 0px;
+    padding-left: 32px;
+    padding-right: 40px;
+    padding-bottom: 24px; */
+  }
+  @media screen and (${theme.media.desktop}) {
+    width: 411px;
+    /* margin-left: -17px;
+    
+    margin-top: 24px;
+    padding-top: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 40px;
+    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+    border-radius: 0px 40px 40px 0px; */
+  }
+`;
+
 export const Title = styled.h1`
   font-family: 'Manrope';
   font-style: normal;
@@ -12,14 +45,20 @@ export const Title = styled.h1`
   font-size: 20px;
   line-height: 27px;
   color: #000000;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   @media screen and (${theme.media.mobile}) {
+    margin-top: 0px;
+
     letter-spacing: 0.04em;
   }
   @media screen and (${theme.media.fromTablet}) {
+    margin-left: 32px;
     font-size: 28px;
     line-height: 38px;
     color: ${theme.colors.black};
+  }
+  @media screen and (${theme.media.desktop}) {
+    margin-left: 17px;
   }
 `;
 
@@ -37,24 +76,26 @@ export const UserContainer = styled.div`
     padding-top: 20px;
   }
   @media screen and (${theme.media.tablet}) {
-    margin-left: -32px;
+    /* margin-left: -32px; */
     position: relative;
-    margin-top: 40px;
+    margin-top: 32px;
+    margin-right: 32px;
     border-radius: 0px 40px 40px 0px;
     padding-left: 32px;
     padding-right: 40px;
     padding-bottom: 24px;
   }
   @media screen and (${theme.media.desktop}) {
-    margin-left: -17px;
+    /* margin-left: -17px; */
     width: 411px;
     margin-top: 24px;
     padding-top: 20px;
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 40px;
+    padding-bottom: 18px;
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     border-radius: 0px 40px 40px 0px;
+    /* background-color: red; */
   }
 `;
 
@@ -83,10 +124,11 @@ export const UserForm = styled(Form)`
 export const UserInformationContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   &:last-child {
     margin-bottom: 0px;
   }
+  /* background-color: red; */
 `;
 export const UserKeyLabel = styled.label`
   display: flex;
@@ -103,14 +145,14 @@ export const UserKeyLabel = styled.label`
   &:last-child {
     margin-bottom: 0px;
   }
-  @media screen and (${theme.media.tabletAndDesktop}) {
+  @media screen and (${theme.media.fromTablet}) {
     font-size: 18px;
     line-height: 25px;
   }
 `;
 
 export const UserValueInput = styled(Field)`
-  background: ${theme.colors.background};
+  background: ${theme.colors.bg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   font-weight: 400;
@@ -229,12 +271,12 @@ export const LogOutButton = styled.button`
   color: rgba(17, 17, 17, 0.6);
   &:hover,
   :focus {
-    span {
+    /* span {
       color: black;
-    }
-    color: black;
-    stroke: black;
-    transform: scale(1.1);
+    } */
+    cursor: pointer;
+    color: ${theme.colors.accent};
+    stroke: ${theme.colors.accent};
   }
   @media screen and (${theme.media.mobile}) {
     margin-top: 42px;
@@ -246,7 +288,7 @@ export const LogOutButton = styled.button`
     left: 32px;
   }
   @media screen and (${theme.media.desktop}) {
-    margin-top: 44px;
+    margin-top: 24px;
   }
 `;
 
@@ -276,12 +318,12 @@ export const ButtonEdit = styled.button`
   background-color: ${theme.colors.white};
   &:hover,
   :focus {
-    span {
+    /* span {
       color: black;
-    }
+    } */
     color: ${theme.colors.accent};
-    stroke: black;
-    transform: scale(1.1);
+    stroke: ${theme.colors.accent};
+    cursor: pointer;
   }
   @media screen and (${theme.media.tablet}) {
     margin-top: 8px;

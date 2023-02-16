@@ -7,9 +7,8 @@ import { IoMenu, IoClose } from 'react-icons/io5';
 import UserNav from '../UserNav/UserNav';
 import useAuth from '../../hooks/useAuth';
 
-
 const Header = () => {
-   const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [open, setOpen] = useState(false);
   const notOpen = () => setOpen(!open);
   return (

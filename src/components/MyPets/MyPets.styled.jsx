@@ -31,7 +31,7 @@ const PetsTitleAndButtonWrap = styled.div`
 
   @media screen and (min-width: 1280px) {
     padding-right: 16px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
 `;
 

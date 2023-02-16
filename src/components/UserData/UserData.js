@@ -1,13 +1,12 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { selectUser } from '../../redux/auth/selectors';
-// import { logOut, addAvatar, updateUserInformation } from '../../redux/auth/operations';
 import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
 import BlankAvatar from '../../images/user/avatar-blank.png';
 
 import {
+  UserDataWrap,
   Title,
   UserContainer,
   UserImg,
@@ -32,10 +31,10 @@ import {
 } from './UserData.styled';
 
 const { selectUser } = authSelectors;
-const { logOut, updateUserInformation } = authOperations;
+const { logOut, updateUserData } = authOperations;
 
 const UserData = () => {
-  const [change, setChange] = useState(false);
+  const [update, setUpdate] = useState(false);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -55,25 +54,25 @@ const UserData = () => {
   //       city,
   //     };
   //     // console.log(data);
-  //     dispatch(updateUserInformation(data));
-  //     setChange(false);
+  //     dispatch(updateUserData(data));
+  //     setUpdate(false);
   //   };
 
   const handleSubmit = data => {
     console.log(data);
-    dispatch(updateUserInformation(data));
-    setChange(false);
+    dispatch(updateUserData(data));
+    setUpdate(false);
   };
 
   const handleChange = e => {
     const avatar = e.target.files[0];
     const formData = new FormData();
     formData.append('avatar', avatar);
-    dispatch(updateUserInformation(formData));
+    dispatch(updateUserData(formData));
   };
 
   return (
-    <div>
+    <UserDataWrap>
       <Title>My information: </Title>
       <UserContainer>
         <UserWrapper>
@@ -91,7 +90,7 @@ const UserData = () => {
           </AvatarWrapper>
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <UserForm autoComplete="off">
-              {change === 'name' ? (
+              {update === 'name' ? (
                 <UserKeyLabel>
                   Name:
                   <UserValueInput type="text" name="name" />
@@ -103,13 +102,13 @@ const UserData = () => {
                 <UserInformationContainer>
                   <UserKey>Name:</UserKey>
                   <UserValue>{`${initialValues.name}`}</UserValue>
-                  <UserInformationEditWrapper click={change} onClick={() => setChange('name')}>
+                  <UserInformationEditWrapper click={update} onClick={() => setUpdate('name')}>
                     <UserInformationEdit />
                   </UserInformationEditWrapper>
                 </UserInformationContainer>
               )}
 
-              {change === 'email' ? (
+              {update === 'email' ? (
                 <UserKeyLabel>
                   Email:
                   <UserValueInput type="email" name="email" />
@@ -121,13 +120,13 @@ const UserData = () => {
                 <UserInformationContainer>
                   <UserKey>Email:</UserKey>
                   <UserValue>{`${initialValues.email}`}</UserValue>
-                  <UserInformationEditWrapper click={change}>
-                    <UserInformationEdit onClick={() => setChange('email')} />
+                  <UserInformationEditWrapper click={update}>
+                    <UserInformationEdit onClick={() => setUpdate('email')} />
                   </UserInformationEditWrapper>
                 </UserInformationContainer>
               )}
 
-              {change === 'birthday' ? (
+              {update === 'birthday' ? (
                 <UserKeyLabel>
                   Birthday:
                   <UserValueInput
@@ -143,13 +142,13 @@ const UserData = () => {
                 <UserInformationContainer>
                   <UserKey>Birthday:</UserKey>
                   <UserValue>{`${initialValues.birthday}`}</UserValue>
-                  <UserInformationEditWrapper click={change}>
-                    <UserInformationEdit onClick={() => setChange('birthday')} />
+                  <UserInformationEditWrapper click={update}>
+                    <UserInformationEdit onClick={() => setUpdate('birthday')} />
                   </UserInformationEditWrapper>
                 </UserInformationContainer>
               )}
 
-              {change === 'phone' ? (
+              {update === 'phone' ? (
                 <UserKeyLabel>
                   Phone:
                   <UserValueInput type="text" name="phone" />
@@ -161,13 +160,13 @@ const UserData = () => {
                 <UserInformationContainer>
                   <UserKey>Phone:</UserKey>
                   <UserValue>{`${initialValues.phone}`}</UserValue>
-                  <UserInformationEditWrapper click={change}>
-                    <UserInformationEdit onClick={() => setChange('phone')} />
+                  <UserInformationEditWrapper click={update}>
+                    <UserInformationEdit onClick={() => setUpdate('phone')} />
                   </UserInformationEditWrapper>
                 </UserInformationContainer>
               )}
 
-              {change === 'city' ? (
+              {update === 'city' ? (
                 <UserKeyLabel>
                   City:
                   <UserValueInput type="text" name="city" />
@@ -179,8 +178,8 @@ const UserData = () => {
                 <UserInformationContainer>
                   <UserKey>City:</UserKey>
                   <UserValue>{`${initialValues.city}`}</UserValue>
-                  <UserInformationEditWrapper click={change}>
-                    <UserInformationEdit onClick={() => setChange('city')} />
+                  <UserInformationEditWrapper click={update}>
+                    <UserInformationEdit onClick={() => setUpdate('city')} />
                   </UserInformationEditWrapper>
                 </UserInformationContainer>
               )}
@@ -194,7 +193,7 @@ const UserData = () => {
           </LogOutIconWrapper>
         </LogOutButton>
       </UserContainer>
-    </div>
+    </UserDataWrap>
   );
 };
 

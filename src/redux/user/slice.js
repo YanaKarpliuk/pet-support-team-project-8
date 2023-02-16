@@ -18,9 +18,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {
-    toggleIsDisablet(store) {
-      store.isDisabledFields = true;
-    },
     resetIsAddedPetSuccess: state => {
       state.isAddedPetSuccess = false;
     },
