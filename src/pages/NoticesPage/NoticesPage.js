@@ -4,6 +4,7 @@ import NoticesCategoriesNav from "../../components/NoticesCategoriesNav/NoticesC
 import elements from "./NoticesPage.styled";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const { Section, Header, Container, CategoriesCont } = elements;
 
@@ -75,6 +76,9 @@ const { Section, Header, Container, CategoriesCont } = elements;
 const NoticesPage = () => {
     return (
         <Section>
+            <Helmet>
+                <title>Notices</title>
+            </Helmet>
             <Container>
                 <Header style={{ textAlign: "center" }}>Find your favorite pet</Header>
                 <SearchBar />
