@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import operations from "./noticesOperations";
-import doggo from '../../images/example.jpg';
 
 const { fetchNoticesByCategory, fetchSingleNotice, addToFavorite, deleteFromFavorite, addNotice, deleteOwnNotice, fetchOwnNotices, fetchFavorite } = operations
 
 const noticesInitialState = {
-    notices: [],
+    notices: { result: [] },
     singleNotice: {},
     favorite: [],
     own: [],
@@ -18,6 +17,7 @@ const handlePending = (state) => {
 }
 
 const handleReject = (state, action) => {
+    state.notices = { result: [] }
     state.isLoading = false;
     state.error = action.payload
 }

@@ -33,8 +33,8 @@ height: 40px;
 font-size: ${theme.fontSizes.m};
 line-height: 1.375;
 padding: 9px 0 9px 12px;
+padding-right:  calc(5% + 20px)
 };
-
 width: 100%;
 height: 44px;
 
@@ -54,6 +54,7 @@ border: ${theme.borders.none};
 border-radius: 20px;
 
 padding: 8px 0 8px 20px;
+padding-right: calc(3% + 24px);
 
 color: #535353;
 font-family: ${theme.fonts.manrope};

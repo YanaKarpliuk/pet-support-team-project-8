@@ -7,8 +7,13 @@ const fetchNews = createAsyncThunk('news/fetchAll', async (_, { rejectWithValue 
     try {
         const response = await axios.get("/news");
         return response.data;
-    } catch (error) {
-        rejectWithValue(error)
+    } catch ({ response }) {
+        const { status, data } = response;
+        const error = {
+            status,
+            message: data.message,
+        };
+        return rejectWithValue(error);
     }
 })
 
