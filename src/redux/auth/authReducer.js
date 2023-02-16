@@ -1,8 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import authOperations from './authOperations';
-const { register, login, verifyEmail, logOut, updateUserInformation } = authOperations;
+const { register, login, verifyEmail, logOut, updateUserData, refreshUserData } = authOperations;
 
 const initialState = {
   id: '',
@@ -11,16 +9,19 @@ const initialState = {
   phone: '',
   city: '',
   avatarURL: '',
-  token: null,
+  accessToken: null,
   isLoggedIn: false,
   isLoading: false,
+  IsRefreshing: false,
   error: null,
 };
 
-const onAuthRegisterSuccess = s => ({
+const onAuthRegisterSuccess = (s, { payload }) => ({
   ...s,
   isLoading: false,
+  isLoggedIn: true,
   error: null,
+  accessToken: payload.accessToken,
 });
 
 const onAuthLogInSuccess = (s, { payload }) => ({
@@ -50,38 +51,46 @@ const onLogOutSuccess = s => ({
   city: null,
   avatarURL: null,
   birthday: null,
-  token: null,
+  accessToken: null,
   isLoggedIn: false,
   isLoading: false,
 });
 
-// const onUpdateUserInformation = (s, { payload }) => ({
-//   ...s,
-//   // id: payload._id,
-//   avatarURL: payload.avatarURL,
-//   name: payload.name,
-//   email: payload.email,
-//   birthday: payload.birthday,
-//   phone: payload.phone,
-//   city: payload.city,
-//   isLoggedIn: true,
-// });
-
-// const onUpdateUserInformation = (s, { payload }) => ({
-//   ...s,
-//   // id: payload._id,
-//   ...payload.avatarURL,
-//   ...payload.name,
-//   ...payload.email,
-//   ...payload.birthday,
-//   ...payload.phone,
-//   ...payload.city,
-//   ...true,
-// });
-
-const onUpdateUserInformation = (s, { payload }) => ({
+const onUpdateUserDataSuccess = (s, { payload }) => ({
   ...s,
-  ...payload,
+  // id: payload._id,
+  avatarURL: payload.avatarURL,
+  name: payload.name,
+  email: payload.email,
+  birthday: payload.birthday,
+  phone: payload.phone,
+  city: payload.city,
+  isLoggedIn: true,
+});
+
+// const onUpdateUserData = (s, { payload }) => ({
+//   ...s,
+//   ...payload,
+// });
+
+const onRefreshUserDataSuccess = (s, { payload }) => ({
+  ...s,
+  // id: payload._id,
+  avatarURL: payload.avatarURL,
+  name: payload.name,
+  email: payload.email,
+  birthday: payload.birthday,
+  phone: payload.phone,
+  city: payload.city,
+  isLoggedIn: true,
+  IsRefreshing: false,
+  isLoading: false,
+});
+
+const onRefreshUserDataReject = (s, { payload }) => ({
+  ...s,
+  isLoading: false,
+  IsRefreshing: false,
 });
 
 const handleRejected = (s, { payload }) => ({
@@ -109,14 +118,16 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, onAuthLogInSuccess)
       .addCase(register.fulfilled, onAuthRegisterSuccess)
       .addCase(logOut.fulfilled, onLogOutSuccess)
-      .addCase(updateUserInformation.fulfilled, onUpdateUserInformation)
+      .addCase(updateUserData.fulfilled, onUpdateUserDataSuccess)
+      .addCase(refreshUserData.fulfilled, onRefreshUserDataSuccess)
+      .addCase(refreshUserData.rejected, onRefreshUserDataReject)
       .addMatcher(
         isAnyOf(
           register.rejected,
           login.rejected,
           verifyEmail.rejected,
           logOut.rejected,
-          updateUserInformation.rejected
+          updateUserData.rejected
         ),
         handleRejected
       )
@@ -127,13 +138,7 @@ const authSlice = createSlice({
   },
 });
 
-const persistConfig = {
-  key: 'token',
-  storage,
-  whitelist: ['token'],
-};
-
-const authReducer = persistReducer(persistConfig, authSlice.reducer);
+const authReducer = authSlice.reducer;
 const { removeError } = authSlice.actions;
 const authStore = { authReducer, removeError };
 export default authStore;

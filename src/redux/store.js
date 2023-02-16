@@ -1,5 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import authStore from './auth/authReducer';
 import userReducer from './user/slice';
@@ -7,9 +17,15 @@ import { searchReducer } from './search/searchSlice';
 import { newsReducer } from './news/newsSlice';
 import { noticesReducer } from './notices/noticesSlice';
 
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
 const store = configureStore({
   reducer: {
-    auth: authStore.authReducer,
+    auth: persistReducer(authPersistConfig, authStore.authReducer),
     user: userReducer,
     search: searchReducer,
     news: newsReducer,
@@ -33,6 +49,6 @@ const store = configureStore({
 //   "city": "Odesa, Odesa",
 //   "phone": "+380631234567"
 // }
-let persistor = persistStore(store);
+const persistor = persistStore(store);
 const appStore = { store, persistor };
 export default appStore;
