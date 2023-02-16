@@ -32,7 +32,7 @@ const onAuthLogInSuccess = (s, { payload }) => ({
   city: payload.city,
   avatarURL: payload.avatarURL,
   birthday: payload.birthday,
-  token: payload.accessToken,
+  accessToken: payload.accessToken, // accessToken
   id: payload._id,
   isLoggedIn: true,
   isLoading: false,
