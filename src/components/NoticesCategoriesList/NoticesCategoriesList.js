@@ -15,7 +15,7 @@ let contentsNeeded = null
 
 const NoticesCategoriesList = () => {
     const location = useLocation()
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [_, setSearchParams] = useSearchParams();
     const searchValue = useSelector(selectSearchState).trim().toLowerCase()
     const notices = useSelector(selectNotices)
     const favorite = useSelector(selectFavoriteNotices)
@@ -44,10 +44,10 @@ const NoticesCategoriesList = () => {
 
     if (loading) {
         return <Loader />
-    } else if (items.length === 0 && !loading) {
+    } else if ((items.length === 0 && !loading) || error) {
         return <NotFound />
     } else {
-        return <List items={items.length}>{items}</List>
+        return <List items={items.length}>{items} </List>
     }
 }
 

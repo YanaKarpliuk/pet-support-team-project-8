@@ -2,6 +2,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import AddNoticeButton from "../../components/AddNoticeButton/AddNoticeButton";
 import NoticesCategoriesNav from "../../components/NoticesCategoriesNav/NoticesCategoriesNav";
 import elements from "./NoticesPage.styled";
+import LoadMoreBtn from "../../components/LoadMore/LoadMore";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -87,6 +88,7 @@ const NoticesPage = () => {
                     <AddNoticeButton />
                 </CategoriesCont>
                 <Suspense><Outlet /></Suspense>
+                <LoadMoreBtn />
             </Container>
         </Section>
     );

@@ -31,6 +31,7 @@ const NoticesCategoriesItem = ({ info }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const [active, setActive] = useState(false);
   const { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null, owner } = info;
+
   const capitalizedCategory = () => {
     if (category === CATEGORIES.sell) {
       return 'Sell'
@@ -116,7 +117,7 @@ const NoticesCategoriesItem = ({ info }) => {
         </Info>
         <BtnCont>
           <NoticeBtn type="button" onClick={() => setActive(true)}>
-            Lear more
+            Learn more
           </NoticeBtn>
           {/* <NoticeBtn type="button">Delete</NoticeBtn> */}
         </BtnCont>
