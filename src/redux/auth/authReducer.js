@@ -8,6 +8,7 @@ const initialState = {
   email: '',
   phone: '',
   city: '',
+  favorite: null,
   avatarURL: '',
   accessToken: null,
   isLoggedIn: false,
