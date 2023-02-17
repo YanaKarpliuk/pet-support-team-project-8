@@ -67,11 +67,12 @@ const Pet = ({
         </LoaderWrap>
       ) : (
         <DeleteBtn
+          type="button"
           onClick={async () => {
             await setDeletePetId(_id);
             await dispatch(removeUserPet(_id));
           }}
-          aria-label="delete pet"
+          aria-label="delete my pet"
         >
           <DeleteIcon />
         </DeleteBtn>

@@ -19,6 +19,7 @@ const initialState = {
 const onAuthRegisterSuccess = s => ({
   ...s,
   isLoading: false,
+  error: null,
 });
 
 const onAuthLogInSuccess = (s, { payload }) => ({
@@ -27,6 +28,7 @@ const onAuthLogInSuccess = (s, { payload }) => ({
   email: payload.email,
   phone: payload.phone,
   city: payload.city,
+  favorite: payload.favorite,
   avatarURL: payload.avatarURL,
   birthday: payload.birthday,
   accessToken: payload.accessToken,
@@ -41,16 +43,8 @@ const onVerifyEmailSuccess = s => ({
   isLoading: false,
 });
 
-const onLogOutSuccess = s => ({
-  name: null,
-  email: null,
-  phone: null,
-  city: null,
-  avatarURL: null,
-  birthday: null,
-  accessToken: null,
-  isLoggedIn: false,
-  isLoading: false,
+const onLogOutSuccess = () => ({
+  ...initialState,
 });
 
 const onUpdateUserDataSuccess = (s, { payload }) => ({
