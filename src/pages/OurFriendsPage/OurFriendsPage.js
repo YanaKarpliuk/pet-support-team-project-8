@@ -24,7 +24,6 @@ const {
   List,
   ContentItemModal,
   ContentItemModalSchedude,
-  ContentItemModalDay,
   Title,
 } = elements;
 
@@ -157,7 +156,7 @@ const OurFriendsPage = () => {
                         {days.map(day => {
                           return (
                             <ContentItemModalSchedude key={day}>
-                              <ContentItemModalDay>{day}</ContentItemModalDay>
+                              <p>{day}</p>
                               <p>{item.time}</p>
                             </ContentItemModalSchedude>
                           );
