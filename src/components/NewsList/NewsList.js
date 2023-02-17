@@ -36,13 +36,19 @@ const NewsList = () => {
         contentsNeeded = contentsNeeded.filter(({ title }) => title.includes(searchValue))
     }
 
-    const items = contentsNeeded.map((itemData) => {
-        return <NewsEl key={itemData._id} info={itemData} />
-    })
+    const items = [...contentsNeeded]
+        .sort((a, b) => {
+            const aDate = new Date(a.date)
+            const bDate = new Date(b.date)
+            return bDate.getTime() - aDate.getTime()
+        })
+        .map((itemData) => {
+            return <NewsEl key={itemData._id} info={itemData} />
+        })
 
     if (loading) {
         return <Loader />
-    } else if (items.length === 0 && !loading) {
+    } else if ((items.length === 0 && !loading) || error) {
         return <NotFound />
     } else {
         return <List items={items.length}>{items}</List>

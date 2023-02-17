@@ -33,6 +33,7 @@ const noticesSlice = createSlice({
             .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.notices = action.payload
+                state.error = null;
             })
             .addCase(fetchNoticesByCategory.rejected, (state, action) => {
                 handleReject(state, action)
@@ -42,6 +43,7 @@ const noticesSlice = createSlice({
             })
             .addCase(fetchSingleNotice.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.error = null;
                 state.singleNotice = action.payload
             })
             .addCase(fetchSingleNotice.rejected, (state, action) => {
@@ -61,6 +63,7 @@ const noticesSlice = createSlice({
             })
             .addCase(fetchFavorite.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.error = null;
                 state.favorite = action.payload
             })
             .addCase(fetchFavorite.rejected, (state, action) => {
@@ -89,6 +92,7 @@ const noticesSlice = createSlice({
             })
             .addCase(fetchOwnNotices.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.error = null;
                 state.own = action.payload
             })
             .addCase(fetchOwnNotices.rejected, (state, action) => {
