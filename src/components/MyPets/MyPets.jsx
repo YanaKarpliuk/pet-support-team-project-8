@@ -29,8 +29,8 @@ const MyPets = ({ viewportWidth }) => {
       <PetsTitleAndButtonWrap>
         <PetTitle>My pets:</PetTitle>
         <AddPetBtnContainer>
-          <AddPetBtnText>Add pet</AddPetBtnText>
-          <AddPetBtn>
+          <AddPetBtnText>Add my pet</AddPetBtnText>
+          <AddPetBtn type="button" aria-label="add my pet">
             <PlusIcon />
           </AddPetBtn>
         </AddPetBtnContainer>

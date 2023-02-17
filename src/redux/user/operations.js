@@ -50,7 +50,6 @@ export const getPets = createAsyncThunk(
       }
       authHeader.setAuthHeader(token);
       const { data } = await axios.get('/users/pet/current');
-      console.log(data);
       return data.userPetsList;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
