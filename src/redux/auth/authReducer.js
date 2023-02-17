@@ -16,12 +16,9 @@ const initialState = {
   error: null,
 };
 
-const onAuthRegisterSuccess = (s, { payload }) => ({
+const onAuthRegisterSuccess = s => ({
   ...s,
   isLoading: false,
-  isLoggedIn: true,
-  error: null,
-  accessToken: payload.accessToken,
 });
 
 const onAuthLogInSuccess = (s, { payload }) => ({
@@ -32,7 +29,7 @@ const onAuthLogInSuccess = (s, { payload }) => ({
   city: payload.city,
   avatarURL: payload.avatarURL,
   birthday: payload.birthday,
-  accessToken: payload.accessToken, // accessToken
+  accessToken: payload.accessToken,
   id: payload._id,
   isLoggedIn: true,
   isLoading: false,
@@ -67,11 +64,6 @@ const onUpdateUserDataSuccess = (s, { payload }) => ({
   city: payload.city,
   isLoggedIn: true,
 });
-
-// const onUpdateUserData = (s, { payload }) => ({
-//   ...s,
-//   ...payload,
-// });
 
 const onRefreshUserDataSuccess = (s, { payload }) => ({
   ...s,

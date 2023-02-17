@@ -50,23 +50,12 @@ const Pet = ({
           {comments}
         </PetComments>
       </PetInfoWrap>
-      {!isDeletePetLoading && (
-        <DeleteBtn
-          onClick={async () => {
-            setDeletePetId(_id);
-            await dispatch(removeUserPet(_id));
-          }}
-          aria-label="delete pet"
-        >
-          <DeleteIcon />
-        </DeleteBtn>
-      )}
-      {isDeletePetLoading && deletePetId === _id && (
+      {isDeletePetLoading && deletePetId === _id ? (
         <LoaderWrap>
           <RotatingLines
             strokeColor="#fc731e"
             strokeWidth="3.7"
-            animationDuration="0"
+            animationDuration="0.8"
             visible={true}
             width={(() => {
               if (!viewportWidth) return '30';
@@ -76,6 +65,16 @@ const Pet = ({
             ariaLabel="pet delete loading"
           />
         </LoaderWrap>
+      ) : (
+        <DeleteBtn
+          onClick={async () => {
+            await setDeletePetId(_id);
+            await dispatch(removeUserPet(_id));
+          }}
+          aria-label="delete pet"
+        >
+          <DeleteIcon />
+        </DeleteBtn>
       )}
     </>
   );
