@@ -2,9 +2,16 @@ import styled from "styled-components";
 import theme from "../../theme";
 
 const Container = styled.div`
-display: none;
+display: ${({ page, totalPages }) => {
+        if (page >= totalPages) {
+            return 'none'
+        } else if (page < totalPages && (page !== undefined || totalPages !== undefined)) {
+            return 'flex'
+        }
+        return 'none'
+    }};
 justify-content: center;
-margin-top: 30px;`
+margin-top: 30px; `
 
 const LoadMore = styled.button`
 font-family: ${theme.fonts.manrope};
@@ -13,10 +20,10 @@ text-align: center;
 letter-spacing: 0.04em;
 color: ${theme.colors.black};
 
-@media screen and (${theme.media.mobile}) {
+@media screen and(${theme.media.mobile}) {
     font-size: ${theme.fontSizes.s};
-line-height: 1.357;
-padding: 8px 28px;
+    line-height: 1.357;
+    padding: 8px 28px;
 }
 
 font-size: 20px;
@@ -28,11 +35,11 @@ border: 2px solid ${theme.colors.accent};
 border-radius: 40px;
 transition: background-color 200ms, color 200ms;
 
-&:hover, &:focus, &.active {
+&:hover, &:focus {
     background-color: ${theme.colors.accent};
     color: ${theme.colors.white};
 };
-cursor: pointer;`
+cursor: pointer; `
 
 const elements = { Container, LoadMore }
 

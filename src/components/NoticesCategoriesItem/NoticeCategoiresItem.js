@@ -6,7 +6,9 @@ import CATEGORIES from '../../utils/categories';
 import { useSelector, useDispatch } from 'react-redux';
 import noticesOperations from '../../redux/notices/noticesOperations';
 import authSelectors from "../../redux/auth/authSelectors";
-import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import toastAuthNeeded from '../../utils/toastAuthNeeded';
 
 const {
   Item,
@@ -26,7 +28,6 @@ const { selectIsLoggedIn } = authSelectors
 const { addToFavorite, deleteFromFavorite } = noticesOperations
 
 const NoticesCategoriesItem = ({ info }) => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const [active, setActive] = useState(false);
@@ -56,18 +57,19 @@ const NoticesCategoriesItem = ({ info }) => {
 
   const addToFav = () => {
     if (!isLoggedIn) {
-      return navigate('/register')
+      return toast("For this operation registartion or login needed", toastAuthNeeded)
     }
     if (!favorite) {
       return dispatch(addToFavorite(_id))
     }
-    if (!favorite) {
+    if (favorite) {
       return dispatch(deleteFromFavorite(_id))
     }
   }
 
   return (
     <Item>
+      <ToastContainer />
       <ImageContainer>
         <img src={avatar.url} alt="a pet" />
         <Category>{capitalizedCategory()}</Category>
