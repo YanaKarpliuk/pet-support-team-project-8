@@ -16,7 +16,6 @@ const InputPassWrap = styled.div`
 `;
 
 const Input = styled(Field)`
-  position: relative;
   width: 100%;
   height: 40px;
   font-family: inherit;
