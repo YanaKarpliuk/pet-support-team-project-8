@@ -119,7 +119,7 @@ stroke: ${theme.colors.accent};
     stroke-width: 2px;
 transition: fill 200ms, stroke 200ms;
 
-${AddToFav}:hover &, ${AddToFav}:focus & {
+${AddToFav}:hover &, ${AddToFav}:focus &, ${AddToFav}.selected & {
     fill: #FF6101;
     stroke: #FF6101;
 } `

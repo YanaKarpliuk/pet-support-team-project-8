@@ -1,19 +1,18 @@
 import styled from "styled-components";
 import theme from "../../theme";
+import { Pagination, PaginationItem } from "@mui/material";
 
 const Container = styled.div`
-display: ${({ page, totalPages }) => {
-        if (page >= totalPages) {
+display: ${props => {
+        if (props.totalPages === 1) {
             return 'none'
-        } else if (page < totalPages && (page !== undefined || totalPages !== undefined)) {
-            return 'flex'
         }
-        return 'none'
+        return 'flex'
     }};
 justify-content: center;
 margin-top: 30px; `
 
-const LoadMore = styled.button`
+const LoadItem = styled(PaginationItem)`
 font-family: ${theme.fonts.manrope};
 font-weight: ${theme.fontWeights.normal};
 text-align: center;
@@ -39,8 +38,8 @@ transition: background-color 200ms, color 200ms;
     background-color: ${theme.colors.accent};
     color: ${theme.colors.white};
 };
-cursor: pointer; `
+cursor: pointer`;
 
-const elements = { Container, LoadMore }
+const elements = { Container, LoadItem }
 
 export default elements

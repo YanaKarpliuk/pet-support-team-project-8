@@ -24,14 +24,16 @@ const {
   Heart,
 } = elements;
 
-const { selectIsLoggedIn } = authSelectors
+const { selectIsLoggedIn, selectFavorite } = authSelectors
 const { addToFavorite, deleteFromFavorite } = noticesOperations
 
 const NoticesCategoriesItem = ({ info }) => {
   const dispatch = useDispatch()
+  let favorite = false
+  let favoriteEls = useSelector(selectFavorite)
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const [active, setActive] = useState(false);
-  const { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null, owner } = info;
+  const { _id, avatar, category, title, breed, location, birthdate, price = 0, owner } = info;
 
   const capitalizedCategory = () => {
     if (category === CATEGORIES.sell) {
@@ -57,14 +59,26 @@ const NoticesCategoriesItem = ({ info }) => {
 
   const addToFav = () => {
     if (!isLoggedIn) {
-      return toast("For this operation registartion or login needed", toastAuthNeeded)
+      return toast.info("For this operation registration or login needed", toastAuthNeeded)
     }
     if (!favorite) {
+      toast("Added to favorite", toastAuthNeeded)
       return dispatch(addToFavorite(_id))
     }
     if (favorite) {
+      toast("Removed from favorite", toastAuthNeeded)
       return dispatch(deleteFromFavorite(_id))
     }
+  }
+
+  const selectedFav = () => {
+    if (!isLoggedIn) {
+      return favorite = false
+    }
+    const inFavs = favoriteEls.find(element => element === _id)
+    if (inFavs) return favorite = true
+
+    return favorite = false
   }
 
   return (
@@ -73,7 +87,7 @@ const NoticesCategoriesItem = ({ info }) => {
       <ImageContainer>
         <img src={avatar.url} alt="a pet" />
         <Category>{capitalizedCategory()}</Category>
-        <AddToFav type="button" selected={favorite} onClick={addToFav}>
+        <AddToFav type="button" selected={selectedFav()} onClick={addToFav}>
           <Heart />
         </AddToFav>
       </ImageContainer>

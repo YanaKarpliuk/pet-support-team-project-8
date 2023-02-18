@@ -1,16 +1,17 @@
-import elements from "./LoadMore.styled";
+import elements from "./Pagination.styled";
 import { useDispatch, useSelector } from "react-redux";
 import noticesOperations from "../../redux/notices/noticesOperations";
 import { useLocation } from "react-router-dom";
 import CATEGORIES from "../../utils/categories";
 import noticesSelectors from "../../redux/notices/noticesSelectors";
+import { Pagination } from "@mui/material";
 
 const { fetchNoticesByCategory } = noticesOperations
 const { selectNotices } = noticesSelectors
-const { Container, LoadMore } = elements
+const { Container, LoadPage, LoadItem } = elements
 
 
-const LoadMoreBtn = () => {
+const PaginationEl = () => {
     const location = useLocation()
     const dispatch = useDispatch()
     const { page, totalPages } = useSelector(selectNotices)
@@ -25,17 +26,15 @@ const LoadMoreBtn = () => {
         category = CATEGORIES.inGoodHands
     }
 
-    const handleLoadMore = () => {
-        dispatch(fetchNoticesByCategory({ category, page: page + 1 }))
+    const handleLoadMore = (_, value) => {
+        dispatch(fetchNoticesByCategory({ category, page: value }))
     }
 
     return (
-        <Container page={page} totalPages={totalPages}>
-            <LoadMore type="button" onClick={handleLoadMore}>
-                Load more
-            </LoadMore>
+        <Container totalPages={totalPages}>
+            <Pagination count={totalPages} size="large" page={page} onChange={handleLoadMore} renderItem={item => <LoadItem {...item} />} />
         </Container>
     );
 };
 
-export default LoadMoreBtn
+export default PaginationEl
