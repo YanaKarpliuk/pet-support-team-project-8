@@ -66,8 +66,8 @@ export const Input = styled(Field)`
   letter-spacing: 0.04em;
   color: ${theme.colors.black};
   padding: 11px 14px 12px 14px;
-  outline: 1px solid ${theme.colors.accent};
-  border: none;
+  border: 1px solid ${theme.colors.accent};
+  outline: none;
   border-radius: 40px;
   background-color: transparent;
   cursor: pointer;
@@ -97,10 +97,10 @@ export const Input = styled(Field)`
 
   &:focus,
   &:hover {
-    outline: 2px solid ${theme.colors.accent};
+    border: 2px solid ${theme.colors.accent};
 
     @media screen and (min-width: 768px) {
-      outline-width: 3px;
+      border-width: 3px;
     }
   }
 `;
