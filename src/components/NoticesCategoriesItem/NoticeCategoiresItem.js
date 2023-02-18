@@ -30,7 +30,7 @@ const NoticesCategoriesItem = ({ info }) => {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const [active, setActive] = useState(false);
-  const { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null, owner } = info;
+  const { _id, avatar, category, title, breed, location, birthdate, price = 0, favorite = null } = info;
 
   const capitalizedCategory = () => {
     if (category === CATEGORIES.sell) {

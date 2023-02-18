@@ -5,7 +5,7 @@ import elements from './AddNoticeButton.styled';
 import noticesOperations from '../../redux/notices/noticesOperations';
 
 const { MobBtn, Text, Btn, Cross, MobCross } = elements;
-const { addNotice } = noticesOperations
+// const { addNotice } = noticesOperations
 
 const AddNoticeButton = () => {
   const [active, setActive] = useState(false);
