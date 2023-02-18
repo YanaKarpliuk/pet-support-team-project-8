@@ -14,11 +14,11 @@ const Box = styled.div`
   height: 100%;
   justify-content: space-between;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (min-width: 768px) {
     padding: 88px 30px 0;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     padding: 60px 16px 0;
     flex-direction: row;
     align-items: flex-end;
@@ -35,13 +35,13 @@ const Title = styled.h1`
   position: relative;
   z-index: 1;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (min-width: 768px) {
     font-size: 68px;
     line-height: 100px;
     max-width: 588px;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     font-size: 68px;
     line-height: 100px;
     flex: 1;
@@ -55,7 +55,7 @@ const ImgWrap = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (min-width: 768px) {
     & > img {
       max-height: 100%;
     }
@@ -64,7 +64,7 @@ const ImgWrap = styled.div`
     right: 10%;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     flex: 1;
   }
 `;
@@ -79,12 +79,12 @@ const Container = styled.section`
   height: 100vh;
   margin-top: 67px;
 
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (min-width: 768px) {
     background-image: url(${tabletBg});
     margin-top: 82px;
   }
 
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     background-image: url(${desktopBg});
     background-position: 0 67px;
   }
