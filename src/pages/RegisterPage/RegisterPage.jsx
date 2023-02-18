@@ -51,7 +51,7 @@ const RegisterPage = () => {
   }, [error, dispatch]);
 
   const handleSubmitFirstStep = async ({ email: userEmail, password, confirmPassword }) => {
-    const { error } = await dispatch(verifyEmail({ email: userEmail.trim() }));
+    const { error } = await dispatch(verifyEmail({ email: userEmail.trim().toLowerCase() }));
     if (error) return;
     setFirstStep({ email: userEmail.trim(), password, confirmPassword });
     setIsFirstStepComplete(true);
@@ -67,12 +67,12 @@ const RegisterPage = () => {
     });
     const { email, password } = firstStep;
     const { error } = await dispatch(
-      register({ email, password, name, city: location, phone: phoneNumber })
+      register({ email: email.toLowerCase(), password, name, city: location, phone: phoneNumber })
     );
     if (error) {
       return setIsFirstStepComplete(false);
     }
-    const { error: loginError } = await dispatch(login({ email, password }));
+    const { error: loginError } = await dispatch(login({ email: email.toLowerCase(), password }));
     if (loginError) {
       return setIsFirstStepComplete(false);
     }

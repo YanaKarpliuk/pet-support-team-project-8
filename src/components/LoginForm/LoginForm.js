@@ -59,7 +59,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     const { email, password } = values;
-    const normalizedEmail = email.trim();
+    const normalizedEmail = email.trim().toLowerCase();
     const { error } = await dispatch(login({ email: normalizedEmail, password }));
     if (!error) {
       resetForm();
