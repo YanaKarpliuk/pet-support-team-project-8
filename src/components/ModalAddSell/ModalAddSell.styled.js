@@ -112,7 +112,7 @@ const BtnBox = styled.div`
   gap: 20px;
   margin-top: 12px;
   @media ${p => p.theme.media.mobile} {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 12px;
     width: 100%;
     margin: 0;
@@ -161,7 +161,7 @@ const AddPhoto = styled.div`
   background-color: ${p => p.theme.colors.bg};
   border-radius: 40px;
 `;
-const CategoriesBox = styled.ul`
+const CategoriesBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -174,7 +174,7 @@ const CategoriesBox = styled.ul`
   }
 `;
 
-const Option = styled.button`
+const Option = styled(Field)`
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};
   text-align: center;

@@ -57,19 +57,23 @@ export const getPets = createAsyncThunk(
   }
 );
 
-export const addUserPet = createAsyncThunk('user/addUserPet', async (data, { rejectWithValue }) => {
-  try {
-    const result = await axios.post('/pet/add', data);
-    return result.data;
-  } catch ({ response }) {
-    const { status, data } = response;
-    const error = {
-      status,
-      message: data.message,
-    };
-    return rejectWithValue(error);
+export const addUserPet = createAsyncThunk(
+  'user/addUserPet',
+  async (data, { rejectWithValue }) => {
+    console.log(data);
+    try {
+      const result = await axios.post('/users/pet/add', data);
+      return result.data;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
   }
-});
+);
 
 export const removeUserPet = createAsyncThunk(
   'user/removeUserPet',

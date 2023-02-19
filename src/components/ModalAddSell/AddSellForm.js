@@ -24,22 +24,21 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
           Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur{' '}
         </Text>
       </TextBox>
-      <CategoriesBox>
-        <li>
-          <Option type="button">lost/found</Option>
-        </li>
-        <li>
-          <Option type="button">in good hands</Option>
-        </li>
-        <li>
-          <Option type="button">sell</Option>
-        </li>
-      </CategoriesBox>
+
       <Formik initialValues={state} onSubmit={handleSubmit}>
         <Forma autoComplete="off">
+          <CategoriesBox>
+            <Label htmlFor="category">
+              <Option type="button" name="category" value="lost/found" />
+
+              <Option type="button" name="category" value="in good hands" />
+
+              <Option type="button" name="category" value="sell" />
+            </Label>
+          </CategoriesBox>
           <InputBox>
             <Label htmlFor="title">
-              Tittle of ad <span style={{color:'#F59256'}}>*</span>
+              Tittle of ad <span style={{ color: '#F59256' }}>*</span>
             </Label>
             <Input type="text" name="title" placeholder="Type name" />
           </InputBox>
@@ -48,8 +47,8 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
             <Input type="text" name="name" placeholder="Type name pet" />
           </InputBox>
           <InputBox>
-            <Label htmlFor="date">Date of birth</Label>
-            <Input type="text" name="date" placeholder="Type date of birth" />
+            <Label htmlFor="birthdate">Date of birth</Label>
+            <Input type="date" name="birthdate" placeholder="Type date of birth" />
           </InputBox>
           <InputBox>
             <Label htmlFor="breed">Breed</Label>
@@ -65,7 +64,13 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
   );
 };
 
-const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }) => {
+const SecondStepAdd = ({ state, avatar, setAvatar, handleSubmit, setState, setIsFirstStepComplete }) => {
+  const handleChange = e => {
+  console.log(avatar)
+   setAvatar({ avatar: e.currentTarget.files[0] });
+    console.log(e.currentTarget.files[0]);
+    console.log(avatar)
+  };
   return (
     <>
       <Formik initialValues={state} onSubmit={handleSubmit}>
@@ -116,7 +121,7 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
               Price
               <span style={{ color: '#F59256' }}>*</span>:
             </Label>
-            <Input type="text" name="price" placeholder="Type price" />
+            <Input type="number" name="price" placeholder="Type price" />
           </InputBox>
           <InputBox
             style={{
@@ -125,7 +130,7 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
               marginBottom: 28,
             }}
           >
-            <Label htmlFor="photo">Load the pet’s image:</Label>
+            <Label htmlFor="avatar">Load the pet’s image:</Label>
             <div
               style={{
                 width: 140,
@@ -136,8 +141,10 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
                 <AiOutlinePlus size={71} color={'rgba(17, 17, 17, 0.6'} />
               </AddPhoto>
               <Input
+                as="input"
                 type="file"
-                name="photo"
+                name="avatar"
+                onChange={handleChange}
                 accept=".png, .jpg, .jpeg"
                 style={{
                   width: 140,
@@ -148,19 +155,18 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
             </div>
           </InputBox>
           <InputBox>
-            <Label htmlFor="coments">Comments</Label>
+            <Label htmlFor="comments">Comments</Label>
             <Input
               component="textarea"
               type="text"
-              name="coments"
+              name="comments"
               placeholder="Type comments"
               style={{
                 height: 116,
                 borderRadius: 20,
                 display: 'block',
               }}
-            >
-            </Input>
+            ></Input>
           </InputBox>
           <BtnBox>
             <Btn
@@ -171,7 +177,9 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
             >
               Back
             </Btn>
-            <Btn type="submit">Done</Btn>
+            <Btn type="submit" secondStep={true}>
+              Done
+            </Btn>
           </BtnBox>
         </Forma>
       </Formik>
