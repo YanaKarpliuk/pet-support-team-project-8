@@ -21,13 +21,8 @@ const {
 
 const MyPets = ({ viewportWidth }) => {
   const [deletePetId, setDeletePetId] = useState(null);
-  const [showAddPetModal, setShowAddPetModal] = useState(false);
   const userPets = useSelector(getUserPets);
   const isPetsLoading = useSelector(getPetsLoading);
-
-  const onAddPetClick = () => {
-    setShowAddPetModal(!showAddPetModal);
-  };
 
   return (
     <PetsContainerWrapper>
@@ -35,16 +30,12 @@ const MyPets = ({ viewportWidth }) => {
         <PetTitle>My pets:</PetTitle>
         <AddPetBtnContainer>
           <AddPetBtnText>Add my pet</AddPetBtnText>
-          <AddPetBtn type="button" aria-label="add my pet" onClick={onAddPetClick}>
+          <AddPetBtn type="button" aria-label="add my pet">
             <PlusIcon />
           </AddPetBtn>
         </AddPetBtnContainer>
       </PetsTitleAndButtonWrap>
-      {/* {showAddPetModal && (
-        // <Modal>
-        <ModalAddNotice />
-        // </Modal>
-      )} */}
+
       <PetsListContainer>
         {isPetsLoading && (
           <PetsLoaderWrap>
