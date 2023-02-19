@@ -24,10 +24,8 @@ const Input = styled(Field)`
   letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.black};
   padding: 11px 14px 12px 14px;
-  outline: 1px solid ${({ theme }) => theme.colors.accent};
-  border: none;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
+  border: 1px solid ${({ theme }) => theme.colors.accent};
+  outline: none;
   border-radius: 40px;
   background-color: transparent;
   cursor: pointer;
@@ -61,10 +59,10 @@ const Input = styled(Field)`
 
   &:focus,
   &:hover {
-    outline: 2px solid ${({ theme }) => theme.colors.accent};
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
 
     @media screen and (min-width: 768px) {
-      outline-width: 3px;
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent};
     }
   }
 `;
