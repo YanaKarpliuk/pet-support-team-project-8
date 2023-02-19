@@ -145,7 +145,7 @@ const NoticesCategoriesItem = ({ info }) => {
         </BtnCont>
       </TextContainer>
       <Modal active={active} setActive={setActive}>
-        <ModalNotice info={info} capitalizedCategory={capitalizedCategory} />
+        <ModalNotice id={_id} capitalizedCategory={capitalizedCategory} />
       </Modal>
     </Item>
   );
