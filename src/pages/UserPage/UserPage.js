@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastOptions from '../../utils/toastErrorOptions';
+
 import UserData from '../../components/UserData/UserData';
 import { UserInfoContainer } from './UserPage.styled';
 

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../../theme';
 
 export const UserInfoContainer = styled.div`
   margin-top: 60px;

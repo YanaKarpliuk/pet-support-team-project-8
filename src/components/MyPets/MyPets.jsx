@@ -4,8 +4,6 @@ import { getUserPets, getPetsLoading } from '../../redux/user/selectors';
 import { ReactComponent as PlusIcon } from '../../images/user/addPetBtn-plus-icon.svg';
 import { RotatingLines } from 'react-loader-spinner';
 import Pet from '../Pet/Pet';
-import ModalAddNotice from '../../components/ModalAddNotice/ModalAddNotice';
-import Modal from '../Modal/Modal';
 import styles from './MyPets.styled';
 const {
   PetsContainerWrapper,

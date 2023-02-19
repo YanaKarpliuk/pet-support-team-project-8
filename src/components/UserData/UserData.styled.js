@@ -3,8 +3,9 @@ import { Form, Field } from 'formik';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { MdModeEdit } from 'react-icons/md';
 import { BsCheckLg, BsCameraFill } from 'react-icons/bs';
-// import 'flatpickr/dist/flatpickr.min.css';
-// import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+import 'flatpickr/dist/themes/material_orange.css';
+import Flatpickr from 'react-flatpickr';
 import theme from '../../theme';
 
 export const UserDataWrap = styled.div`
@@ -15,28 +16,9 @@ export const UserDataWrap = styled.div`
     padding: 18px 20px 0px 20px;
   }
   @media screen and (max-width: 1279px) and (min-width: 768px) {
-    /* max-width: 1000px; */
-
-    /* margin-top: 72px; */
-    /* margin-left: -32px;
-    position: relative;
-    
-    border-radius: 0px 40px 40px 0px;
-    padding-left: 32px;
-    padding-right: 40px;
-    padding-bottom: 24px; */
   }
   @media screen and (${theme.media.desktop}) {
     width: 411px;
-    /* margin-left: -17px;
-    
-    margin-top: 24px;
-    padding-top: 20px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 40px;
-    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-    border-radius: 0px 40px 40px 0px; */
   }
 `;
 
@@ -64,7 +46,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const UserContainer = styled.div`
+export const UserInfo = styled.div`
   margin-top: 18px;
   background-color: ${theme.colors.white};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -74,11 +56,12 @@ export const UserContainer = styled.div`
   padding-bottom: 20px;
   @media screen and (max-width: 767px) {
     /* background-color: red; */
-
+    max-width: 450px;
     padding-top: 20px;
   }
   @media screen and (${theme.media.tablet}) {
-    /* margin-left: -32px; */
+    /* background-color: red; */
+    max-width: 800px;
     position: relative;
     margin-top: 32px;
     margin-right: 32px;
@@ -88,7 +71,6 @@ export const UserContainer = styled.div`
     padding-bottom: 24px;
   }
   @media screen and (${theme.media.desktop}) {
-    /* margin-left: -17px; */
     width: 411px;
     margin-top: 24px;
     padding-top: 20px;
@@ -101,7 +83,7 @@ export const UserContainer = styled.div`
   }
 `;
 
-export const UserImg = styled.img`
+export const UserAvatarImg = styled.img`
   display: block;
   margin: 0 auto;
   margin-top: 24px;
@@ -123,33 +105,40 @@ export const UserForm = styled(Form)`
   }
 `;
 
-export const UserInformationContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+export const UserAfterUpdateInfo = styled.div`
+  display: flex;
   margin-bottom: 8px;
+  align-items: center;
+  height: 24px;
   &:last-child {
     margin-bottom: 0px;
+  }
+  @media screen and (${theme.media.fromTablet}) {
+    margin-bottom: 11px;
+    height: 32px;
   }
   /* background-color: red; */
 `;
 export const UserKeyLabel = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 24px;
   font-weight: 400;
-  font-family: 'Manrope';
-  font-style: normal;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.black};
+  color: black;
   margin-bottom: 8px;
   &:last-child {
     margin-bottom: 0px;
   }
   @media screen and (${theme.media.fromTablet}) {
+    margin-bottom: 11px;
     font-size: 18px;
     line-height: 25px;
+    height: 32px;
   }
 `;
 
@@ -164,16 +153,47 @@ export const UserValueInput = styled(Field)`
   line-height: 16px;
   letter-spacing: 0.04em;
   color: ${theme.colors.black};
-  margin-left: 25px;
+  margin-left: 8px;
   padding: 4px 0 4px 18px;
   width: 150px;
   @media screen and (${theme.media.fromTablet}) {
+    margin-left: 24px;
+    padding: 4px 0 4px 12px;
     font-size: 18px;
     line-height: 25px;
     width: 200px;
   }
+  @media screen and (${theme.media.desktop}) {
+    margin-left: 12px;
+  }
 `;
-export const UserInformationEdited = styled(BsCheckLg)`
+
+export const InputBirthDate = styled(Flatpickr)`
+  background: ${theme.colors.bg};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: black;
+  margin-left: 8px;
+  padding: 4px 0 4px 18px;
+  width: 159px;
+  @media screen and (${theme.media.fromTablet}) {
+    margin-left: 24px;
+    padding: 4px 0 4px 12px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 216px;
+  }
+  @media screen and (${theme.media.desktop}) {
+    margin-left: 12px;
+  }
+`;
+
+export const UserFieldToUpdate = styled(BsCheckLg)`
   width: 12, 5px;
   height: 12, 5px;
   position: absolute;
@@ -194,9 +214,27 @@ export const UserKey = styled.p`
   line-height: 16px;
   letter-spacing: 0.04em;
   color: ${theme.colors.black};
+  width: 58px;
+  @media screen and (${theme.media.fromTablet}) {
+    width: 85px;
+    font-size: 18px;
+    line-height: 25px;
+  }
+`;
+
+export const UserKeyToUpdate = styled.p`
+  font-weight: ${theme.fontWeights.normal};
+  font-family: 'Manrope';
+  font-style: normal;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: ${theme.colors.black};
+  width: 58px;
   @media screen and (${theme.media.fromTablet}) {
     font-size: 18px;
     line-height: 25px;
+    width: 85px;
   }
 `;
 
@@ -208,17 +246,24 @@ export const UserValue = styled.p`
   line-height: 16px;
   letter-spacing: 0.04em;
   color: ${theme.colors.black};
+  /* background-color: red; */
+  margin-left: 26px;
   @media screen and (${theme.media.fromTablet}) {
     font-size: 18px;
     line-height: 25px;
+    margin-left: 36px;
+  }
+  @media screen and (${theme.media.desktop}) {
+    margin-left: 24px;
   }
 `;
 
-export const UserInformationEditWrapper = styled.button`
+export const UserFieldEditWrap = styled.button`
   position: relative;
   width: 20px;
   height: 20px;
   background-color: ${theme.colors.bg};
+  /* background-color: green; */
   border: 0;
   border-radius: 50%;
   color: ${prop =>
@@ -236,7 +281,6 @@ export const UserInformationEditWrapper = styled.button`
   margin-left: auto;
   &:hover,
   :focus {
-    transform: scale(1.1);
     color: black;
   }
   @media screen and (${theme.media.fromTablet}) {
@@ -245,13 +289,19 @@ export const UserInformationEditWrapper = styled.button`
   }
 `;
 
-export const UserInformationEdit = styled(MdModeEdit)`
+export const UserFieldEdit = styled(MdModeEdit)`
   width: 12, 5px;
   height: 12, 5px;
   position: absolute;
   top: 50%;
   left: 50%;
+  /* background-color: green; */
+
   transform: translate(-50%, -50%);
+  &:hover,
+  :focus {
+    cursor: pointer;
+  }
   @media screen and (${theme.media.fromTablet}) {
     width: 20px;
     height: 20px;
@@ -273,9 +323,6 @@ export const LogOutButton = styled.button`
   color: rgba(17, 17, 17, 0.6);
   &:hover,
   :focus {
-    /* span {
-      color: black;
-    } */
     cursor: pointer;
     color: ${theme.colors.accent};
     stroke: ${theme.colors.accent};
@@ -290,11 +337,11 @@ export const LogOutButton = styled.button`
     left: 32px;
   }
   @media screen and (${theme.media.desktop}) {
-    margin-top: 24px;
+    margin-top: 44px;
   }
 `;
 
-export const LogOutIconWrapper = styled.span`
+export const LogOutIconWrap = styled.span`
   display: flex;
   align-items: center;
   color: ${theme.colors.accent};
@@ -306,7 +353,7 @@ export const LogOutIcon = styled(HiOutlineLogout)`
   height: 18px;
 `;
 
-export const ButtonEdit = styled.button`
+export const UserAvatarButtonUpdate = styled.button`
   display: block;
   margin-left: auto;
   margin-top: 12px;
@@ -320,9 +367,6 @@ export const ButtonEdit = styled.button`
   background-color: ${theme.colors.white};
   &:hover,
   :focus {
-    /* span {
-      color: black;
-    } */
     color: ${theme.colors.accent};
     stroke: ${theme.colors.accent};
     cursor: pointer;
@@ -343,7 +387,7 @@ export const ButtonEdit = styled.button`
   }
 `;
 
-export const CameraSVGWrapper = styled.span`
+export const UserAvatarUpdateWrap = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -351,30 +395,14 @@ export const CameraSVGWrapper = styled.span`
   padding-right: 8px;
 `;
 
-export const InputEditPhoto = styled.input`
+export const UserAvatarUpdateInput = styled.input`
   display: none;
 `;
 
-export const CameraSVG = styled(BsCameraFill)`
+export const UserAvatarUpdateIcon = styled(BsCameraFill)`
   stroke: ${theme.colors.accent};
   width: 20px;
   height: 20px;
-`;
-
-export const TextEditPhoto = styled.p`
-  font-weight: ${theme.fontWeights.normal};
-  font-size: 12px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: ${theme.colors.black};
-  margin-left: 4px;
-  & :hover,
-  :focus {
-    color: ${theme.colors.accent};
-  }
-  @media screen and (${theme.media.desktop}) {
-    margin-left: 5px;
-  }
 `;
 
 export const UserWrapper = styled.div`
@@ -386,8 +414,26 @@ export const UserWrapper = styled.div`
   }
 `;
 
-export const AvatarWrapper = styled.div`
+export const UserAvatarWrap = styled.div`
   @media screen and (${theme.media.desktop}) {
     position: relative;
+  }
+`;
+
+export const ErrorMessage = styled.div`
+  position: absolute;
+  top: -15px;
+  left: 80px;
+  /* border: 1px solid; */
+  padding: 5px;
+  font-size: 6px;
+  font-style: 700;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: #e53e3e;
+  @media screen and (${theme.media.fromTablet}) {
+    top: -20px;
+    left: 110px;
+    font-size: 11px;
   }
 `;

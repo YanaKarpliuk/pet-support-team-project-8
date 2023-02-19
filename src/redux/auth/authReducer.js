@@ -59,6 +59,8 @@ const onUpdateUserDataSuccess = (s, { payload }) => ({
   phone: payload.phone,
   city: payload.city,
   isLoggedIn: true,
+  IsRefreshing: false,
+  isLoading: false,
 });
 
 const onRefreshUserDataSuccess = (s, { payload }) => ({
