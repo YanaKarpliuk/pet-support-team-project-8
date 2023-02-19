@@ -94,7 +94,9 @@ color:${theme.colors.black};
     margin-top: 8px;
 }`
 
-const AddToFav = styled.button`
+const AddToFav = styled.button.attrs(props => ({
+    className: props.selected ? 'selected' : ''
+}))`
 position: absolute;
 width: 44px;
 padding: 0;
@@ -119,7 +121,11 @@ stroke: ${theme.colors.accent};
     stroke-width: 2px;
 transition: fill 200ms, stroke 200ms;
 
-${AddToFav}:hover &, ${AddToFav}:focus &, ${AddToFav}.selected & {
+${AddToFav}:hover &, ${AddToFav}:focus &, ${AddToFav.className === 'selected'} &, ${props => {
+        console.log(props)
+        return props.selected === true
+    }
+    } {
     fill: #FF6101;
     stroke: #FF6101;
 } `

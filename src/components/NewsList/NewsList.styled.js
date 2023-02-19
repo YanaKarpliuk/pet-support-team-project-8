@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import theme from "../../theme";
 import makeHeightViewport from "../../hooks/makeHeightViewport";
 import makeHeightAuto from "../../hooks/makeHeightAuto";
 
@@ -19,18 +18,18 @@ ${props => {
                 }
         }}
 
-@media screen and (${theme.media.mobile}) {
+@media screen and (max-width: 767px) {
     gap: 40px;
 };
 
-@media screen and (${theme.media.tablet}) {
+@media screen and (max-width: 1279px) and (min-width: 768px) {
         grid-template-columns: repeat(2, 336px);
 };
 
-@media screen and (${theme.media.desktop}) {
-        grid-template-columns: repeat(3, 395px);
+@media screen and (min-width: 1280px) {
+                grid-template-columns: repeat(3, 395px);
 };
- gap: 60px 32px;
+gap: 60px 32px;
 
 `
 

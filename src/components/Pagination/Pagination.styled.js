@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import theme from "../../theme";
-import { Pagination, PaginationItem } from "@mui/material";
+import { PaginationItem } from "@mui/material";
 
 const Container = styled.div`
 display: ${props => {
@@ -34,8 +34,12 @@ border: 2px solid ${theme.colors.accent};
 border-radius: 40px;
 transition: background-color 200ms, color 200ms;
 
-&:hover, &:focus {
+&.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root:hover, &.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root:focus, &.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
     background-color: ${theme.colors.accent};
+    color: ${theme.colors.white};
+};
+&.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover, &.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:focus {
+    background-color: #FF6101;
     color: ${theme.colors.white};
 };
 cursor: pointer`;
