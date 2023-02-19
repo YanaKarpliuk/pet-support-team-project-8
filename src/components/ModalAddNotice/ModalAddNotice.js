@@ -29,6 +29,18 @@ const ModalAddNotice = () => {
     setIsFirstStepComplete(true);
   };
 
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+
+  function formatDate(date) {
+    return [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-');
+  }
+
   const handleSubmitSecondStep = async (values, { resetForm }) => {
     const { photoPet, comments } = values;
 
@@ -40,7 +52,7 @@ const ModalAddNotice = () => {
 
     const formData = new FormData();
     formData.append('name', info.name);
-    formData.append('birthday', new Date(info.birthday).toISOString());
+    formData.append('birthday', formatDate(new Date(info.birthday)));
     formData.append('breed', info.breed);
     formData.append('comments', comments);
     formData.append('photoPet', photoPet);
