@@ -172,6 +172,7 @@ const AddPhoto = styled.label`
   `
       : null}
 `;
+
 const CategoriesBox = styled.div`
   display: flex;
   flex-wrap: wrap;

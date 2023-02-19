@@ -24,6 +24,7 @@ const ModalAddSell = () => {
   const [info, setInfo] = useState(infoInitialState);
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false);
   const dispatch = useDispatch();
+  
   const handleSubmitFirstStep = ({ name, birthdate, breed, category, title }) => {
     setInfo(info => ({
       ...info,

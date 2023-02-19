@@ -1,127 +1,98 @@
 import { Formik } from 'formik';
 import styles from '../ModalAddNotice/ModalAddNotice.styled';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { addUserPet } from '../../redux/user/operations';
-// import { getUserPets } from '../../redux/user/selectors';
-// import { AiOutlinePlus } from 'react-icons/ai';
-const { Forma, Input, Label, InputBox, BtnBox, Btn, InputFile } = styles;
+import * as Yup from 'yup';
+import { useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+const { Forma, Input, Label, InputBox, BtnBox, Btn, InputFile, ErrorMsg, AddPhoto } = styles;
+
+const firstStepSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  birthday: Yup.date().required('Birthday is required'),
+  breed: Yup.string().required('Breed is required'),
+});
+
 const FirstStepAdd = ({ state, handleSubmit }) => {
   return (
-    <Formik initialValues={state} onSubmit={handleSubmit}>
-      <Forma autoComplete="off">
-        <InputBox>
-          <Label htmlFor="name">Name pet</Label>
-          <Input type="text" name="name" placeholder="Type name pet" />
-        </InputBox>
-        <InputBox>
-          <Label htmlFor="birthday">Date of birth</Label>
-          <Input type="date" name="birthday" placeholder="Type date of birth" />
-        </InputBox>
-        <InputBox>
-          <Label htmlFor="breed">Breed</Label>
-          <Input type="text" name="breed" placeholder="Type breed" />
-        </InputBox>
-        <BtnBox>
-          <Btn type="submit">Cancel</Btn>
-          <Btn type="submit">Next</Btn>
-        </BtnBox>
-      </Forma>
+    <Formik initialValues={state} onSubmit={handleSubmit} validationSchema={firstStepSchema}>
+      {({ errors, touched }) => (
+        <Forma autoComplete="off">
+          <InputBox>
+            <Label htmlFor="name">Pet's name</Label>
+            <Input type="text" name="name" placeholder="Type your pet's name" />
+            {errors.name && touched.name ? <ErrorMsg>{errors.name}</ErrorMsg> : null}
+          </InputBox>
+          <InputBox>
+            <Label htmlFor="birthday">Date of birth</Label>
+            <Input type="date" name="birthday" placeholder="Type date of birth" />
+            {errors.birthday && touched.birthday ? <ErrorMsg>{errors.birthday}</ErrorMsg> : null}
+          </InputBox>
+          <InputBox>
+            <Label htmlFor="breed">Breed</Label>
+            <Input type="text" name="breed" placeholder="Type breed" />
+            {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
+          </InputBox>
+          <BtnBox>
+            <Btn type="submit">Cancel</Btn>
+            <Btn type="submit">Next</Btn>
+          </BtnBox>
+        </Forma>
+      )}
     </Formik>
   );
 };
 
-const SecondStepAdd = ({ state, handleSubmit, setState, photoPet, setPhotoPet, setIsFirstStepComplete }) => {
-  // const pet = useSelector(getUserPets);
-  // console.log(pet);
+const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
+  const [photoPet, setPhotoPet] = useState();
 
-  // const handleChange = e => {
-  
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       setState({ photoPet: reader.result });
-  //       // console.log(photoPet);
-  //     }
-  //   };
-  //   reader.readAsDataURL(e.target.files[0]);
+  const secondStepSchema = Yup.object().shape({
+    comments: Yup.string().required('Comments are required').min(10).max(120),
+  });
 
-  //   const formData = new FormData();
-  //   formData.append('photoPet', e.target.files[0]);
-  //     setState({photoPet: formData.result});
-  //   console.log(state.photoPet);
-  //   // setState({photoPet: formData})
-  //   // console.log(photoPet);
-
-  //   // setState({ photoPet: formData });
-  //   // console.log(state.photoPet);
-  // };
-  const handleChange = e => {
-    const avatar =e.currentTarget.files[0];
-    console.log(avatar)
-    // const formData = new FormData();
-    // formData.append('avatar', avatar);
-    setPhotoPet({ photoPet: avatar });
-    // dispatch(addUserPet(formData));
+  const handlePhotoPetChange = e => {
+    setPhotoPet(e.target.files?.[0]);
   };
+
+  const handleSubmitWithPhotoPet = (values, formikHelpers) => {
+    handleSubmit({ ...values, photoPet }, formikHelpers);
+  };
+
   return (
-    <>
-      <div
-      style={{
-        width: 200,
-        height: 200,
-      }}
-    >
-      <InputBox
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          position: 'relative',
-        }}
-      >
-        <Label
-          htmlFor="photoPet"
-          // onChange={handleChange}
-        >
-          Add photo and some comments
-          <div
+    <Formik initialValues={state} onSubmit={handleSubmitWithPhotoPet} validationSchema={secondStepSchema}>
+      {({ errors, touched }) => (
+        <Forma autoComplete="off">
+          <InputBox
             style={{
-              width: 182,
-              height: 182,
-              margin: '0 auto',
+              display: 'flex',
+              alignItems: 'center',
+              position: 'relative',
             }}
           >
-            {/* <img src={state.photoPet} alt="" id="img" className="img" /> */}
-            {/* <img
-                src={
-                  !pets.photoPet ? (
-                    <AddPhoto>
-                      <AiOutlinePlus size={48} color={'rgba(17, 17, 17, 0.6'} />
-                    </AddPhoto>
-                  ) : (
-                    { pets.photoPet }
-                  )
-                }
-                alt="photoPet"
-                style={{ width: 182, height: 182 }}
-              /> */}
-            <InputFile
-              type="file"
-              name="photoPet"
-              onChange={handleChange}
-                accept=".png, .jpg, .jpeg"
-    
-              style={{
-                width: 182,
-                height: 182,
-                opacity: 0,
-              }}
-            />
-          </div>
-        </Label>
-      </InputBox>
-    </div>
-      <Formik initialValues={state} onSubmit={handleSubmit}>
-        <Forma autoComplete="off">
+            <Label htmlFor="photoPet">
+              Add photo and some comments
+              <div
+                style={{
+                  width: 182,
+                  height: 182,
+                  margin: '20px auto 0',
+                }}
+              >
+                <InputFile
+                  id="photoPet"
+                  as="input"
+                  type="file"
+                  name="photoPet"
+                  accept=".png, .jpg, .jpeg"
+                  onChange={handlePhotoPetChange}
+                />
+                <AddPhoto
+                  htmlFor="photoPet"
+                  preview={photoPet ? URL.createObjectURL(photoPet) : undefined}
+                >
+                  {photoPet ? null : <AiOutlinePlus size={71} color={'rgba(17, 17, 17, 0.6'} />}
+                </AddPhoto>
+              </div>
+            </Label>
+          </InputBox>
           <InputBox>
             <Label htmlFor="comments">Comments</Label>
             <Input
@@ -134,14 +105,10 @@ const SecondStepAdd = ({ state, handleSubmit, setState, photoPet, setPhotoPet, s
                 borderRadius: 20,
               }}
             />
+            {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
           </InputBox>
           <BtnBox>
-            <Btn
-              type="button"
-              onClick={() => {
-                setIsFirstStepComplete(false);
-              }}
-            >
+            <Btn type="submit" onClick={onBack}>
               Back
             </Btn>
             <Btn type="submit" secondStep={true}>
@@ -149,8 +116,8 @@ const SecondStepAdd = ({ state, handleSubmit, setState, photoPet, setPhotoPet, s
             </Btn>
           </BtnBox>
         </Forma>
-      </Formik>
-    </>
+      )}
+    </Formik>
   );
 };
 
