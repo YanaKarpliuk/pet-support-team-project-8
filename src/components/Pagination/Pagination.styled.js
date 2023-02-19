@@ -1,22 +1,28 @@
 import styled from "styled-components";
 import theme from "../../theme";
+import { Pagination, PaginationItem } from "@mui/material";
 
 const Container = styled.div`
-display: none;
+display: ${props => {
+        if (props.totalPages === 1) {
+            return 'none'
+        }
+        return 'flex'
+    }};
 justify-content: center;
-margin-top: 30px;`
+margin-top: 30px; `
 
-const LoadMore = styled.button`
+const LoadItem = styled(PaginationItem)`
 font-family: ${theme.fonts.manrope};
 font-weight: ${theme.fontWeights.normal};
 text-align: center;
 letter-spacing: 0.04em;
 color: ${theme.colors.black};
 
-@media screen and (${theme.media.mobile}) {
+@media screen and(${theme.media.mobile}) {
     font-size: ${theme.fontSizes.s};
-line-height: 1.357;
-padding: 8px 28px;
+    line-height: 1.357;
+    padding: 8px 28px;
 }
 
 font-size: 20px;
@@ -28,12 +34,12 @@ border: 2px solid ${theme.colors.accent};
 border-radius: 40px;
 transition: background-color 200ms, color 200ms;
 
-&:hover, &:focus, &.active {
+&:hover, &:focus {
     background-color: ${theme.colors.accent};
     color: ${theme.colors.white};
 };
-cursor: pointer;`
+cursor: pointer`;
 
-const elements = { Container, LoadMore }
+const elements = { Container, LoadItem }
 
 export default elements

@@ -7,6 +7,7 @@ import searchSelectors from "../../redux/search/searchSelectors";
 import noticesSelectors from "../../redux/notices/noticesSelectors";
 import { useEffect } from "react";
 import Loader from "../Loader/Loader";
+import PaginationEl from "../Pagination/Pagination";
 
 const { selectSearchState } = searchSelectors
 const { selectNotices, selectFavoriteNotices, selectOwnNotices, selectNoticeIsLoading, selectNoticeError, } = noticesSelectors
@@ -47,7 +48,7 @@ const NoticesCategoriesList = () => {
     } else if ((items.length === 0 && !loading) || error) {
         return <NotFound />
     } else {
-        return <List items={items.length}>{items} </List>
+        return <><List items={items.length}>{items} </List> <PaginationEl /></>
     }
 }
 

@@ -16,6 +16,7 @@ const selectError = s => s.auth.error;
 const selectIsLoggedIn = s => s.auth.isLoggedIn;
 const selectIsLoading = s => s.auth.isLoading;
 const selectIsRefreshing = s => s.auth.isRefreshing;
+const selectFavorite = s => s.auth.favorite;
 
 const authSelectors = {
   selectUser,
@@ -23,5 +24,6 @@ const authSelectors = {
   selectIsLoggedIn,
   selectIsLoading,
   selectIsRefreshing,
+  selectFavorite,
 };
 export default authSelectors;
