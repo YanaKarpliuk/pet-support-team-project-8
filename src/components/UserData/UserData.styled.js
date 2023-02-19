@@ -6,13 +6,13 @@ import { BsCheckLg, BsCameraFill } from 'react-icons/bs';
 import theme from '../../theme';
 
 export const UserDataWrap = styled.div`
-  @media screen and (${theme.media.mobile}) {
+  @media screen and (max-width: 767px) {
     /* background-color: red; */
     margin-top: 49px;
 
     padding: 18px 20px 0px 20px;
   }
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     /* max-width: 1000px; */
 
     /* margin-top: 72px; */
@@ -46,7 +46,7 @@ export const Title = styled.h1`
   line-height: 27px;
   color: #000000;
   /* margin-top: 20px; */
-  @media screen and (${theme.media.mobile}) {
+  @media screen and (max-width: 767px) {
     margin-top: 0px;
 
     letter-spacing: 0.04em;
@@ -70,7 +70,7 @@ export const UserContainer = styled.div`
   padding-left: 16px;
   padding-right: 12px;
   padding-bottom: 20px;
-  @media screen and (${theme.media.mobile}) {
+  @media screen and (max-width: 767px) {
     /* background-color: red; */
 
     padding-top: 20px;
@@ -278,7 +278,7 @@ export const LogOutButton = styled.button`
     color: ${theme.colors.accent};
     stroke: ${theme.colors.accent};
   }
-  @media screen and (${theme.media.mobile}) {
+  @media screen and (max-width: 767px) {
     margin-top: 42px;
     margin-left: auto;
   }

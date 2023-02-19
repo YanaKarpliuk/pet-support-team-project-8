@@ -4,6 +4,8 @@ import { getUserPets, getPetsLoading } from '../../redux/user/selectors';
 import { ReactComponent as PlusIcon } from '../../images/user/addPetBtn-plus-icon.svg';
 import { RotatingLines } from 'react-loader-spinner';
 import Pet from '../Pet/Pet';
+import ModalAddNotice from '../../components/ModalAddNotice/ModalAddNotice';
+import Modal from '../Modal/Modal';
 import styles from './MyPets.styled';
 const {
   PetsContainerWrapper,
@@ -21,8 +23,13 @@ const {
 
 const MyPets = ({ viewportWidth }) => {
   const [deletePetId, setDeletePetId] = useState(null);
+  const [showAddPetModal, setShowAddPetModal] = useState(false);
   const userPets = useSelector(getUserPets);
   const isPetsLoading = useSelector(getPetsLoading);
+
+  const onAddPetClick = () => {
+    setShowAddPetModal(!showAddPetModal);
+  };
 
   return (
     <PetsContainerWrapper>
@@ -30,12 +37,16 @@ const MyPets = ({ viewportWidth }) => {
         <PetTitle>My pets:</PetTitle>
         <AddPetBtnContainer>
           <AddPetBtnText>Add my pet</AddPetBtnText>
-          <AddPetBtn type="button" aria-label="add my pet">
+          <AddPetBtn type="button" aria-label="add my pet" onClick={onAddPetClick}>
             <PlusIcon />
           </AddPetBtn>
         </AddPetBtnContainer>
       </PetsTitleAndButtonWrap>
-
+      {showAddPetModal && (
+        // <Modal>
+        <ModalAddNotice />
+        // </Modal>
+      )}
       <PetsListContainer>
         {isPetsLoading && (
           <PetsLoaderWrap>
