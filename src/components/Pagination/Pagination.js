@@ -8,7 +8,7 @@ import { Pagination } from "@mui/material";
 
 const { fetchNoticesByCategory } = noticesOperations
 const { selectNotices } = noticesSelectors
-const { Container, LoadPage, LoadItem } = elements
+const { Container, LoadItem } = elements
 
 
 const PaginationEl = () => {

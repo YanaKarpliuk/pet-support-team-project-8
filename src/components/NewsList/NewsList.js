@@ -16,7 +16,7 @@ const { fetchNews } = newsOperations
 
 const NewsList = () => {
     const dispatch = useDispatch()
-    const [_, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
     const searchValue = useSelector(selectSearchState).trim().toLowerCase()
     const news = useSelector(selectNews)
     const error = useSelector(selectNewsError)

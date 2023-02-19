@@ -9,6 +9,7 @@ import authSelectors from "../../redux/auth/authSelectors";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastAuthNeeded from '../../utils/toastAuthNeeded';
+import defaultPhoto from '../../images/default.jpg'
 
 const {
   Item,
@@ -24,14 +25,15 @@ const {
   Heart,
 } = elements;
 
-const { selectIsLoggedIn, selectFavorite } = authSelectors
-const { addToFavorite, deleteFromFavorite } = noticesOperations
+const { selectIsLoggedIn, selectFavorite, selectUser } = authSelectors
+const { addToFavorite, deleteFromFavorite, deleteOwnNotice } = noticesOperations
 
 const NoticesCategoriesItem = ({ info }) => {
   const dispatch = useDispatch()
   let favorite = false
   let favoriteEls = useSelector(selectFavorite)
   const isLoggedIn = useSelector(selectIsLoggedIn)
+  const { userId = null } = useSelector(selectUser)
   const [active, setActive] = useState(false);
   const { _id, avatar, category, title, breed, location, birthdate, price = 0, owner } = info;
 
@@ -81,14 +83,18 @@ const NoticesCategoriesItem = ({ info }) => {
     return favorite = false
   }
 
+  const deleteNotice = () => {
+    dispatch(deleteOwnNotice(_id))
+  }
+
   return (
     <Item>
       <ToastContainer />
       <ImageContainer>
-        <img src={avatar.url} alt="a pet" />
+        <img src={avatar.url ? avatar.url : defaultPhoto} alt="a pet" />
         <Category>{capitalizedCategory()}</Category>
-        <AddToFav type="button" selected={selectedFav()} onClick={addToFav}>
-          <Heart />
+        <AddToFav type="button" onClick={addToFav}>
+          <Heart selected={selectedFav()} />
         </AddToFav>
       </ImageContainer>
       <TextContainer>
@@ -135,7 +141,7 @@ const NoticesCategoriesItem = ({ info }) => {
           <NoticeBtn type="button" onClick={() => setActive(true)}>
             Learn more
           </NoticeBtn>
-          {/* <NoticeBtn type="button">Delete</NoticeBtn> */}
+          {owner === userId ? <NoticeBtn type="button" onClock={deleteNotice}>Delete</NoticeBtn> : ''}
         </BtnCont>
       </TextContainer>
       <Modal active={active} setActive={setActive}>

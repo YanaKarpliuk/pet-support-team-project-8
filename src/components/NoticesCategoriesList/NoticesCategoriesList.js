@@ -16,7 +16,7 @@ let contentsNeeded = null
 
 const NoticesCategoriesList = () => {
     const location = useLocation()
-    const [_, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
     const searchValue = useSelector(selectSearchState).trim().toLowerCase()
     const notices = useSelector(selectNotices)
     const favorite = useSelector(selectFavoriteNotices)
@@ -48,7 +48,8 @@ const NoticesCategoriesList = () => {
     } else if ((items.length === 0 && !loading) || error) {
         return <NotFound />
     } else {
-        return <><List items={items.length}>{items} </List> <PaginationEl /></>
+        return <><List items={items.length}>{items} </List>
+            {(location.pathname.includes("favorite") || location.pathname.includes("own")) ? '' : <PaginationEl />}</>
     }
 }
 
