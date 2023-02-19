@@ -58,7 +58,7 @@ const ModalNotice = ({ info, capitalizedCategory }) => {
                 <Value>{breed} </Value>
               </Item>
               <Item>
-                <Key>Plase: </Key>
+                <Key>Place: </Key>
                 <Value>{place} </Value>
               </Item>
               <Item>
@@ -91,7 +91,7 @@ const ModalNotice = ({ info, capitalizedCategory }) => {
       </Box>
       <ComentsBox>
         <ComentsContent>
-          <Coments>Coments: </Coments>
+          <Coments>Comments: </Coments>
           {coments}
         </ComentsContent>
       </ComentsBox>

@@ -95,14 +95,65 @@ const Input = styled(Field)`
     }
   }
 `;
+const InputFile = styled.input`
+  width: 100%;
+  height: 40px;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  letter-spacing: 0.04em;
+  background-color: ${p => p.theme.colors.bg};
+  color: ${p => p.theme.colors.black};
+  padding: 11px 14px 12px 14px;
+  outline: 1px solid ${p => p.theme.colors.accent};
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  carent-color: ${p => p.theme.colors.accent};
+  transition: all 100ms ease-in;
 
+  @media ${p => p.theme.media.tablet} {
+    height: 52px;
+    font-size: 20px;
+    padding: 14px 14px 13px 32px;
+    background-color: ${p => p.theme.colors.bg};
+  }
+
+  &::placeholder {
+    font-family: ${p => p.theme.fonts.manrope};
+    font-weight: 400;
+    font-size: ${p => p.theme.fontSizes.s};
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    color: rgba(17, 17, 17, 0.6);
+
+    @media ${p => p.theme.media.mobile} {
+      font-size: 18px;
+      line-height: 1.38;
+      width: 100%;
+    }
+  }
+
+  &::-ms-reveal {
+    display: none;
+  }
+
+  &:focus,
+  &:hover {
+    outline: 2px solid ${p => p.theme.colors.accent};
+
+    @media screen and (min-width: 768px) {
+      outline-width: 3px;
+    }
+  }
+`;
 const BtnBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 12px;
   @media ${p => p.theme.media.mobile} {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 12px;
     width: 100%;
     margin: 0;
@@ -151,6 +202,6 @@ const AddPhoto = styled.div`
   background-color: ${p => p.theme.colors.bg};
   border-radius: 40px;
 `;
-const steyles = { Container, Forma, Title, Input, Label, InputBox, BtnBox, Btn, AddPhoto };
+const steyles = { Container, Forma, Title, Input, InputFile, Label, InputBox, BtnBox, Btn, AddPhoto };
 
 export default steyles
