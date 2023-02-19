@@ -17,7 +17,7 @@ export const UserDataWrap = styled.div`
   }
   @media screen and (max-width: 1279px) and (min-width: 768px) {
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     width: 411px;
   }
 `;
@@ -25,7 +25,7 @@ export const UserDataWrap = styled.div`
 export const Title = styled.h1`
   font-family: 'Manrope';
   font-style: normal;
-  font-weight: ${theme.fontWeights.normal};
+  font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   color: #000000;
@@ -35,20 +35,20 @@ export const Title = styled.h1`
 
     letter-spacing: 0.04em;
   }
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     margin-left: 32px;
     font-size: 28px;
     line-height: 38px;
-    color: ${theme.colors.black};
+    color: black;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     margin-left: 17px;
   }
 `;
 
 export const UserInfo = styled.div`
   margin-top: 18px;
-  background-color: ${theme.colors.white};
+  background-color: white;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
   padding-left: 16px;
@@ -59,7 +59,7 @@ export const UserInfo = styled.div`
     max-width: 450px;
     padding-top: 20px;
   }
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     /* background-color: red; */
     max-width: 800px;
     position: relative;
@@ -70,7 +70,7 @@ export const UserInfo = styled.div`
     padding-right: 40px;
     padding-bottom: 24px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     width: 411px;
     margin-top: 24px;
     padding-top: 20px;
@@ -92,14 +92,14 @@ export const UserAvatarImg = styled.img`
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   border-radius: 50%;
   object-fit: cover;
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     margin-top: 0;
   }
 `;
 
 export const UserForm = styled(Form)`
   margin-top: 36px;
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     margin-top: 40px;
     width: 379px;
   }
@@ -113,7 +113,7 @@ export const UserAfterUpdateInfo = styled.div`
   &:last-child {
     margin-bottom: 0px;
   }
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     margin-bottom: 11px;
     height: 32px;
   }
@@ -134,7 +134,7 @@ export const UserKeyLabel = styled.label`
   &:last-child {
     margin-bottom: 0px;
   }
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     margin-bottom: 11px;
     font-size: 18px;
     line-height: 25px;
@@ -143,7 +143,7 @@ export const UserKeyLabel = styled.label`
 `;
 
 export const UserValueInput = styled(Field)`
-  background: ${theme.colors.bg};
+  background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   font-weight: 400;
@@ -152,24 +152,24 @@ export const UserValueInput = styled(Field)`
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.black};
+  color: black;
   margin-left: 8px;
   padding: 4px 0 4px 18px;
   width: 150px;
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     margin-left: 24px;
     padding: 4px 0 4px 12px;
     font-size: 18px;
     line-height: 25px;
     width: 200px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     margin-left: 12px;
   }
 `;
 
 export const InputBirthDate = styled(Flatpickr)`
-  background: ${theme.colors.bg};
+  background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   font-family: 'Manrope';
@@ -181,14 +181,14 @@ export const InputBirthDate = styled(Flatpickr)`
   margin-left: 8px;
   padding: 4px 0 4px 18px;
   width: 159px;
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     margin-left: 24px;
     padding: 4px 0 4px 12px;
     font-size: 18px;
     line-height: 25px;
     width: 216px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     margin-left: 12px;
   }
 `;
@@ -200,22 +200,22 @@ export const UserFieldToUpdate = styled(BsCheckLg)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     width: 20px;
     height: 20px;
   }
 `;
 
 export const UserKey = styled.p`
-  font-weight: ${theme.fontWeights.normal};
+  font-weight: 500;
   font-family: 'Manrope';
   font-style: normal;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.black};
+  color: black;
   width: 58px;
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     width: 85px;
     font-size: 18px;
     line-height: 25px;
@@ -223,15 +223,15 @@ export const UserKey = styled.p`
 `;
 
 export const UserKeyToUpdate = styled.p`
-  font-weight: ${theme.fontWeights.normal};
+  font-weight: 500;
   font-family: 'Manrope';
   font-style: normal;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.black};
+  color: black;
   width: 58px;
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     font-size: 18px;
     line-height: 25px;
     width: 85px;
@@ -239,21 +239,21 @@ export const UserKeyToUpdate = styled.p`
 `;
 
 export const UserValue = styled.p`
-  font-weight: ${theme.fontWeights.normal};
+  font-weight: 500;
   font-family: 'Manrope';
   font-style: normal;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.black};
+  color: black;
   /* background-color: red; */
   margin-left: 26px;
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     font-size: 18px;
     line-height: 25px;
     margin-left: 36px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     margin-left: 24px;
   }
 `;
@@ -262,7 +262,7 @@ export const UserFieldEditWrap = styled.button`
   position: relative;
   width: 20px;
   height: 20px;
-  background-color: ${theme.colors.bg};
+  background-color: #fdf7f2;
   /* background-color: green; */
   border: 0;
   border-radius: 50%;
@@ -283,7 +283,7 @@ export const UserFieldEditWrap = styled.button`
   :focus {
     color: black;
   }
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     width: 32px;
     height: 32px;
   }
@@ -302,7 +302,7 @@ export const UserFieldEdit = styled(MdModeEdit)`
   :focus {
     cursor: pointer;
   }
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     width: 20px;
     height: 20px;
   }
@@ -314,9 +314,9 @@ export const LogOutButton = styled.button`
   justify-content: center;
   flex-direction: row-reverse;
   border: 0;
-  background-color: ${theme.colors.white};
+  background-color: white;
   padding: 0;
-  font-weight: ${theme.fontWeights.normal};
+  font-weight: 500;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
@@ -324,19 +324,19 @@ export const LogOutButton = styled.button`
   &:hover,
   :focus {
     cursor: pointer;
-    color: ${theme.colors.accent};
-    stroke: ${theme.colors.accent};
+    color: #f59256;
+    stroke: #f59256;
   }
   @media screen and (max-width: 767px) {
     margin-top: 42px;
     margin-left: auto;
   }
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     position: absolute;
     bottom: 24px;
     left: 32px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     margin-top: 44px;
   }
 `;
@@ -344,7 +344,7 @@ export const LogOutButton = styled.button`
 export const LogOutIconWrap = styled.span`
   display: flex;
   align-items: center;
-  color: ${theme.colors.accent};
+  color: #f59256;
   padding-right: 8px;
 `;
 
@@ -359,22 +359,22 @@ export const UserAvatarButtonUpdate = styled.button`
   margin-top: 12px;
   margin-right: 12px;
   border: none;
-  font-weight: ${theme.fontWeights.normal};
+  font-weight: 500;
   font-size: 12px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.black};
-  background-color: ${theme.colors.white};
+  color: black;
+  background-color: white;
   &:hover,
   :focus {
-    color: ${theme.colors.accent};
-    stroke: ${theme.colors.accent};
+    color: #f59256;
+    stroke: #f59256;
     cursor: pointer;
   }
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     margin-top: 8px;
   }
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     position: absolute;
     right: 0;
     bottom: 3px;
@@ -391,7 +391,7 @@ export const UserAvatarUpdateWrap = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${theme.colors.accent};
+  color: #f59256;
   padding-right: 8px;
 `;
 
@@ -400,13 +400,13 @@ export const UserAvatarUpdateInput = styled.input`
 `;
 
 export const UserAvatarUpdateIcon = styled(BsCameraFill)`
-  stroke: ${theme.colors.accent};
+  stroke: #f59256;
   width: 20px;
   height: 20px;
 `;
 
 export const UserWrapper = styled.div`
-  @media screen and (${theme.media.tablet}) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     position: relative;
     display: flex;
     flex-direction: row-reverse;
@@ -415,7 +415,7 @@ export const UserWrapper = styled.div`
 `;
 
 export const UserAvatarWrap = styled.div`
-  @media screen and (${theme.media.desktop}) {
+  @media screen and (min-width: 1280px) {
     position: relative;
   }
 `;
@@ -431,7 +431,7 @@ export const ErrorMessage = styled.div`
   line-height: 1.4;
   letter-spacing: 0.03em;
   color: #e53e3e;
-  @media screen and (${theme.media.fromTablet}) {
+  @media screen and (min-width: 768px) {
     top: -20px;
     left: 110px;
     font-size: 11px;
