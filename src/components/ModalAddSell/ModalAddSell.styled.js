@@ -44,11 +44,7 @@ const InputBox = styled.div`
     width: 100%;
   }
 `;
-const Label = styled.label`
-  font-family: ${p => p.theme.fonts.manrope};
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.ml};
-`;
+
 const Input = styled(Field)`
   width: 100%;
   height: 40px;
@@ -150,7 +146,14 @@ const Btn = styled.button`
     color: ${p => p.theme.colors.white};
   }
 `;
-const AddPhoto = styled.div`
+
+const AvatarInput = styled.input`
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+`;
+
+const AddPhoto = styled.label`
   position: absolute;
   display: flex;
   align-items: center;
@@ -160,6 +163,14 @@ const AddPhoto = styled.div`
   height: 182px;
   background-color: ${p => p.theme.colors.bg};
   border-radius: 40px;
+
+  ${p =>
+    p.preview
+      ? `
+    background: url(${p.preview}) center center no-repeat;
+    background-size: cover;
+  `
+      : null}
 `;
 const CategoriesBox = styled.div`
   display: flex;
@@ -174,7 +185,7 @@ const CategoriesBox = styled.div`
   }
 `;
 
-const Option = styled(Field)`
+const RadioLabel = styled.label`
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};
   text-align: center;
@@ -205,6 +216,40 @@ const Option = styled(Field)`
   cursor: pointer;
 `;
 
+const RadioInput = styled(Field)`
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+
+  &:checked + ${RadioLabel} {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
+  }
+`;
+
+const SexLabel = styled.label`
+  display: grid;
+  gap: 12px;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: 20px;
+  text-align: center;
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+const SexRadioInput = styled(Field)`
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+
+  &:checked + ${SexLabel} {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
 const TextBox = styled.div`
   width: 443px;
   text-align: center;
@@ -220,16 +265,18 @@ const Text = styled.span`
   text-align: center;
   letter-spacing: -0.01em;
 `;
-const LabelMale = styled.label`
-  display: grid;
-  gap: 12;
+
+const Label = styled.label`
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: 20px;
-  &:hover,
-  &:focus {
-    color: ${p => p.theme.colors.accent};
-  }
+  font-size: ${p => p.theme.fontSizes.ml};
+`;
+
+const ErrorMsg = styled.div`
+  font-family: ${p => p.theme.fonts.manrope};
+  font-size: ${p => p.theme.fontSizes.s};
+  text-align: center;
+  color: #e00e0e;
 `;
 
 const steyles = {
@@ -238,15 +285,19 @@ const steyles = {
   Title,
   Input,
   Label,
+  RadioLabel,
   InputBox,
   BtnBox,
   Btn,
   AddPhoto,
   CategoriesBox,
-  Option,
+  RadioInput,
+  SexRadioInput,
+  SexLabel,
   TextBox,
   Text,
-  LabelMale,
+  AvatarInput,
+  ErrorMsg,
 };
 
 export default steyles;
