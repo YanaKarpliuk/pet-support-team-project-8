@@ -3,6 +3,8 @@ import { Form, Field } from 'formik';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { MdModeEdit } from 'react-icons/md';
 import { BsCheckLg, BsCameraFill } from 'react-icons/bs';
+// import 'flatpickr/dist/flatpickr.min.css';
+// import Flatpickr from 'react-flatpickr';
 import theme from '../../theme';
 
 export const UserDataWrap = styled.div`

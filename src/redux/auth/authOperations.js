@@ -57,25 +57,49 @@ const updateUserData = createAsyncThunk('auth/update', async (credentials, thunk
   }
 });
 
+// const refreshUserData = createAsyncThunk('auth/refresh', async (credentials, thunkAPI) => {
+//   const state = thunkAPI.getState();
+//   const persistedToken = state.auth.accessToken;
+//   // console.log(persistedToken);
+//   // authHeader.setAuthHeader(persistedToken);
+//   console.log('this is refresh 0');
+
+//   if (persistedToken === null) {
+//     return thunkAPI.rejectWithValue('Unable to fetch user');
+//   }
+//   console.log('this is refresh 1');
+//   authHeader.setAuthHeader(persistedToken);
+//   try {
+//     // axios.get we need here at backend
+//     const res = await axios.get('/auth/refresh', credentials);
+//     console.log('this is refresh 2');
+//     console.log(res.data);
+
+//     return res.data.data.result;
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
 const refreshUserData = createAsyncThunk('auth/refresh', async (credentials, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedToken = state.auth.accessToken;
   // console.log(persistedToken);
   // authHeader.setAuthHeader(persistedToken);
-  console.log('this is refresh 0');
+  // console.log('this is refresh 0');
 
   if (persistedToken === null) {
     return thunkAPI.rejectWithValue('Unable to fetch user');
   }
-  console.log('this is refresh 1');
+  // console.log('this is refresh 1');
   authHeader.setAuthHeader(persistedToken);
   try {
     // axios.get we need here at backend
-    const res = await axios.get('/auth/refresh', credentials);
-    console.log('this is refresh 2');
-    console.log(res.data);
+    const res = await axios.get('/users/user/current', credentials);
+    // console.log('this is refresh 2');
+    // console.log(res.data.userList);
 
-    return res.data.data.result;
+    return res.data.userList;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

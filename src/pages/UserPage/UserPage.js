@@ -32,9 +32,9 @@ const UserPage = () => {
 
   return (
     <div>
-      {/* <Helmet>
-      <title>UserPage</title>
-      </Helmet> */}
+      <Helmet>
+        <title>UserPage</title>
+      </Helmet>
 
       <UserInfoContainer>
         <UserData />

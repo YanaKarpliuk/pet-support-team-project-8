@@ -42,11 +42,11 @@ const MyPets = ({ viewportWidth }) => {
           </AddPetBtn>
         </AddPetBtnContainer>
       </PetsTitleAndButtonWrap>
-      {showAddPetModal && (
+      {/* {showAddPetModal && (
         // <Modal>
         <ModalAddNotice />
         // </Modal>
-      )}
+      )} */}
       <PetsListContainer>
         {isPetsLoading && (
           <PetsLoaderWrap>
