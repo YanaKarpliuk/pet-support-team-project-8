@@ -6,15 +6,15 @@ background-color: ${theme.colors.bg};
 height: auto;
 padding-bottom: 100px;
 @media screen and (${theme.media.mobile}) {
-    padding-top: 110px;
+    padding-top: 100px;
 }
 
 @media screen and (${theme.media.tablet}) {
-padding-top: 170px;
+padding-top: 160px;
 }
 
 @media screen and (${theme.media.desktop}) {
-padding-top: 152px;
+padding-top: 126px;
 padding-bottom: 200px;
 }
 `

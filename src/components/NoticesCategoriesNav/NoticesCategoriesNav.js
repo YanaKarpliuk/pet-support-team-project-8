@@ -1,7 +1,6 @@
 import elements from "./NoticesCategoriesNav.styled"
 import authSelectors from "../../redux/auth/authSelectors";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import noticesOperations from "../../redux/notices/noticesOperations";
 import CATEGORIES from "../../utils/categories";
@@ -10,13 +9,11 @@ const { fetchNoticesByCategory, fetchOwnNotices, fetchFavorite } = noticesOperat
 const { Option, Container } = elements;
 
 const NoticesCategoriesNav = () => {
-    const navigate = useNavigate();
     const { selectIsLoggedIn } = authSelectors
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(selectIsLoggedIn)
 
     useEffect(() => {
-        navigate("/notices/sell", { replace: true });
         dispatch(fetchNoticesByCategory({ category: CATEGORIES.sell }))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

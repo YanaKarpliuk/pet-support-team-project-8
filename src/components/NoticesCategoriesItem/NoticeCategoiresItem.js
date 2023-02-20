@@ -6,6 +6,9 @@ import CATEGORIES from '../../utils/categories';
 import { useSelector, useDispatch } from 'react-redux';
 import noticesOperations from '../../redux/notices/noticesOperations';
 import authSelectors from "../../redux/auth/authSelectors";
+import { getUserData } from '../../redux/user/operations';
+import { useLocation } from 'react-router-dom';
+import { getUserFavorite, getUserId } from '../../redux/user/selectors';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastAuthNeeded from '../../utils/toastAuthNeeded';
@@ -25,15 +28,16 @@ const {
   Heart,
 } = elements;
 
-const { selectIsLoggedIn, selectFavorite, selectUser } = authSelectors
-const { addToFavorite, deleteFromFavorite, deleteOwnNotice } = noticesOperations
+const { selectIsLoggedIn } = authSelectors
+const { addToFavorite, deleteFromFavorite, deleteOwnNotice, fetchFavorite } = noticesOperations
 
 const NoticesCategoriesItem = ({ info }) => {
+  const URLlocation = useLocation()
   const dispatch = useDispatch()
   let favorite = false
-  let favoriteEls = useSelector(selectFavorite)
+  let favoriteEls = useSelector(getUserFavorite)
+  const userID = useSelector(getUserId)
   const isLoggedIn = useSelector(selectIsLoggedIn)
-  const { userId = null } = useSelector(selectUser)
   const [active, setActive] = useState(false);
   const { _id, avatar, category, title, breed, location, birthdate, price = 0, owner } = info;
 
@@ -65,11 +69,15 @@ const NoticesCategoriesItem = ({ info }) => {
     }
     if (!favorite) {
       toast("Added to favorite", toastAuthNeeded)
-      return dispatch(addToFavorite(_id))
-    }
-    if (favorite) {
+      dispatch(addToFavorite(_id))
+    } else if (favorite) {
       toast("Removed from favorite", toastAuthNeeded)
-      return dispatch(deleteFromFavorite(_id))
+      dispatch(deleteFromFavorite(_id))
+    }
+    dispatch(getUserData())
+
+    if (URLlocation.pathname.includes("favorite")) {
+      setTimeout(async () => { dispatch(fetchFavorite()) }, 1000)
     }
   }
 
@@ -84,6 +92,7 @@ const NoticesCategoriesItem = ({ info }) => {
   }
 
   const deleteNotice = () => {
+    toast("Notice deleted", toastAuthNeeded)
     dispatch(deleteOwnNotice(_id))
   }
 
@@ -141,7 +150,7 @@ const NoticesCategoriesItem = ({ info }) => {
           <NoticeBtn type="button" onClick={() => setActive(true)}>
             Learn more
           </NoticeBtn>
-          {owner === userId ? <NoticeBtn type="button" onClock={deleteNotice}>Delete</NoticeBtn> : ''}
+          {owner === userID ? <NoticeBtn type="button" onClick={deleteNotice}>Delete</NoticeBtn> : ''}
         </BtnCont>
       </TextContainer>
       <Modal active={active} setActive={setActive}>

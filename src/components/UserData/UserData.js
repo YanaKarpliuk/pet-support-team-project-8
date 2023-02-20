@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
 import BlankAvatar from '../../images/user/avatar-blank.png';
+import { getUserData } from '../../redux/user/operations';
 
 import {
   UserDataWrap,
@@ -29,6 +30,7 @@ import {
   ButtonEdit,
   LogOutIconWrapper,
 } from './UserData.styled';
+import { useEffect } from 'react';
 
 const { selectUser } = authSelectors;
 const { logOut, updateUserData } = authOperations;
@@ -45,6 +47,12 @@ const UserData = () => {
     phone: user.phone,
     city: user.city,
   };
+
+  useEffect(() => {
+    dispatch(getUserData())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   //   const handleSubmit = ({ name, email, birthday, phone, city }) => {
   //     const data = {
   //       name,
