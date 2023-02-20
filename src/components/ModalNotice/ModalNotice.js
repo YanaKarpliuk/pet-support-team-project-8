@@ -1,7 +1,7 @@
 import steyles from './ModalNotice.styled';
 import { useSelector } from 'react-redux';
-import searchSelectors from '../../redux/search/searchSelectors';
 import noticesSelectors from '../../redux/notices/noticesSelectors';
+import defaultPhoto from '../../images/default.jpg';
 
 const {
   Container,
@@ -46,19 +46,16 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
     name,
     birthdate,
     sex,
-    email,
-    phone,
     comments,
     location,
     price = 0,
-    owner,
   } = notice;
 
   return (
     <Container>
       <Box>
         <ImgBox>
-          <img src={avatar.url} alt="a pet" />
+          <img src={avatar.url ? avatar.url : defaultPhoto} alt="a pet" />
           <Category>{capitalizedCategory()}</Category>
         </ImgBox>
         <InfoBox>
