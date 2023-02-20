@@ -83,6 +83,15 @@ export const UserInfo = styled.div`
   }
 `;
 
+export const UserAvatarLabel = styled.label`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: #111111;
+`;
+
 export const UserAvatarImg = styled.img`
   display: block;
   margin: 0 auto;
