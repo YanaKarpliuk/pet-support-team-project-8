@@ -26,7 +26,7 @@ const {
 } = elements;
 
 const { selectIsLoggedIn, selectFavorite, selectUser } = authSelectors
-const { addToFavorite, deleteFromFavorite, deleteOwnNotice } = noticesOperations
+const { addToFavorite, deleteFromFavorite, deleteOwnNotice, fetchSingleNotice } = noticesOperations;
 
 const NoticesCategoriesItem = ({ info }) => {
   const dispatch = useDispatch()
@@ -87,6 +87,11 @@ const NoticesCategoriesItem = ({ info }) => {
     dispatch(deleteOwnNotice(_id))
   }
 
+  const handleLearMore = () => {
+    setActive(true)
+    dispatch(fetchSingleNotice(_id));
+  }
+
   return (
     <Item>
       <ToastContainer />
@@ -138,14 +143,20 @@ const NoticesCategoriesItem = ({ info }) => {
           </InfoList>
         </Info>
         <BtnCont>
-          <NoticeBtn type="button" onClick={() => setActive(true)}>
+          <NoticeBtn type="button" onClick={handleLearMore}>
             Learn more
           </NoticeBtn>
-          {owner === userId ? <NoticeBtn type="button" onClock={deleteNotice}>Delete</NoticeBtn> : ''}
+          {owner === userId ? (
+            <NoticeBtn type="button" onClick={deleteNotice}>
+              Delete
+            </NoticeBtn>
+          ) : (
+            ''
+          )}
         </BtnCont>
       </TextContainer>
       <Modal active={active} setActive={setActive}>
-        <ModalNotice info={info} capitalizedCategory={capitalizedCategory} />
+        <ModalNotice id={_id} capitalizedCategory={capitalizedCategory} addToFav={ addToFav} />
       </Modal>
     </Item>
   );

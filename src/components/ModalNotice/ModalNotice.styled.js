@@ -83,7 +83,7 @@ const Title = styled.h2`
 `;
 
 const List = styled.table`
-  width: 200px;
+  width: 260px;
   table-layout: auto;
   border-collapse: collapse;
 `;
@@ -102,7 +102,7 @@ const Key = styled.td`
   font-size: ${p => p.theme.fontSizes.m};
   color: ${p => p.theme.colors.black};
   line-height: 22px;
-  width: 130px;
+  width: 100px;
   text-align: left;
   @media ${p => p.theme.media.mobile} {
     width: 100px;
@@ -114,6 +114,8 @@ const Value = styled.td`
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.m};
   color: ${p => p.theme.colors.black};
+  width: 160px;
+  text-align: left;
   line-height: 22px;
   & > a {
     text-decoration: none;

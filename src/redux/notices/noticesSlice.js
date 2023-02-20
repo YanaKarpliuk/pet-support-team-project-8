@@ -38,9 +38,6 @@ const noticesSlice = createSlice({
             .addCase(fetchNoticesByCategory.rejected, (state, action) => {
                 handleReject(state, action)
             })
-            .addCase(fetchSingleNotice.pending, state => {
-                handlePending(state)
-            })
             .addCase(fetchSingleNotice.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
