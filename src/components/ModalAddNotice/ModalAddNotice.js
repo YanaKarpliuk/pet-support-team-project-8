@@ -11,9 +11,10 @@ const infoInitialState = {
   birthday: '',
   breed: '',
   comments: '',
+  photoPet: undefined,
 };
 
-const ModalAddNotice = () => {
+const ModalAddNotice = ({ onCancel }) => {
   const [info, setInfo] = useState(infoInitialState);
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false);
   const dispatch = useDispatch();
@@ -29,37 +30,52 @@ const ModalAddNotice = () => {
     setIsFirstStepComplete(true);
   };
 
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+
+  function formatDate(date) {
+    return [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-');
+  }
+
   const handleSubmitSecondStep = async (values, { resetForm }) => {
     const { photoPet, comments } = values;
 
+    const formData = new FormData();
+    formData.append('name', info.name);
+    formData.append('birthday', formatDate(new Date(info.birthday)));
+    formData.append('breed', info.breed);
+    formData.append('comments', comments);
+    formData.append('photoPet', photoPet);
+
+    dispatch(addUserPet(formData));
+    setInfo(infoInitialState);
+    resetForm();
+    onCancel();
+  };
+
+  const handleBack = ({ photoPet, comments }) => {
     setInfo(info => ({
       ...info,
       photoPet,
       comments,
     }));
 
-    const formData = new FormData();
-    formData.append('name', info.name);
-    formData.append('birthday', new Date(info.birthday).toISOString());
-    formData.append('breed', info.breed);
-    formData.append('comments', comments);
-    formData.append('photoPet', photoPet);
-    dispatch(addUserPet(formData));
-    resetForm();
+    setIsFirstStepComplete(false);
   };
 
   return (
     <Container>
       <Title>Add my pet</Title>
       {!isFirstStepComplete ? (
-        <FirstStepAdd state={info} handleSubmit={handleSubmitFirstStep} />
+        <FirstStepAdd state={info} handleSubmit={handleSubmitFirstStep} onCancel={onCancel} />
       ) : (
         <>
-          <SecondStepAdd
-            state={info}
-            handleSubmit={handleSubmitSecondStep}
-            onBack={() => setIsFirstStepComplete(false)}
-          />
+          <SecondStepAdd state={info} handleSubmit={handleSubmitSecondStep} onBack={handleBack} />
         </>
       )}
     </Container>

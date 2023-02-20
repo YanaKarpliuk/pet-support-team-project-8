@@ -37,7 +37,7 @@ const MyPets = ({ viewportWidth }) => {
             <PlusIcon />
           </AddPetBtn>
           <Modal active={active} setActive={setActive}>
-            <ModalAddNotice />
+            <ModalAddNotice onCancel={() => setActive(false)} />
           </Modal>
         </AddPetBtnContainer>
       </PetsTitleAndButtonWrap>

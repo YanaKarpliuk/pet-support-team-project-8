@@ -21,7 +21,7 @@ const {
   SexLabel,
   TextBox,
   AvatarInput,
-  ErrorMsg
+  ErrorMsg,
 } = styles;
 
 const firstStepSchema = Yup.object().shape({
@@ -34,7 +34,7 @@ const firstStepSchema = Yup.object().shape({
   breed: Yup.string().required('Breed is required').min(2).max(24),
 });
 
-const FirstStepAdd = ({ state, handleSubmit }) => {
+const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
   return (
     <div>
       <TextBox>
@@ -47,16 +47,14 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
         {({ errors, touched }) => (
           <Forma autoComplete="off">
             <CategoriesBox>
-              <div>
-                <RadioInput id="category-1" type="radio" name="category" value="lostfound" />
-                <RadioLabel htmlFor="category-1">lost/found</RadioLabel>
+              <RadioInput id="category-1" type="radio" name="category" value="lostfound" />
+              <RadioLabel htmlFor="category-1">lost/found</RadioLabel>
 
-                <RadioInput id="category-2" type="radio" name="category" value="ingoodhands" />
-                <RadioLabel htmlFor="category-2">in good hands</RadioLabel>
+              <RadioInput id="category-2" type="radio" name="category" value="ingoodhands" />
+              <RadioLabel htmlFor="category-2">in good hands</RadioLabel>
 
-                <RadioInput id="category-3" type="radio" name="category" value="sell" />
-                <RadioLabel htmlFor="category-3">sell</RadioLabel>
-              </div>
+              <RadioInput id="category-3" type="radio" name="category" value="sell" />
+              <RadioLabel htmlFor="category-3">sell</RadioLabel>
 
               {errors.category && touched.category ? <ErrorMsg>{errors.category}</ErrorMsg> : null}
             </CategoriesBox>
@@ -79,7 +77,9 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
                 Date of birth <span style={{ color: '#F59256' }}>*</span>
               </Label>
               <Input type="date" name="birthdate" placeholder="Type date of birth" />
-              {errors.birthdate && touched.birthdate ? <ErrorMsg>{errors.birthdate}</ErrorMsg> : null}
+              {errors.birthdate && touched.birthdate ? (
+                <ErrorMsg>{errors.birthdate}</ErrorMsg>
+              ) : null}
             </InputBox>
             <InputBox>
               <Label htmlFor="breed">
@@ -89,7 +89,7 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
               {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
-              <Btn type="submit">Cancel</Btn>
+              <Btn type="button" onClick={onCancel}>Cancel</Btn>
               <Btn type="submit">Next</Btn>
             </BtnBox>
           </Forma>
@@ -100,7 +100,7 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
 };
 
 const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(state.avatar);
 
   const secondStepSchema = Yup.object().shape({
     sex: Yup.string().oneOf(['male', 'female']).required('Sex is required'),
@@ -110,7 +110,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
         /^[A-Z][\w\s-]+,\s[A-Z][\w\s-]+$/,
         'Please, match this format: City, Region (both must start with capital letter)'
       ),
-    price: state.category === "sell" ? Yup.number().required('Price is required') : undefined,
+    price: state.category === 'sell' ? Yup.number().required('Price is required') : undefined,
     comments: Yup.string().required('Comments are required').min(8).max(120),
   });
 
@@ -129,7 +129,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
         onSubmit={handleSubmitWithAvatar}
         validationSchema={secondStepSchema}
       >
-        {({ errors, touched }) => (
+        {({ values, errors, touched }) => (
           <Forma autoComplete="off">
             <InputBox>
               <Label htmlFor="sex">
@@ -233,7 +233,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
               {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
-              <Btn type="submit" onClick={onBack}>
+              <Btn type="button" onClick={() => onBack({ ...values, avatar })}>
                 Back
               </Btn>
               <Btn type="submit" secondStep={true}>

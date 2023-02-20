@@ -35,7 +35,7 @@ const OurFriendsPage = () => {
       time: '8:00-19:00',
       address: 'Promuslova Street, 56',
       email: 'lkplev@gmail.com ',
-      phone: 'Phone: (032) 293-30-41',
+      phone: '(032) 293-30-41',
       image: levImg,
       map: 'https://www.google.com.ua/maps/place/%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%9F%D1%80%D0%BE%D0%BC%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%B0,+56,+%D0%9B%D1%8C%D0%B2%D1%96%D0%B2,+%D0%9B%D1%8C%D0%B2%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+79000/@49.8633373,24.0422761,17z/data=!3m1!4b1!4m5!3m4!1s0x473add029a8fe451:0xd4feea53902f6bf8!8m2!3d49.8633339!4d24.0444648?hl=ua',
       website: 'https://lkplev.com/',
