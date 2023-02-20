@@ -77,7 +77,7 @@ const NoticesCategoriesItem = ({ info }) => {
     if (!isLoggedIn) {
       return favorite = false
     }
-    const inFavs = favoriteEls.find(element => element === _id)
+    const inFavs = favoriteEls?.find(element => element === _id)
     if (inFavs) return favorite = true
 
     return favorite = false
