@@ -121,7 +121,12 @@ stroke: ${theme.colors.accent};
     stroke-width: 2px;
 transition: fill 200ms, stroke 200ms;
 
-${AddToFav}:hover &, ${AddToFav}:focus &, ${AddToFav.className === 'selected'} &, ${props => props.selected === true} {
+
+
+${AddToFav}:hover &, ${AddToFav}:focus &, ${AddToFav.className === 'selected'} &, ${props => {
+        return props.selected === true
+    }
+    } {
     fill: #FF6101;
     stroke: #FF6101;
 } `

@@ -34,7 +34,7 @@ const firstStepSchema = Yup.object().shape({
   breed: Yup.string().required('Breed is required').min(2).max(24),
 });
 
-const FirstStepAdd = ({ state, handleSubmit }) => {
+const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
   return (
     <div>
       <TextBox>
@@ -89,7 +89,7 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
               {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
-              <Btn type="submit">Cancel</Btn>
+              <Btn type="button" onClick={onCancel}>Cancel</Btn>
               <Btn type="submit">Next</Btn>
             </BtnBox>
           </Forma>
@@ -100,7 +100,7 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
 };
 
 const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(state.avatar);
 
   const secondStepSchema = Yup.object().shape({
     sex: Yup.string().oneOf(['male', 'female']).required('Sex is required'),
@@ -129,7 +129,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
         onSubmit={handleSubmitWithAvatar}
         validationSchema={secondStepSchema}
       >
-        {({ errors, touched }) => (
+        {({ values, errors, touched }) => (
           <Forma autoComplete="off">
             <InputBox>
               <Label htmlFor="sex">
@@ -233,7 +233,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
               {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
-              <Btn type="submit" onClick={onBack}>
+              <Btn type="button" onClick={() => onBack({ ...values, avatar })}>
                 Back
               </Btn>
               <Btn type="submit" secondStep={true}>

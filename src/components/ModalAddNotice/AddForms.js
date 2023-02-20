@@ -11,7 +11,7 @@ const firstStepSchema = Yup.object().shape({
   breed: Yup.string().required('Breed is required'),
 });
 
-const FirstStepAdd = ({ state, handleSubmit }) => {
+const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
   return (
     <Formik initialValues={state} onSubmit={handleSubmit} validationSchema={firstStepSchema}>
       {({ errors, touched }) => (
@@ -32,7 +32,9 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
             {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
           </InputBox>
           <BtnBox>
-            <Btn type="submit">Cancel</Btn>
+            <Btn type="button" onClick={onCancel}>
+              Cancel
+            </Btn>
             <Btn type="submit">Next</Btn>
           </BtnBox>
         </Forma>
@@ -42,7 +44,7 @@ const FirstStepAdd = ({ state, handleSubmit }) => {
 };
 
 const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
-  const [photoPet, setPhotoPet] = useState();
+  const [photoPet, setPhotoPet] = useState(state.photoPet);
 
   const secondStepSchema = Yup.object().shape({
     comments: Yup.string().required('Comments are required').min(10).max(120),
@@ -57,8 +59,12 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
   };
 
   return (
-    <Formik initialValues={state} onSubmit={handleSubmitWithPhotoPet} validationSchema={secondStepSchema}>
-      {({ errors, touched }) => (
+    <Formik
+      initialValues={state}
+      onSubmit={handleSubmitWithPhotoPet}
+      validationSchema={secondStepSchema}
+    >
+      {({ values, errors, touched }) => (
         <Forma autoComplete="off">
           <InputBox
             style={{
@@ -108,7 +114,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
             {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
           </InputBox>
           <BtnBox>
-            <Btn type="submit" onClick={onBack}>
+            <Btn type="button" onClick={() => onBack({ ...values, photoPet })}>
               Back
             </Btn>
             <Btn type="submit" secondStep={true}>
