@@ -11,23 +11,23 @@ const { fetchNoticesByCategory, fetchOwnNotices, fetchFavorite } = noticesOperat
 const { Option, Container } = elements;
 
 const NoticesCategoriesNav = () => {
-    const location = useLocation()
+    const { pathname } = useLocation()
     const { selectIsLoggedIn } = authSelectors
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(selectIsLoggedIn)
 
     useEffect(() => {
         dispatch(getUserData())
-        if (location.pathname.includes("favorite")) {
+        if (pathname.includes("favorite")) {
             dispatch(fetchFavorite())
-        } else if (location.pathname.includes("own")) {
+        } else if (pathname.includes("own")) {
             dispatch(fetchOwnNotices())
         } else {
-            if (location.pathname.includes("sell")) {
+            if (pathname.includes("sell")) {
                 dispatch(fetchNoticesByCategory({ category: CATEGORIES.sell }))
-            } else if (location.pathname.includes("for-free")) {
+            } else if (pathname.includes("for-free")) {
                 dispatch(fetchNoticesByCategory({ category: CATEGORIES.inGoodHands }))
-            } else if (location.pathname.includes("lost-found")) {
+            } else if (pathname.includes("lost-found")) {
                 dispatch(fetchNoticesByCategory({ category: CATEGORIES.lostFound }))
             }
         }

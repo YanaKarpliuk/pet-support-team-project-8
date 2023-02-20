@@ -8,6 +8,7 @@ const noticesInitialState = {
     singleNotice: {},
     favorite: [],
     own: [],
+    message: '',
     error: null,
     isLoading: false
 }
@@ -33,6 +34,7 @@ const noticesSlice = createSlice({
             .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.notices = action.payload
+                state.message = ''
                 state.error = null;
             })
             .addCase(fetchNoticesByCategory.rejected, (state, action) => {
@@ -41,6 +43,7 @@ const noticesSlice = createSlice({
             .addCase(fetchSingleNotice.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
+                state.message = ''
                 state.singleNotice = action.payload
             })
             .addCase(fetchSingleNotice.rejected, (state, action) => {
@@ -48,6 +51,7 @@ const noticesSlice = createSlice({
             })
             .addCase(addToFavorite.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.message = action.payload
             })
             .addCase(addToFavorite.rejected, (state, action) => {
                 handleReject(state, action)
@@ -58,22 +62,21 @@ const noticesSlice = createSlice({
             .addCase(fetchFavorite.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
+                state.message = ''
                 state.favorite = action.payload
             })
             .addCase(fetchFavorite.rejected, (state, action) => {
                 handleReject(state, action)
             })
             .addCase(deleteFromFavorite.fulfilled, (state, action) => {
-                state.isLoading = false;
+                state.message = action.payload
             })
             .addCase(deleteFromFavorite.rejected, (state, action) => {
                 handleReject(state, action)
             })
-            .addCase(addNotice.pending, state => {
-                handlePending(state)
-            })
             .addCase(addNotice.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.message = action.payload
             })
             .addCase(addNotice.rejected, (state, action) => {
                 handleReject(state, action)
@@ -84,16 +87,15 @@ const noticesSlice = createSlice({
             .addCase(fetchOwnNotices.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
+                state.message = ''
                 state.own = action.payload
             })
             .addCase(fetchOwnNotices.rejected, (state, action) => {
                 handleReject(state, action)
             })
-            .addCase(deleteOwnNotice.pending, state => {
-                handlePending(state)
-            })
             .addCase(deleteOwnNotice.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.message = action.payload
             })
             .addCase(deleteOwnNotice.rejected, (state, action) => {
                 handleReject(state, action)
