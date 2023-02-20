@@ -161,7 +161,7 @@ const NoticesCategoriesItem = ({ info }) => {
           <NoticeBtn type="button" onClick={handleLearMore}>
             Learn more
           </NoticeBtn>
-          {owner === userID ? <NoticeBtn type="button" onClick={deleteNotice}>Delete</NoticeBtn> : ''}
+          {(owner === userID && isLoggedIn) ? <NoticeBtn type="button" onClick={deleteNotice}>Delete</NoticeBtn> : ''}
         </BtnCont>
       </TextContainer>
       <Modal active={active} setActive={setActive}>
