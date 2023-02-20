@@ -14,7 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import toastAuthNeeded from '../../utils/toastAuthNeeded';
 import defaultPhoto from '../../images/default.jpg'
 import chooseWhatToLoad from '../../utils/chooseWhatToLoad';
-import noticesSelectors from '../../redux/notices/noticesSelectors';
 
 const {
   Item,
@@ -30,7 +29,6 @@ const {
   Heart,
 } = elements;
 
-const { selectNoticeMessage } = noticesSelectors
 const { selectIsLoggedIn } = authSelectors
 const { addToFavorite, deleteFromFavorite, deleteOwnNotice, fetchFavorite, fetchSingleNotice } = noticesOperations
 
@@ -39,8 +37,6 @@ const NoticesCategoriesItem = ({ info }) => {
   const dispatch = useDispatch()
   let favorite = false
   let favoriteEls = useSelector(getUserFavorite)
-  const { message = '' } = useSelector(selectNoticeMessage)
-  console.log(message)
   const userID = useSelector(getUserId)
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const [active, setActive] = useState(false);
@@ -74,15 +70,18 @@ const NoticesCategoriesItem = ({ info }) => {
     }
     if (!favorite) {
       toast("Added to favorite", toastAuthNeeded)
-      dispatch(addToFavorite(_id))
+      dispatch(addToFavorite(_id)).then(() => {
+        dispatch(getUserData())
+      })
     } else if (favorite) {
       toast("Removed from favorite", toastAuthNeeded)
-      dispatch(deleteFromFavorite(_id))
-    }
-    dispatch(getUserData())
-
-    if (pathname.includes("favorite")) {
-      dispatch(fetchFavorite())
+      dispatch(deleteFromFavorite(_id)).then(() => {
+        dispatch(getUserData()).then(() => {
+          if (pathname.includes("favorite")) {
+            dispatch(fetchFavorite())
+          }
+        })
+      })
     }
   }
 
@@ -90,7 +89,7 @@ const NoticesCategoriesItem = ({ info }) => {
     if (!isLoggedIn) {
       return favorite = false
     }
-    const inFavs = favoriteEls?.find(element => element === _id)
+    const inFavs = favoriteEls.find(element => element === _id)
     if (inFavs) return favorite = true
 
     return favorite = false
@@ -98,9 +97,9 @@ const NoticesCategoriesItem = ({ info }) => {
 
   const deleteNotice = () => {
     toast("Notice deleted", toastAuthNeeded)
-    dispatch(deleteOwnNotice(_id))
-    chooseWhatToLoad({ dispatch, pathname })
-
+    dispatch(deleteOwnNotice(_id)).then(() => {
+      chooseWhatToLoad({ dispatch, pathname })
+    })
   }
 
   const handleLearMore = () => {
