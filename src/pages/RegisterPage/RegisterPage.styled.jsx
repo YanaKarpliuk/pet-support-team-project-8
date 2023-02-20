@@ -45,6 +45,7 @@ const FormWrap = styled.div`
     right: 50%;
     transform: translate(50%, -50%);
     width: 608px;
+    max-height: ${({ isFirstStepComplete }) => (isFirstStepComplete ? '577px' : '517px')};
     padding: 60px 80px 40px 80px;
     background-color: ${({ theme }) => theme.colors.white};
     margin: 0;
@@ -57,6 +58,7 @@ const FormWrap = styled.div`
     top: ${({ isFirstStepComplete }) => (isFirstStepComplete ? '112px' : '114px')};
     transform: translate(50%, 0%);
     width: 618px;
+    max-height: ${({ isFirstStepComplete }) => (isFirstStepComplete ? '605px' : '541px')};
     padding-bottom: 60px;
   }
 `;

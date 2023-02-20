@@ -1,38 +1,45 @@
 import { Formik } from 'formik';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../components/Loader/Loader';
+
 import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
 import BlankAvatar from '../../images/user/avatar-blank.png';
 import { getUserData } from '../../redux/user/operations';
+import { InputBirthday } from './Flatpickr';
+import schemas from '../../schemas/schemas';
 
 import {
   UserDataWrap,
   Title,
-  UserContainer,
-  UserImg,
-  UserInformationContainer,
+  UserInfo,
+  UserAvatarImg,
+  UserAfterUpdateInfo,
   UserForm,
   UserKey,
   UserValue,
   LogOutButton,
   LogOutIcon,
-  UserInformationEdit,
-  UserInformationEditWrapper,
+  UserFieldEdit,
+  UserFieldEditWrap,
   UserKeyLabel,
   UserValueInput,
-  UserInformationEdited,
-  InputEditPhoto,
-  CameraSVG,
-  CameraSVGWrapper,
+  UserFieldToUpdate,
+  UserAvatarUpdateInput,
+  UserAvatarUpdateIcon,
+  UserAvatarUpdateWrap,
   UserWrapper,
-  AvatarWrapper,
-  ButtonEdit,
-  LogOutIconWrapper,
+  UserAvatarWrap,
+  UserAvatarButtonUpdate,
+  LogOutIconWrap,
+  ErrorMessage,
+  UserKeyToUpdate,
 } from './UserData.styled';
-import { useEffect } from 'react';
 
-const { selectUser } = authSelectors;
+const { userUpdateSchema } = schemas;
+
+const { selectUser, selectIsLoading } = authSelectors;
 const { logOut, updateUserData } = authOperations;
 
 const UserData = () => {
@@ -82,125 +89,170 @@ const UserData = () => {
   return (
     <UserDataWrap>
       <Title>My information: </Title>
-      <UserContainer>
+      <UserInfo>
         <UserWrapper>
-          <AvatarWrapper>
-            <UserImg src={!user.avatarURL ? BlankAvatar : user.avatarURL} alt="Avatar" />
-            <ButtonEdit type="button">
+          <UserAvatarWrap>
+            <UserAvatarImg src={!user.avatarURL ? BlankAvatar : user.avatarURL} alt="Avatar" />
+            <UserAvatarButtonUpdate type="button">
               <label onChange={handleChange}>
-                <InputEditPhoto type="file" />
-                <CameraSVGWrapper>
-                  <CameraSVG />
-                </CameraSVGWrapper>
+                <UserAvatarUpdateInput type="file" />
+                <UserAvatarUpdateWrap>
+                  <UserAvatarUpdateIcon />
+                </UserAvatarUpdateWrap>
                 Edit Photo
               </label>
-            </ButtonEdit>
-          </AvatarWrapper>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            <UserForm autoComplete="off">
-              {update === 'name' ? (
-                <UserKeyLabel>
-                  Name:
-                  <UserValueInput type="text" name="name" />
-                  <UserInformationEditWrapper type="submit">
-                    <UserInformationEdited />
-                  </UserInformationEditWrapper>
-                </UserKeyLabel>
-              ) : (
-                <UserInformationContainer>
-                  <UserKey>Name:</UserKey>
-                  <UserValue>{`${initialValues.name}`}</UserValue>
-                  <UserInformationEditWrapper click={update} onClick={() => setUpdate('name')}>
-                    <UserInformationEdit />
-                  </UserInformationEditWrapper>
-                </UserInformationContainer>
-              )}
+            </UserAvatarButtonUpdate>
+          </UserAvatarWrap>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validationSchema={userUpdateSchema}
+            isValid
+          >
+            {({ errors, touched, isValid }) => (
+              <UserForm autoComplete="off">
+                {update === 'name' ? (
+                  <UserKeyLabel>
+                    <UserKeyToUpdate>Name:</UserKeyToUpdate>
+                    <UserValueInput type="text" name="name" isvalid={isValid.toString()} />
+                    {errors.name || touched.name ? (
+                      <ErrorMessage>{errors.name}</ErrorMessage>
+                    ) : null}
+                    <UserFieldEditWrap type="submit">
+                      <UserFieldToUpdate />
+                    </UserFieldEditWrap>
+                  </UserKeyLabel>
+                ) : (
+                  <UserAfterUpdateInfo>
+                    <UserKey>Name:</UserKey>
+                    <UserValue>{`${initialValues.name}`}</UserValue>
+                    <UserFieldEditWrap
+                      disabled={!isValid || update}
+                      click={update}
+                      onClick={() => setUpdate('name')}
+                    >
+                      <UserFieldEdit />
+                    </UserFieldEditWrap>
+                  </UserAfterUpdateInfo>
+                )}
 
-              {update === 'email' ? (
-                <UserKeyLabel>
-                  Email:
-                  <UserValueInput type="email" name="email" />
-                  <UserInformationEditWrapper type="submit">
-                    <UserInformationEdited />
-                  </UserInformationEditWrapper>
-                </UserKeyLabel>
-              ) : (
-                <UserInformationContainer>
-                  <UserKey>Email:</UserKey>
-                  <UserValue>{`${initialValues.email}`}</UserValue>
-                  <UserInformationEditWrapper click={update}>
-                    <UserInformationEdit onClick={() => setUpdate('email')} />
-                  </UserInformationEditWrapper>
-                </UserInformationContainer>
-              )}
+                {update === 'email' ? (
+                  <UserKeyLabel>
+                    <UserKeyToUpdate>Email:</UserKeyToUpdate>
+                    <UserValueInput type="email" name="email" isvalid={isValid.toString()} />
+                    {errors.email || touched.email ? (
+                      <ErrorMessage>{errors.email}</ErrorMessage>
+                    ) : null}
+                    <UserFieldEditWrap type="submit">
+                      <UserFieldToUpdate />
+                    </UserFieldEditWrap>
+                  </UserKeyLabel>
+                ) : (
+                  <UserAfterUpdateInfo>
+                    <UserKey>Email:</UserKey>
+                    <UserValue>{`${initialValues.email}`}</UserValue>
+                    <UserFieldEditWrap
+                      click={update}
+                      disabled={!isValid || update}
+                      onClick={() => setUpdate('email')}
+                    >
+                      <UserFieldEdit />
+                    </UserFieldEditWrap>
+                  </UserAfterUpdateInfo>
+                )}
 
-              {update === 'birthday' ? (
-                <UserKeyLabel>
-                  Birthday:
-                  <UserValueInput
-                    type="text"
-                    name="birthday"
-                    placeholder={initialValues.birthday === null && '11.11.2000'}
-                  />
-                  <UserInformationEditWrapper type="submit">
-                    <UserInformationEdited />
-                  </UserInformationEditWrapper>
-                </UserKeyLabel>
-              ) : (
-                <UserInformationContainer>
-                  <UserKey>Birthday:</UserKey>
-                  <UserValue>{`${initialValues.birthday}`}</UserValue>
-                  <UserInformationEditWrapper click={update}>
-                    <UserInformationEdit onClick={() => setUpdate('birthday')} />
-                  </UserInformationEditWrapper>
-                </UserInformationContainer>
-              )}
+                {update === 'birthday' ? (
+                  <UserKeyLabel>
+                    <UserKeyToUpdate>Birthday:</UserKeyToUpdate>
+                    <UserValueInput
+                      type="text"
+                      name="birthday"
+                      placeholder={!initialValues.birthday ? '00.00.0000' : ''}
+                      component={InputBirthday}
+                    />
+                    {errors.birthday || touched.birthday ? (
+                      <ErrorMessage>{errors.birthday}</ErrorMessage>
+                    ) : null}
+                    <UserFieldEditWrap type="submit">
+                      <UserFieldToUpdate />
+                    </UserFieldEditWrap>
+                  </UserKeyLabel>
+                ) : (
+                  <UserAfterUpdateInfo>
+                    <UserKey>Birthday:</UserKey>
+                    <UserValue>
+                      {!initialValues.birthday ? '00.00.0000' : `${initialValues.birthday}`}
+                    </UserValue>
+                    <UserFieldEditWrap
+                      click={update}
+                      disabled={!isValid || update}
+                      onClick={() => setUpdate('birthday')}
+                    >
+                      <UserFieldEdit />
+                    </UserFieldEditWrap>
+                  </UserAfterUpdateInfo>
+                )}
 
-              {update === 'phone' ? (
-                <UserKeyLabel>
-                  Phone:
-                  <UserValueInput type="text" name="phone" />
-                  <UserInformationEditWrapper type="submit">
-                    <UserInformationEdited />
-                  </UserInformationEditWrapper>
-                </UserKeyLabel>
-              ) : (
-                <UserInformationContainer>
-                  <UserKey>Phone:</UserKey>
-                  <UserValue>{`${initialValues.phone}`}</UserValue>
-                  <UserInformationEditWrapper click={update}>
-                    <UserInformationEdit onClick={() => setUpdate('phone')} />
-                  </UserInformationEditWrapper>
-                </UserInformationContainer>
-              )}
+                {update === 'phone' ? (
+                  <UserKeyLabel>
+                    <UserKeyToUpdate>Phone:</UserKeyToUpdate>
+                    <UserValueInput type="text" name="phone" isvalid={isValid.toString()} />
+                    {errors.phone || touched.phone ? (
+                      <ErrorMessage>{errors.phone}</ErrorMessage>
+                    ) : null}
+                    <UserFieldEditWrap type="submit">
+                      <UserFieldToUpdate />
+                    </UserFieldEditWrap>
+                  </UserKeyLabel>
+                ) : (
+                  <UserAfterUpdateInfo>
+                    <UserKey>Phone:</UserKey>
+                    <UserValue>{`${initialValues.phone}`}</UserValue>
+                    <UserFieldEditWrap
+                      click={update}
+                      disabled={!isValid || update}
+                      onClick={() => setUpdate('phone')}
+                    >
+                      <UserFieldEdit />
+                    </UserFieldEditWrap>
+                  </UserAfterUpdateInfo>
+                )}
 
-              {update === 'city' ? (
-                <UserKeyLabel>
-                  City:
-                  <UserValueInput type="text" name="city" />
-                  <UserInformationEditWrapper type="submit">
-                    <UserInformationEdited />
-                  </UserInformationEditWrapper>
-                </UserKeyLabel>
-              ) : (
-                <UserInformationContainer>
-                  <UserKey>City:</UserKey>
-                  <UserValue>{`${initialValues.city}`}</UserValue>
-                  <UserInformationEditWrapper click={update}>
-                    <UserInformationEdit onClick={() => setUpdate('city')} />
-                  </UserInformationEditWrapper>
-                </UserInformationContainer>
-              )}
-            </UserForm>
+                {update === 'city' ? (
+                  <UserKeyLabel>
+                    <UserKeyToUpdate>City:</UserKeyToUpdate>
+                    <UserValueInput type="text" name="city" isvalid={isValid.toString()} />
+                    {errors.city || touched.city ? (
+                      <ErrorMessage>{errors.city}</ErrorMessage>
+                    ) : null}
+                    <UserFieldEditWrap type="submit">
+                      <UserFieldToUpdate />
+                    </UserFieldEditWrap>
+                  </UserKeyLabel>
+                ) : (
+                  <UserAfterUpdateInfo>
+                    <UserKey>City:</UserKey>
+                    <UserValue>{`${initialValues.city}`}</UserValue>
+                    <UserFieldEditWrap
+                      click={update}
+                      disabled={!isValid || update}
+                      onClick={() => setUpdate('city')}
+                    >
+                      <UserFieldEdit />
+                    </UserFieldEditWrap>
+                  </UserAfterUpdateInfo>
+                )}
+              </UserForm>
+            )}
           </Formik>
         </UserWrapper>
         <LogOutButton type="button" onClick={() => dispatch(logOut())}>
           Log out
-          <LogOutIconWrapper>
+          <LogOutIconWrap>
             <LogOutIcon onClick={() => dispatch(logOut())} />
-          </LogOutIconWrapper>
+          </LogOutIconWrap>
         </LogOutButton>
-      </UserContainer>
+      </UserInfo>
     </UserDataWrap>
   );
 };

@@ -85,7 +85,7 @@ const NoticesCategoriesItem = ({ info }) => {
     if (!isLoggedIn) {
       return favorite = false
     }
-    const inFavs = favoriteEls.find(element => element === _id)
+    const inFavs = favoriteEls?.find(element => element === _id)
     if (inFavs) return favorite = true
 
     return favorite = false
@@ -95,6 +95,11 @@ const NoticesCategoriesItem = ({ info }) => {
     toast("Notice deleted", toastAuthNeeded)
     dispatch(deleteOwnNotice(_id))
   }
+
+  // const handleLearMore = () => {
+  //   setActive(true)
+  //   dispatch(fetchSingleNotice(_id));
+  // }
 
   return (
     <Item>
@@ -154,7 +159,7 @@ const NoticesCategoriesItem = ({ info }) => {
         </BtnCont>
       </TextContainer>
       <Modal active={active} setActive={setActive}>
-        <ModalNotice info={info} capitalizedCategory={capitalizedCategory} />
+        <ModalNotice id={_id} capitalizedCategory={capitalizedCategory} addToFav={ addToFav} />
       </Modal>
     </Item>
   );
