@@ -28,6 +28,7 @@ import {
   UserAvatarUpdateInput,
   UserAvatarUpdateIcon,
   UserAvatarUpdateWrap,
+  UserAvatarLabel,
   UserWrapper,
   UserAvatarWrap,
   UserAvatarButtonUpdate,
@@ -55,7 +56,6 @@ const UserData = () => {
   };
 
   const handleSubmit = data => {
-    console.log(data);
     dispatch(updateUserData(data));
     setUpdate(false);
   };
@@ -75,13 +75,13 @@ const UserData = () => {
           <UserAvatarWrap>
             <UserAvatarImg src={!user.avatarURL ? BlankAvatar : user.avatarURL} alt="Avatar" />
             <UserAvatarButtonUpdate type="button">
-              <label onChange={handleChange}>
+              <UserAvatarLabel onChange={handleChange}>
                 <UserAvatarUpdateInput type="file" />
                 <UserAvatarUpdateWrap>
                   <UserAvatarUpdateIcon />
                 </UserAvatarUpdateWrap>
                 Edit Photo
-              </label>
+              </UserAvatarLabel>
             </UserAvatarButtonUpdate>
           </UserAvatarWrap>
           <Formik
@@ -148,7 +148,7 @@ const UserData = () => {
                     <UserValueInput
                       type="text"
                       name="birthday"
-                      placeholder={!initialValues.birthday ? '00.00.0000' : ''}
+                      placeholder={!initialValues.birthday ? 'add yours' : ''}
                       component={InputBirthday}
                     />
                     {errors.birthday || touched.birthday ? (
@@ -162,7 +162,8 @@ const UserData = () => {
                   <UserAfterUpdateInfo>
                     <UserKey>Birthday:</UserKey>
                     <UserValue>
-                      {!initialValues.birthday ? '00.00.0000' : `${initialValues.birthday}`}
+                      {!initialValues.birthday ? 'add yours' : `${initialValues.birthday}`}
+                      {/* {!initialValues.birthday ? 'No info' : `${initialValues.birthday}`} */}
                     </UserValue>
                     <UserFieldEditWrap
                       click={update}
