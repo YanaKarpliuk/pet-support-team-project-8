@@ -65,7 +65,7 @@ const userSlice = createSlice({
     [addUserPet.fulfilled]: (store, { payload }) => {
       store.loading = false;
       store.addPetError = null;
-      store.user.pets = [payload, ...store.user.pets];
+      store.pets = [payload.pet, ...store.pets];
       store.isAddedPetSuccess = true;
     },
     [addUserPet.rejected]: (store, { payload }) => {
