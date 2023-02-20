@@ -17,7 +17,9 @@ const NoticesCategoriesNav = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn)
 
     useEffect(() => {
-        dispatch(getUserData())
+        if (isLoggedIn) {
+            dispatch(getUserData())
+        }
         if (pathname.includes("favorite")) {
             dispatch(fetchFavorite())
         } else if (pathname.includes("own")) {
