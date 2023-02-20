@@ -1,4 +1,4 @@
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
 import styles from '../ModalAddSell/ModalAddSell.styled';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { GiMale, GiFemale } from 'react-icons/gi';
