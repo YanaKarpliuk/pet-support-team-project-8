@@ -111,7 +111,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
       .required('Location is required')
       .matches(
         /^[A-Z][\w\s-]+,\s[A-Z][\w\s-]+$/,
-        'Please, match this format: City, Region (both must start with capital letter)'
+        'Please, match this format: City, Region'
       ),
     price: state.category === 'sell' ? Yup.number().required('Price is required') : undefined,
     comments: Yup.string().required('Comments are required').min(8).max(120),
@@ -177,7 +177,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
                 Location <span style={{ color: '#F59256' }}>*</span>
               </Label>
               <Input type="text" name="location" placeholder="Type location" />
-              {errors.location && touched.location ? <ErrorMsg>{errors.location}</ErrorMsg> : null}
+              {errors.location && touched.location ? <ErrorMsg style={{bottom: '-35px'}}>{errors.location}</ErrorMsg> : null}
             </InputBox>
             {state.category === 'sell' && (
               <InputBox>
@@ -233,7 +233,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
                   display: 'block',
                 }}
               ></Input>
-              {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
+              {errors.comments && touched.comments ? <ErrorMsg style={{bottom: '-35px'}}>{errors.comments}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
               <Btn type="button" onClick={() => onBack({ ...values, avatar })}>
