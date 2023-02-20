@@ -1,7 +1,6 @@
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../components/Loader/Loader';
 
 import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
@@ -40,7 +39,7 @@ import {
 
 const { userUpdateSchema } = schemas;
 
-const { selectUser, selectIsLoading } = authSelectors;
+const { selectUser } = authSelectors;
 const { logOut, updateUserData } = authOperations;
 
 const UserData = () => {

@@ -6,7 +6,6 @@ import { BsCheckLg, BsCameraFill } from 'react-icons/bs';
 import 'flatpickr/dist/flatpickr.min.css';
 import 'flatpickr/dist/themes/material_orange.css';
 import Flatpickr from 'react-flatpickr';
-import theme from '../../theme';
 
 export const UserDataWrap = styled.div`
   @media screen and (max-width: 767px) {
