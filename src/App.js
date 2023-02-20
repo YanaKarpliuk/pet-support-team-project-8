@@ -1,5 +1,7 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import authOperations from './redux/auth/authOperations';
 import PrivateRoute from './components/PrivateRouter';
 import RestrictedRoute from './components/RestrictedRoute ';
 import SharedLayout from './components/SharedLayout/SharedLayout';
@@ -18,6 +20,10 @@ const NoticesCategoriesList = lazy(() =>
 const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage/OurFriendsPage'));
 
 function App() {
+  const { refreshUserData } = authOperations;
+  const dispatch = useDispatch();
+  useEffect(() => dispatch(refreshUserData()), [dispatch]);
+
   return (
     <div>
       <Routes>
@@ -33,8 +39,8 @@ function App() {
           />
           <Route
             path="/user"
-            element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
-          // element={<UserPage />}
+            element={<PrivateRoute redirectTo="/login" component={<UserPage />} />}
+            // element={<UserPage />}
           />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />}>

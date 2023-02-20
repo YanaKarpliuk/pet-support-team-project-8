@@ -20,6 +20,7 @@ const initialState = {
 const onAuthRegisterSuccess = s => ({
   ...s,
   isLoading: false,
+  isLoggedIn: true,
   error: null,
 });
 
@@ -58,11 +59,13 @@ const onUpdateUserDataSuccess = (s, { payload }) => ({
   phone: payload.phone,
   city: payload.city,
   isLoggedIn: true,
+  IsRefreshing: false,
+  isLoading: false,
 });
 
 const onRefreshUserDataSuccess = (s, { payload }) => ({
   ...s,
-  // id: payload._id,
+  id: payload._id,
   avatarURL: payload.avatarURL,
   name: payload.name,
   email: payload.email,
@@ -89,6 +92,7 @@ const handleRejected = (s, { payload }) => ({
 const handlePending = s => ({
   ...s,
   isLoading: true,
+  isRefreshing: true,
 });
 
 const clearError = s => ({ ...s, error: null });
