@@ -55,7 +55,7 @@ const ModalAddSell = ({ onCancel }) => {
     formData.append('title', info.title);
     formData.append('sex', sex);
     formData.append('location', location);
-    if (price && info.category === 'price') formData.append('price', price);
+    if (price && info.category === 'sell') formData.append('price', price);
     if (avatar) formData.append('avatar', avatar);
     formData.append('comments', comments);
     toast("Notice added", toastAuthNeeded)
