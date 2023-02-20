@@ -33,8 +33,8 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
     const year = dateString.getFullYear();
     return `${day}.${month}.${year}`;
   };
- 
-  const { notice = {}, user={} } = singleNotice
+
+  const { notice = {}, user = {} } = singleNotice
 
   const {
     avatar = {},
