@@ -22,7 +22,7 @@ const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage/OurFriendsPage'
 function App() {
   const { refreshUserData } = authOperations;
   const dispatch = useDispatch();
-  useEffect(() => dispatch(refreshUserData()), [dispatch]);
+  useEffect(() => { dispatch(refreshUserData()) }, [dispatch, refreshUserData]);
 
   return (
     <div>
@@ -40,7 +40,7 @@ function App() {
           <Route
             path="/user"
             element={<PrivateRoute redirectTo="/login" component={<UserPage />} />}
-            // element={<UserPage />}
+          // element={<UserPage />}
           />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />}>

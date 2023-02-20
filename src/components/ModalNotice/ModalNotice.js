@@ -36,7 +36,7 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
     return `${day}.${month}.${year}`;
   };
 
-  const { notice = {}, user={} } = singleNotice
+  const { notice = {}, user = {} } = singleNotice
 
   const {
     avatar = {},

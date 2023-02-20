@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import toastAuthNeeded from '../../utils/toastAuthNeeded';
 import defaultPhoto from '../../images/default.jpg'
+import chooseWhatToLoad from '../../utils/chooseWhatToLoad';
 
 const {
   Item,
@@ -32,7 +33,7 @@ const { selectIsLoggedIn } = authSelectors
 const { addToFavorite, deleteFromFavorite, deleteOwnNotice, fetchFavorite, fetchSingleNotice } = noticesOperations
 
 const NoticesCategoriesItem = ({ info }) => {
-  const URLlocation = useLocation()
+  const { pathname } = useLocation()
   const dispatch = useDispatch()
   let favorite = false
   let favoriteEls = useSelector(getUserFavorite)
@@ -69,15 +70,18 @@ const NoticesCategoriesItem = ({ info }) => {
     }
     if (!favorite) {
       toast("Added to favorite", toastAuthNeeded)
-      dispatch(addToFavorite(_id))
+      dispatch(addToFavorite(_id)).then(() => {
+        dispatch(getUserData())
+      })
     } else if (favorite) {
       toast("Removed from favorite", toastAuthNeeded)
-      dispatch(deleteFromFavorite(_id))
-    }
-    dispatch(getUserData())
-
-    if (URLlocation.pathname.includes("favorite")) {
-      setTimeout(async () => { dispatch(fetchFavorite()) }, 1000)
+      dispatch(deleteFromFavorite(_id)).then(() => {
+        dispatch(getUserData()).then(() => {
+          if (pathname.includes("favorite")) {
+            dispatch(fetchFavorite())
+          }
+        })
+      })
     }
   }
 
@@ -85,7 +89,7 @@ const NoticesCategoriesItem = ({ info }) => {
     if (!isLoggedIn) {
       return favorite = false
     }
-    const inFavs = favoriteEls?.find(element => element === _id)
+    const inFavs = favoriteEls.find(element => element === _id)
     if (inFavs) return favorite = true
 
     return favorite = false
@@ -93,7 +97,9 @@ const NoticesCategoriesItem = ({ info }) => {
 
   const deleteNotice = () => {
     toast("Notice deleted", toastAuthNeeded)
-    dispatch(deleteOwnNotice(_id))
+    dispatch(deleteOwnNotice(_id)).then(() => {
+      chooseWhatToLoad({ dispatch, pathname })
+    })
   }
 
   const handleLearMore = () => {
@@ -159,7 +165,7 @@ const NoticesCategoriesItem = ({ info }) => {
         </BtnCont>
       </TextContainer>
       <Modal active={active} setActive={setActive}>
-        <ModalNotice id={_id} capitalizedCategory={capitalizedCategory} addToFav={ addToFav} />
+        <ModalNotice id={_id} capitalizedCategory={capitalizedCategory} addToFav={addToFav} />
       </Modal>
     </Item>
   );
