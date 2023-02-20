@@ -17,7 +17,7 @@ const NoticesCategoriesNav = () => {
 
     useEffect(() => {
         navigate("/notices/sell", { replace: true });
-        dispatch(fetchNoticesByCategory(CATEGORIES.sell))
+        dispatch(fetchNoticesByCategory({ category: CATEGORIES.sell }))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -34,9 +34,9 @@ const NoticesCategoriesNav = () => {
     }
 
     return (<Container>
-        <Option to="lost-found" onClick={() => handleCategoryFetch(CATEGORIES.lostFound)}>lost/found</Option>
-        <Option to="for-free" onClick={() => handleCategoryFetch(CATEGORIES.inGoodHands)}>in good hands</Option>
-        <Option to="sell" onClick={() => handleCategoryFetch(CATEGORIES.sell)}>sell</Option>
+        <Option to="lost-found" onClick={() => handleCategoryFetch({ category: CATEGORIES.lostFound })}>lost/found</Option>
+        <Option to="for-free" onClick={() => handleCategoryFetch({ category: CATEGORIES.inGoodHands })}>in good hands</Option>
+        <Option to="sell" onClick={() => handleCategoryFetch({ category: CATEGORIES.sell })}>sell</Option>
         {isLoggedIn ? <><Option to="favorite" onClick={handleFavoriteFetch}>favorite ads</Option>
             <Option to="own" onClick={handleOwnFetch}>my ads</Option></> : ''}
     </Container>)

@@ -3,9 +3,9 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://pets-project.onrender.com/api';
 
-const fetchNoticesByCategory = createAsyncThunk('notices/fetchByGategory', async (category, { rejectWithValue }) => {
+const fetchNoticesByCategory = createAsyncThunk('notices/fetchByGategory', async ({ category, page = 1 }, { rejectWithValue }) => {
     try {
-        const response = await axios.get(`/notices/${category}`);
+        const response = await axios.get(`/notices/${category}?page=${page}&limit=10`);
         return response.data;
     } catch ({ response }) {
         const { status, data } = response;
@@ -75,7 +75,7 @@ const deleteFromFavorite = createAsyncThunk('notices/deleteFavorite', async (not
 
 const addNotice = createAsyncThunk('notices/addNotice', async (data, { rejectWithValue }) => {
     try {
-        const response = await axios.post("/notices/notice");
+        const response = await axios.post("/notices/notice", data);
         return response.data;
     } catch ({ response }) {
         const { status, data } = response;

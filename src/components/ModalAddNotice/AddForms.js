@@ -1,41 +1,70 @@
-
 import { Formik } from 'formik';
 import styles from '../ModalAddNotice/ModalAddNotice.styled';
+import * as Yup from 'yup';
+import { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-const { Container, Forma, Title, Input, Label, InputBox, BtnBox, Btn, AddPhoto } = styles;
-const FirstStepAdd = ({ state, handleSubmit }) => {
+const { Forma, Input, Label, InputBox, BtnBox, Btn, InputFile, ErrorMsg, AddPhoto } = styles;
+
+const firstStepSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  birthday: Yup.date().required('Birthday is required'),
+  breed: Yup.string().required('Breed is required'),
+});
+
+const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
   return (
-    <Container>
-      <Title>Add pet</Title>
-          <Formik initialValues={ state} onSubmit={handleSubmit}>
+    <Formik initialValues={state} onSubmit={handleSubmit} validationSchema={firstStepSchema}>
+      {({ errors, touched }) => (
         <Forma autoComplete="off">
           <InputBox>
-            <Label htmlFor="name">Name pet</Label>
-            <Input type="text" name="name" placeholder="Type name pet" />
+            <Label htmlFor="name">Pet's name</Label>
+            <Input type="text" name="name" placeholder="Type your pet's name" />
+            {errors.name && touched.name ? <ErrorMsg>{errors.name}</ErrorMsg> : null}
           </InputBox>
           <InputBox>
-            <Label htmlFor="date">Date of birth</Label>
-            <Input type="text" name="date" placeholder="Type date of birth" />
+            <Label htmlFor="birthday">Date of birth</Label>
+            <Input type="date" name="birthday" placeholder="Type date of birth" />
+            {errors.birthday && touched.birthday ? <ErrorMsg>{errors.birthday}</ErrorMsg> : null}
           </InputBox>
           <InputBox>
             <Label htmlFor="breed">Breed</Label>
             <Input type="text" name="breed" placeholder="Type breed" />
+            {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
           </InputBox>
           <BtnBox>
-            <Btn type="submit">Cancel</Btn>
+            <Btn type="button" onClick={onCancel}>
+              Cancel
+            </Btn>
             <Btn type="submit">Next</Btn>
           </BtnBox>
         </Forma>
-      </Formik>
-    </Container>
+      )}
+    </Formik>
   );
 };
 
-const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }) => {
+const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
+  const [photoPet, setPhotoPet] = useState(state.photoPet);
+
+  const secondStepSchema = Yup.object().shape({
+    comments: Yup.string().required('Comments are required').min(10).max(120),
+  });
+
+  const handlePhotoPetChange = e => {
+    setPhotoPet(e.target.files?.[0]);
+  };
+
+  const handleSubmitWithPhotoPet = (values, formikHelpers) => {
+    handleSubmit({ ...values, photoPet }, formikHelpers);
+  };
+
   return (
-    <Container>
-      <Title>Add pet</Title>
-      <Formik initialValues={state} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={state}
+      onSubmit={handleSubmitWithPhotoPet}
+      validationSchema={secondStepSchema}
+    >
+      {({ values, errors, touched }) => (
         <Forma autoComplete="off">
           <InputBox
             style={{
@@ -44,49 +73,48 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
               position: 'relative',
             }}
           >
-            <Label htmlFor="photo">Add photo and some comments</Label>
-            <div
-              style={{
-                width: 182,
-                height: 182,
-                margin: '0 auto',
-              }}
-            >
-              <AddPhoto>
-                <AiOutlinePlus size={48} color={'rgba(17, 17, 17, 0.6'} />
-              </AddPhoto>
-              <Input
-                type="file"
-                name="photo"
-                accept=".png, .jpg, .jpeg"
+            <Label htmlFor="photoPet">
+              Add photo and some comments
+              <div
                 style={{
                   width: 182,
                   height: 182,
-                  opacity: 0,
+                  margin: '20px auto 0',
                 }}
-              />
-            </div>
+              >
+                <InputFile
+                  id="photoPet"
+                  as="input"
+                  type="file"
+                  name="photoPet"
+                  accept=".png, .jpg, .jpeg"
+                  onChange={handlePhotoPetChange}
+                />
+                <AddPhoto
+                  htmlFor="photoPet"
+                  preview={photoPet ? URL.createObjectURL(photoPet) : undefined}
+                >
+                  {photoPet ? null : <AiOutlinePlus size={71} color={'rgba(17, 17, 17, 0.6'} />}
+                </AddPhoto>
+              </div>
+            </Label>
           </InputBox>
           <InputBox>
-            <Label htmlFor="coments">Comments</Label>
+            <Label htmlFor="comments">Comments</Label>
             <Input
               component="textarea"
               type="text"
-              name="coments"
+              name="comments"
               placeholder="Type comments"
               style={{
                 height: 116,
                 borderRadius: 20,
               }}
             />
+            {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
           </InputBox>
           <BtnBox>
-            <Btn
-              type="submit"
-              onClick={() => {
-                setIsFirstStepComplete(false);
-              }}
-            >
+            <Btn type="button" onClick={() => onBack({ ...values, photoPet })}>
               Back
             </Btn>
             <Btn type="submit" secondStep={true}>
@@ -94,10 +122,10 @@ const SecondStepAdd = ({ state, handleSubmit, setState, setIsFirstStepComplete }
             </Btn>
           </BtnBox>
         </Forma>
-      </Formik>
-    </Container>
+      )}
+    </Formik>
   );
 };
 
-const forms = {FirstStepAdd, SecondStepAdd };
+const forms = { FirstStepAdd, SecondStepAdd };
 export default forms;

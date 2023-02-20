@@ -1,43 +1,84 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import forms from './AddForms';
-const {FirstStepAdd, SecondStepAdd} = forms
+import { addUserPet } from '../../redux/user/operations';
+import styles from '../ModalAddNotice/ModalAddNotice.styled';
+const { Container, Title } = styles;
+const { FirstStepAdd, SecondStepAdd } = forms;
 
-const firstStepInitialState = {
-  name: "",
-  date: "",
-  breed: "",
+const infoInitialState = {
+  name: '',
+  birthday: '',
+  breed: '',
+  comments: '',
+  photoPet: undefined,
 };
 
-const secondStepInitialState = {
-  photo: "",
-  coments: "",
-};
-const ModalAddNotice = () => {
-const [firstStep, setFirstStep] = useState(firstStepInitialState);
-const [secondStep, setSecondStep] = useState(secondStepInitialState);
+const ModalAddNotice = ({ onCancel }) => {
+  const [info, setInfo] = useState(infoInitialState);
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false);
-  const handleSubmitFirstStep = (name, date, breed ) => {
-    setFirstStep(name, date, breed);
+  const dispatch = useDispatch();
+
+  const handleSubmitFirstStep = async ({ name, birthday, breed }) => {
+    setInfo(info => ({
+      ...info,
+      name,
+      birthday,
+      breed,
+    }));
+
     setIsFirstStepComplete(true);
-    console.log(name, date,breed)
   };
-  const handleSubmitSecondStep = ({photo, coments}) => {
- 
-    console.log(photo, coments)
+
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+
+  function formatDate(date) {
+    return [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-');
+  }
+
+  const handleSubmitSecondStep = async (values, { resetForm }) => {
+    const { photoPet, comments } = values;
+
+    const formData = new FormData();
+    formData.append('name', info.name);
+    formData.append('birthday', formatDate(new Date(info.birthday)));
+    formData.append('breed', info.breed);
+    formData.append('comments', comments);
+    formData.append('photoPet', photoPet);
+
+    dispatch(addUserPet(formData));
+    setInfo(infoInitialState);
+    resetForm();
+    onCancel();
   };
+
+  const handleBack = ({ photoPet, comments }) => {
+    setInfo(info => ({
+      ...info,
+      photoPet,
+      comments,
+    }));
+
+    setIsFirstStepComplete(false);
+  };
+
   return (
-    <>
+    <Container>
+      <Title>Add my pet</Title>
       {!isFirstStepComplete ? (
-        <FirstStepAdd state={firstStep} handleSubmit={handleSubmitFirstStep} />
+        <FirstStepAdd state={info} handleSubmit={handleSubmitFirstStep} onCancel={onCancel} />
       ) : (
-        <SecondStepAdd
-          state={secondStep}
-          setState={setSecondStep}
-          handleSubmit={handleSubmitSecondStep}
-          setIsFirstStepComplete={setIsFirstStepComplete}
-        />
+        <>
+          <SecondStepAdd state={info} handleSubmit={handleSubmitSecondStep} onBack={handleBack} />
+        </>
       )}
-</>
+    </Container>
   );
 };
 export default ModalAddNotice;

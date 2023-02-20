@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import theme from "../../theme";
 
 const List = styled.ul`
 display: grid;
 justify-content: center;
 
-@media screen and (${theme.media.tablet}) {
+@media screen and (max-width: 1279px) and (min-width: 768px) {
         grid-template-columns: repeat(2, 336px);
 }
 
-@media screen and (${theme.media.desktop}) {
+@media screen and (min-width: 1280px) {
         grid-template-columns: repeat(4, 288px);
 }
  gap: 32px;

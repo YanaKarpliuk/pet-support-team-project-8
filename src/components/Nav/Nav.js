@@ -5,7 +5,7 @@ export const Nav = ({ noOpen }) => {
       <Link to="/news" onClick={noOpen}>
         News
       </Link>
-      <Link to="/notices" onClick={noOpen}>
+      <Link to="/notices/sell" onClick={noOpen}>
         Find pet
       </Link>
       <Link to="/friends" onClick={noOpen}>

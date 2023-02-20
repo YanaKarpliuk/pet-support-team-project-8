@@ -7,6 +7,7 @@ import searchSelectors from "../../redux/search/searchSelectors";
 import noticesSelectors from "../../redux/notices/noticesSelectors";
 import { useEffect } from "react";
 import Loader from "../Loader/Loader";
+import PaginationEl from "../Pagination/Pagination";
 
 const { selectSearchState } = searchSelectors
 const { selectNotices, selectFavoriteNotices, selectOwnNotices, selectNoticeIsLoading, selectNoticeError, } = noticesSelectors
@@ -15,7 +16,7 @@ let contentsNeeded = null
 
 const NoticesCategoriesList = () => {
     const location = useLocation()
-    const [_, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
     const searchValue = useSelector(selectSearchState).trim().toLowerCase()
     const notices = useSelector(selectNotices)
     const favorite = useSelector(selectFavoriteNotices)
@@ -47,7 +48,8 @@ const NoticesCategoriesList = () => {
     } else if ((items.length === 0 && !loading) || error) {
         return <NotFound />
     } else {
-        return <List items={items.length}>{items} </List>
+        return <><List items={items.length}>{items} </List>
+            {(location.pathname.includes("favorite") || location.pathname.includes("own")) ? '' : <PaginationEl />}</>
     }
 }
 

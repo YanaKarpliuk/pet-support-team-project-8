@@ -49,9 +49,6 @@ const noticesSlice = createSlice({
             .addCase(fetchSingleNotice.rejected, (state, action) => {
                 handleReject(state, action)
             })
-            .addCase(addToFavorite.pending, state => {
-                handlePending(state)
-            })
             .addCase(addToFavorite.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
@@ -68,9 +65,6 @@ const noticesSlice = createSlice({
             })
             .addCase(fetchFavorite.rejected, (state, action) => {
                 handleReject(state, action)
-            })
-            .addCase(deleteFromFavorite.pending, state => {
-                handlePending(state)
             })
             .addCase(deleteFromFavorite.fulfilled, (state, action) => {
                 state.isLoading = false;

@@ -1,43 +1,88 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import forms from './AddSellForm';
 import styles from '../ModalAddSell/ModalAddSell.styled';
+import noticesOperations from '../../redux/notices/noticesOperations';
+
+const { addNotice } = noticesOperations;
 const { FirstStepAdd, SecondStepAdd } = forms;
 const { Container, Title } = styles;
-const firstStepInitialState = {
+
+const infoInitialState = {
+  category: '',
   title: '',
   name: '',
-  date: '',
+  birthdate: '',
   breed: '',
-};
-
-const secondStepInitialState = {
   sex: '',
   location: '',
   price: '',
-  photo: '',
-  coments: '',
+  comments: '',
+  avatar: undefined,
 };
-const ModalAddSell = () => {
-  const [firstStep, setFirstStep] = useState(firstStepInitialState);
-  const [secondStep, setSecondStep] = useState(secondStepInitialState);
+
+const ModalAddSell = ({ onCancel }) => {
+  const [info, setInfo] = useState(infoInitialState);
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false);
-  const handleSubmitFirstStep = (name, date, breed, title) => {
-    setFirstStep(title, name, date, breed);
+  const dispatch = useDispatch();
+  
+  const handleSubmitFirstStep = ({ name, birthdate, breed, category, title }) => {
+    setInfo(info => ({
+      ...info,
+      title,
+      name,
+      birthdate,
+      category,
+      breed,
+    }));
+
     setIsFirstStepComplete(true);
   };
-  const handleSubmitSecondStep = ({ photo, coments }) => {};
+
+  const handleSubmitSecondStep = async (values, { resetForm }) => {
+    const { sex, location, price, avatar, comments } = values;
+
+    const formData = new FormData();
+    formData.append('category', info.category);
+    formData.append('name', info.name);
+    formData.append('birthdate', new Date(info.birthdate).toISOString());
+    formData.append('breed', info.breed);
+    formData.append('title', info.title);
+    formData.append('sex', sex);
+    formData.append('location', location);
+    if (price) formData.append('price', price);
+    if (avatar) formData.append('avatar', avatar);
+    formData.append('comments', comments);
+    dispatch(addNotice(formData));
+    setInfo(infoInitialState);
+    setIsFirstStepComplete(false);
+    onCancel();
+  };
+
+  const handleBack = ({ sex, location, price, avatar, comments }) => {
+    setInfo(info => ({
+      ...info,
+      sex,
+      location,
+      price,
+      avatar,
+      comments,
+    }));
+
+    setIsFirstStepComplete(false);
+  }
+  
   return (
     <>
       <Container>
         <Title>Add pet</Title>
         {!isFirstStepComplete ? (
-          <FirstStepAdd state={firstStep} handleSubmit={handleSubmitFirstStep} />
+          <FirstStepAdd state={info} handleSubmit={handleSubmitFirstStep} onCancel={onCancel} />
         ) : (
           <SecondStepAdd
-            state={secondStep}
-            setState={setSecondStep}
+            state={info}
             handleSubmit={handleSubmitSecondStep}
-            setIsFirstStepComplete={setIsFirstStepComplete}
+            onBack={handleBack}
           />
         )}
       </Container>
