@@ -4,7 +4,6 @@ export const InputBirthday = ({ form }) => {
   const config = {
     dateFormat: 'd.m.Y',
     maxDate: new Date(),
-    // defaultDate: '01.01.2000',
   };
   return (
     <InputBirthDate

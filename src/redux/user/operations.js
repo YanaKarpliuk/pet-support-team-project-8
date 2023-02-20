@@ -26,7 +26,6 @@ export const updateUserData = createAsyncThunk(
   'user/updateUserData',
   async (data, { rejectWithValue }) => {
     try {
-      //   const result = await axios.updateUserData(data);
       const result = await axios.put('/auth/update', data);
       return result.data;
     } catch ({ response }) {

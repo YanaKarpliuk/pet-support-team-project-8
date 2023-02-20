@@ -33,7 +33,6 @@ const NoticesCategoriesNav = () => {
                 dispatch(fetchNoticesByCategory({ category: CATEGORIES.lostFound }))
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleCategoryFetch = (filter) => {

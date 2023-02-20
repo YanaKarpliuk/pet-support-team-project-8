@@ -57,21 +57,7 @@ const UserData = () => {
 
   useEffect(() => {
     dispatch(getUserData())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  //   const handleSubmit = ({ name, email, birthday, phone, city }) => {
-  //     const data = {
-  //       name,
-  //       email,
-  //       birthday,
-  //       phone,
-  //       city,
-  //     };
-  //     // console.log(data);
-  //     dispatch(updateUserData(data));
-  //     setUpdate(false);
-  //   };
 
   const handleSubmit = data => {
     dispatch(updateUserData(data));

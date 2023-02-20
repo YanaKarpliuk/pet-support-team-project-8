@@ -1,4 +1,3 @@
-// import { NavLink } from 'react-router-dom';
 import { Box, Link } from "./AythNav.styled";
 const AuthNav = ({noOpen}) => {
  return (

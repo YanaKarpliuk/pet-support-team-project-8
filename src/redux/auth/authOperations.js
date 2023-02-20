@@ -21,7 +21,6 @@ const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue 
   try {
     const { data } = await axios.post('/auth/login', userData);
     authHeader.setAuthHeader(data.data.result.accessToken);
-    console.log(data.data.result);
     return data.data.result;
   } catch (error) {
     return rejectWithValue(error.response.data.message);

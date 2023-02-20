@@ -39,16 +39,6 @@ const store = configureStore({
     }),
 });
 
-// export const persistor = persistStore(store);
-// export default store;
-
-// {
-//   "email": "auser@example.com",
-//   "password": "qwerty123",
-//   "name": "Auser",
-//   "city": "Odesa, Odesa",
-//   "phone": "+380631234567"
-// }
 const persistor = persistStore(store);
 const appStore = { store, persistor };
 export default appStore;

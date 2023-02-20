@@ -52,7 +52,6 @@ const onLogOutSuccess = () => ({
 
 const onUpdateUserDataSuccess = (s, { payload }) => ({
   ...s,
-  // id: payload._id,
   avatarURL: payload.avatarURL,
   name: payload.name,
   email: payload.email,

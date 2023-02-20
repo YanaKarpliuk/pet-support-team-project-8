@@ -5,9 +5,6 @@ import authOperations from './redux/auth/authOperations';
 import PrivateRoute from './components/PrivateRouter';
 import RestrictedRoute from './components/RestrictedRoute ';
 import SharedLayout from './components/SharedLayout/SharedLayout';
-// import About from "path/to/pages/About";
-// import Products from "path/to/pages/Products";
-// import NotFound from "path/to/pages/NotFound";
 const HomePage = lazy(() => import('./pages/Home/Home'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -22,7 +19,9 @@ const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage/OurFriendsPage'
 function App() {
   const { refreshUserData } = authOperations;
   const dispatch = useDispatch();
-  useEffect(() => { dispatch(refreshUserData()) }, [dispatch, refreshUserData]);
+  useEffect(() => {
+    dispatch(refreshUserData());
+  }, [dispatch, refreshUserData]);
 
   return (
     <div>
@@ -40,7 +39,6 @@ function App() {
           <Route
             path="/user"
             element={<PrivateRoute redirectTo="/login" component={<UserPage />} />}
-          // element={<UserPage />}
           />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />}>
