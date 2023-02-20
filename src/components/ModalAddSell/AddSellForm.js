@@ -46,18 +46,19 @@ const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
       <Formik initialValues={state} onSubmit={handleSubmit} validationSchema={firstStepSchema}>
         {({ errors, touched }) => (
           <Forma autoComplete="off">
-            <CategoriesBox>
-              <RadioInput id="category-1" type="radio" name="category" value="lostfound" />
-              <RadioLabel htmlFor="category-1">lost/found</RadioLabel>
+            <div style={{ position: 'relative' }}>
+              <CategoriesBox>
+                <RadioInput id="category-1" type="radio" name="category" value="lostfound" />
+                <RadioLabel htmlFor="category-1">lost/found</RadioLabel>
 
-              <RadioInput id="category-2" type="radio" name="category" value="ingoodhands" />
-              <RadioLabel htmlFor="category-2">in good hands</RadioLabel>
+                <RadioInput id="category-2" type="radio" name="category" value="ingoodhands" />
+                <RadioLabel htmlFor="category-2">in good hands</RadioLabel>
 
-              <RadioInput id="category-3" type="radio" name="category" value="sell" />
-              <RadioLabel htmlFor="category-3">sell</RadioLabel>
-
+                <RadioInput id="category-3" type="radio" name="category" value="sell" />
+                <RadioLabel htmlFor="category-3">sell</RadioLabel>
+              </CategoriesBox>
               {errors.category && touched.category ? <ErrorMsg>{errors.category}</ErrorMsg> : null}
-            </CategoriesBox>
+            </div>
             <InputBox>
               <Label htmlFor="title">
                 Title of ad <span style={{ color: '#F59256' }}>*</span>
@@ -89,7 +90,9 @@ const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
               {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
-              <Btn type="button" onClick={onCancel}>Cancel</Btn>
+              <Btn type="button" onClick={onCancel}>
+                Cancel
+              </Btn>
               <Btn type="submit">Next</Btn>
             </BtnBox>
           </Forma>

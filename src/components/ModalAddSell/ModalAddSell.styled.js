@@ -40,6 +40,7 @@ const InputBox = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 12px;
+  position: relative;
   @media ${p => p.theme.media.mobile} {
     width: 100%;
   }
@@ -278,6 +279,10 @@ const ErrorMsg = styled.div`
   font-size: ${p => p.theme.fontSizes.s};
   text-align: center;
   color: #e00e0e;
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const steyles = {
