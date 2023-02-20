@@ -53,6 +53,7 @@ const ModalAddNotice = ({ onCancel }) => {
     formData.append('photoPet', photoPet);
 
     dispatch(addUserPet(formData));
+    setIsFirstStepComplete(false);
     setInfo(infoInitialState);
     resetForm();
     onCancel();
