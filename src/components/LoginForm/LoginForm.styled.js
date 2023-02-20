@@ -16,6 +16,7 @@ export const FormWrap = styled.div`
     right: 50%;
     transform: translate(50%, -50%);
     width: 608px;
+    max-height: 449px;
     padding: 60px 80px 40px 80px;
     background-color: ${theme.colors.white};
     margin: 0;
@@ -27,6 +28,7 @@ export const FormWrap = styled.div`
     top: 114px;
     transform: translate(50%, 0%);
     width: 618px;
+    max-height: 473px;
     padding-bottom: 60px;
   }
 `;
