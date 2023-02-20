@@ -35,7 +35,7 @@ const AddNoticeButton = () => {
         </Btn>
       </Text>
       <Modal active={active} setActive={setActive}>
-        <ModalAddSell />
+        <ModalAddSell onCancel={() => setActive(false)} />
       </Modal>
     </div>
   );

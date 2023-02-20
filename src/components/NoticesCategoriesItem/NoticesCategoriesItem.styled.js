@@ -122,7 +122,6 @@ stroke: ${theme.colors.accent};
 transition: fill 200ms, stroke 200ms;
 
 ${AddToFav}:hover &, ${AddToFav}:focus &, ${AddToFav.className === 'selected'} &, ${props => {
-        console.log(props)
         return props.selected === true
     }
     } {
