@@ -3,6 +3,10 @@ import { useDispatch } from 'react-redux';
 import forms from './AddSellForm';
 import styles from '../ModalAddSell/ModalAddSell.styled';
 import noticesOperations from '../../redux/notices/noticesOperations';
+import { useLocation } from 'react-router-dom';
+import chooseWhatToLoad from '../../utils/chooseWhatToLoad'
+import toastAuthNeeded from '../../utils/toastAuthNeeded.js'
+import { ToastContainer, toast } from 'react-toastify';
 
 const { addNotice } = noticesOperations;
 const { FirstStepAdd, SecondStepAdd } = forms;
@@ -24,8 +28,9 @@ const infoInitialState = {
 const ModalAddSell = ({ onCancel }) => {
   const [info, setInfo] = useState(infoInitialState);
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false);
+  const { pathname } = useLocation()
   const dispatch = useDispatch();
-  
+
   const handleSubmitFirstStep = ({ name, birthdate, breed, category, title }) => {
     setInfo(info => ({
       ...info,
@@ -53,7 +58,10 @@ const ModalAddSell = ({ onCancel }) => {
     if (price && info.category === 'price') formData.append('price', price);
     if (avatar) formData.append('avatar', avatar);
     formData.append('comments', comments);
-    dispatch(addNotice(formData));
+    toast("Notice added", toastAuthNeeded)
+    dispatch(addNotice(formData)).then(() => {
+      chooseWhatToLoad({ dispatch, pathname })
+    });
     setInfo(infoInitialState);
     setIsFirstStepComplete(false);
     onCancel();
@@ -71,9 +79,10 @@ const ModalAddSell = ({ onCancel }) => {
 
     setIsFirstStepComplete(false);
   }
-  
+
   return (
     <>
+      <ToastContainer />
       <Container>
         <Title>Add pet</Title>
         {!isFirstStepComplete ? (
