@@ -49,37 +49,34 @@ export const getPets = createAsyncThunk(
         return rejectWithValue('Unable to fetch user');
       }
       authHeader.setAuthHeader(token);
-      const { data } = await axios.get('/users/pet/current');
-      return data.userPetsList;
+      const { data } = await axios.get('/pets/pet/current');
+      return data.userPetsList.reverse();
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
   }
 );
 
-export const addUserPet = createAsyncThunk(
-  'user/addUserPet',
-  async (data, { rejectWithValue }) => {
-    console.log(data);
-    try {
-      const result = await axios.post('/users/pet/add', data);
-      return result.data;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
-    }
+export const addUserPet = createAsyncThunk('user/addUserPet', async (data, { rejectWithValue }) => {
+  console.log(data);
+  try {
+    const result = await axios.post('/pets/pet/add', data);
+    return result.data;
+  } catch ({ response }) {
+    const { status, data } = response;
+    const error = {
+      status,
+      message: data.message,
+    };
+    return rejectWithValue(error);
   }
-);
+});
 
 export const removeUserPet = createAsyncThunk(
   'user/removeUserPet',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/users/pet/${id}`);
+      await axios.delete(`/pets/pet/${id}`);
       return { id };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
