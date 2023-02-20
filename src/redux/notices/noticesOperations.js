@@ -20,7 +20,7 @@ const fetchNoticesByCategory = createAsyncThunk('notices/fetchByGategory', async
 const fetchSingleNotice = createAsyncThunk('notices/fetchSingle', async (noticeId, { rejectWithValue }) => {
     try {
         const response = await axios.get(`/notices/id/${noticeId}`);
-        return response.data;
+        return response.data.data;
     } catch ({ response }) {
         const { status, data } = response;
         const error = {

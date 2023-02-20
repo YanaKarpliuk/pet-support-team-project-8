@@ -1,11 +1,7 @@
 import steyles from './ModalNotice.styled';
-import { useSelector, useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import searchSelectors from '../../redux/search/searchSelectors';
+import { useSelector } from 'react-redux';
 import noticesSelectors from '../../redux/notices/noticesSelectors';
-import noticesOperations from '../../redux/notices/noticesOperations';
-import Loader from '../Loader/Loader';
+
 const {
   Container,
   Box,
@@ -25,54 +21,39 @@ const {
   Value,
   Category,
 } = steyles;
-const { selectSearchState } = searchSelectors;
-const { selectSingleNotice, selectFavoriteNotices, selectNoticeError, selectNoticeIsLoading } =
-  noticesSelectors;
-const { fetchSingleNotice } = noticesOperations;
-const ModalNotice = ({ id, capitalizedCategory }) => {
- 
-    const dispatch = useDispatch();
-    const [, setSearchParams] = useSearchParams();
-    const searchValue = useSelector(selectSearchState).trim().toLowerCase();
-    const singleNotice = useSelector(selectSingleNotice);
-    const error = useSelector(selectNoticeError);
-    const loading = useSelector(selectNoticeIsLoading);
+const { selectSingleNotice } = noticesSelectors;
 
-    // useEffect(() => {
-    //   dispatch(fetchSingleNotice(id));
-    // }, [dispatch]);
+const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
+  const singleNotice = useSelector(selectSingleNotice);
 
-    useEffect(() => {
-      const params = searchValue !== '' ? { search: searchValue } : {};
-      setSearchParams(params);
-    }, [setSearchParams, searchValue]);
+  const transformDate = date => {
+    const dateString = new Date(date);
+    const day = dateString.getDate().toString().padStart(2, '0');
+    const month = (dateString.getMonth() + 1).toString().padStart(2, '0');
+    const year = dateString.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
 
-    let contentsNeeded = singleNotice;
-    if (searchValue) {
-      contentsNeeded = contentsNeeded.filter(({ title }) => title.includes(searchValue));
-    }
-
-  // const items = [...contentsNeeded];
-  const items = singleNotice
-   const {
-     img,
-     category,
-     title,
-     breed,
-     name,
-     birthday,
-     sex,
-     email,
-     phone,
-     coments,
-     place,
-     price = 0,
-   } = items;
+  const {
+    avatar = {},
+    category,
+    title,
+    breed,
+    name,
+    birthdate,
+    sex,
+    email,
+    phone,
+    comments,
+    location,
+    price = 0,
+    owner,
+  } = singleNotice;
   return (
     <Container>
       <Box>
         <ImgBox>
-          <img src={img} alt="a pet" />
+          <img src={avatar.url} alt="a pet" />
           <Category>{capitalizedCategory()}</Category>
         </ImgBox>
         <InfoBox>
@@ -85,7 +66,7 @@ const ModalNotice = ({ id, capitalizedCategory }) => {
               </Item>
               <Item>
                 <Key>Birthday: </Key>
-                <Value>{birthday} </Value>
+                <Value>{transformDate(birthdate)} </Value>
               </Item>
               <Item>
                 <Key>Breed: </Key>
@@ -93,7 +74,7 @@ const ModalNotice = ({ id, capitalizedCategory }) => {
               </Item>
               <Item>
                 <Key>Place: </Key>
-                <Value>{place} </Value>
+                <Value>{location} </Value>
               </Item>
               <Item>
                 <Key>The sex: </Key>
@@ -126,11 +107,11 @@ const ModalNotice = ({ id, capitalizedCategory }) => {
       <ComentsBox>
         <ComentsContent>
           <Coments>Comments: </Coments>
-          {coments}
+          {comments}
         </ComentsContent>
       </ComentsBox>
       <BtnBox>
-        <AddBtn type="button">
+        <AddBtn type="button" onClick={() => addToFav()}>
           Add to
           <IconHeart />
         </AddBtn>
