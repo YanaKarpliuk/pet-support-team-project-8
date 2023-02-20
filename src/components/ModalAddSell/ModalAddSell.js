@@ -50,7 +50,7 @@ const ModalAddSell = ({ onCancel }) => {
     formData.append('title', info.title);
     formData.append('sex', sex);
     formData.append('location', location);
-    if (price) formData.append('price', price);
+    if (price && info.category === 'price') formData.append('price', price);
     if (avatar) formData.append('avatar', avatar);
     formData.append('comments', comments);
     dispatch(addNotice(formData));
