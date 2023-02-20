@@ -29,7 +29,7 @@ const {
 } = elements;
 
 const { selectIsLoggedIn } = authSelectors
-const { addToFavorite, deleteFromFavorite, deleteOwnNotice, fetchFavorite } = noticesOperations
+const { addToFavorite, deleteFromFavorite, deleteOwnNotice, fetchFavorite, fetchSingleNotice } = noticesOperations
 
 const NoticesCategoriesItem = ({ info }) => {
   const URLlocation = useLocation()
@@ -96,10 +96,10 @@ const NoticesCategoriesItem = ({ info }) => {
     dispatch(deleteOwnNotice(_id))
   }
 
-  // const handleLearMore = () => {
-  //   setActive(true)
-  //   dispatch(fetchSingleNotice(_id));
-  // }
+  const handleLearMore = () => {
+    setActive(true)
+    dispatch(fetchSingleNotice(_id));
+  }
 
   return (
     <Item>
@@ -152,7 +152,7 @@ const NoticesCategoriesItem = ({ info }) => {
           </InfoList>
         </Info>
         <BtnCont>
-          <NoticeBtn type="button" onClick={() => setActive(true)}>
+          <NoticeBtn type="button" onClick={handleLearMore}>
             Learn more
           </NoticeBtn>
           {owner === userID ? <NoticeBtn type="button" onClick={deleteNotice}>Delete</NoticeBtn> : ''}

@@ -1,5 +1,6 @@
 import steyles from './ModalNotice.styled';
 import { useSelector } from 'react-redux';
+import searchSelectors from '../../redux/search/searchSelectors';
 import noticesSelectors from '../../redux/notices/noticesSelectors';
 
 const {
@@ -21,6 +22,7 @@ const {
   Value,
   Category,
 } = steyles;
+
 const { selectSingleNotice } = noticesSelectors;
 
 const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
@@ -33,7 +35,7 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
     const year = dateString.getFullYear();
     return `${day}.${month}.${year}`;
   };
- 
+
   const { notice = {}, user={} } = singleNotice
 
   const {
@@ -44,10 +46,14 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
     name,
     birthdate,
     sex,
+    email,
+    phone,
     comments,
     location,
     price = 0,
+    owner,
   } = notice;
+
   return (
     <Container>
       <Box>
