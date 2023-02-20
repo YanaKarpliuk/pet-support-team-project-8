@@ -33,6 +33,8 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
     const year = dateString.getFullYear();
     return `${day}.${month}.${year}`;
   };
+ 
+  const { notice = {}, user={} } = singleNotice
 
   const {
     avatar = {},
@@ -42,13 +44,10 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
     name,
     birthdate,
     sex,
-    email,
-    phone,
     comments,
     location,
     price = 0,
-    owner,
-  } = singleNotice;
+  } = notice;
   return (
     <Container>
       <Box>
@@ -83,13 +82,13 @@ const ModalNotice = ({ id, capitalizedCategory, addToFav }) => {
               <Item>
                 <Key>Email: </Key>
                 <Value>
-                  <a href="mailto:{email}">{email}</a>{' '}
+                  <a href="mailto:{user.email}">{user.email}</a>{' '}
                 </Value>
               </Item>
               <Item>
                 <Key>Phone: </Key>
                 <Value>
-                  <a href="tel:{phone}">{phone}</a>
+                  <a href="tel:{user.phone}">{user.phone}</a>
                 </Value>
               </Item>
               {category === 'sell' ? (

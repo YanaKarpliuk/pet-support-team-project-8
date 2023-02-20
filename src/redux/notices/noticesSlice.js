@@ -41,7 +41,7 @@ const noticesSlice = createSlice({
             .addCase(fetchSingleNotice.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.singleNotice = action.payload.result
+                state.singleNotice = action.payload
             })
             .addCase(fetchSingleNotice.rejected, (state, action) => {
                 handleReject(state, action)
