@@ -3,6 +3,8 @@ export const getIsDeletePetLoading = ({ user }) => user.isDeletePetLoading;
 export const getUserPets = ({ user }) => user.pets;
 export const getAddPetError = ({ user }) => user.addPetError;
 export const getUserError = ({ user }) => user.error;
+export const getUserFavorite = ({ user }) => user.user.favorite;
+export const getUserId = ({ user }) => user.user._id;
 
 // export const getUserLoading = ({ user }) => user.userLoading;
 // export const getLoadingUpdate = ({ user }) => user.isLoadingUpdate;

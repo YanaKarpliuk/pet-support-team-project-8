@@ -33,9 +33,10 @@ const NewsList = () => {
 
     let contentsNeeded = news
     if (searchValue) {
-        contentsNeeded = contentsNeeded.filter(({ title }) => title.includes(searchValue))
+        contentsNeeded = contentsNeeded.filter(({ title }) => {
+            return title.toLowerCase().includes(searchValue)
+        })
     }
-
     const items = [...contentsNeeded]
         .sort((a, b) => {
             const aDate = new Date(a.date)

@@ -36,7 +36,7 @@ const NoticesCategoriesList = () => {
     } else { contentsNeeded = notices.result ? notices.result : [] }
 
     if (searchValue) {
-        contentsNeeded = contentsNeeded.filter(({ title }) => title.includes(searchValue))
+        contentsNeeded = contentsNeeded.filter(({ title }) => title.toLowerCase().includes(searchValue))
     }
 
     const items = contentsNeeded.map((itemData) => {

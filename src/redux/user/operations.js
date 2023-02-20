@@ -10,7 +10,7 @@ const authHeader = {
 
 export const getUserData = createAsyncThunk('user/getUserData', async (_, { rejectWithValue }) => {
   try {
-    const result = await axios.get('/user/get');
+    const result = await axios.get('users/user/current');
     return result.data;
   } catch ({ response }) {
     const { status, data } = response;

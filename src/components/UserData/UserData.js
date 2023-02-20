@@ -6,6 +6,7 @@ import Loader from '../../components/Loader/Loader';
 import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
 import BlankAvatar from '../../images/user/avatar-blank.png';
+import { getUserData } from '../../redux/user/operations';
 import { InputBirthday } from './Flatpickr';
 import schemas from '../../schemas/schemas';
 
@@ -53,6 +54,24 @@ const UserData = () => {
     phone: user.phone,
     city: user.city,
   };
+
+  useEffect(() => {
+    dispatch(getUserData())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  //   const handleSubmit = ({ name, email, birthday, phone, city }) => {
+  //     const data = {
+  //       name,
+  //       email,
+  //       birthday,
+  //       phone,
+  //       city,
+  //     };
+  //     // console.log(data);
+  //     dispatch(updateUserData(data));
+  //     setUpdate(false);
+  //   };
 
   const handleSubmit = data => {
     console.log(data);
