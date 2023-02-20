@@ -3,7 +3,6 @@ import theme from '../../theme';
 import { Link } from 'react-router-dom';
 
 const Title = styled.h2`
-  margin-top: 42px;
   margin-bottom: 28px;
   font-family: ${theme.fonts.manrope};
   font-weight: 700;
@@ -14,23 +13,26 @@ const Title = styled.h2`
   @media screen and (min-width: 768px) {
     font-size: 48px;
     line-height: 66px;
-    margin-top: 88px;
     margin-bottom: 40px;
   }
 
   @media screen and (min-width: 1280px) {
-    margin-top: 72px;
     margin-bottom: 60px;
   }
 `;
 
 const Container = styled.div`
   background-color: ${theme.colors.bg};
-  padding: 20px 20px 100px;
-  margin-top: 67px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 82px;
+    padding-top: 160px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-top: 126px;
+    padding-bottom: 200px;
   }
 `;
 

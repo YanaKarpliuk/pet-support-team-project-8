@@ -8,7 +8,7 @@ const InputWrap = styled.div`
   border-radius: 40px;
   transition: all 100ms ease-in;
 
-  &:focus,
+  &:focus-within,
   &:hover {
     box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
 
@@ -28,7 +28,7 @@ const InputPassWrap = styled.div`
     margin-bottom: ${({ isError }) => (isError ? '30px' : '16px')};
   }
 
-  &:focus,
+  &:focus-within,
   &:hover {
     box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
 

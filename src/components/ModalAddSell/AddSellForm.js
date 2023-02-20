@@ -46,18 +46,19 @@ const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
       <Formik initialValues={state} onSubmit={handleSubmit} validationSchema={firstStepSchema}>
         {({ errors, touched }) => (
           <Forma autoComplete="off">
-            <CategoriesBox>
-              <RadioInput id="category-1" type="radio" name="category" value="lostfound" />
-              <RadioLabel htmlFor="category-1">lost/found</RadioLabel>
+            <div style={{ position: 'relative' }}>
+              <CategoriesBox>
+                <RadioInput id="category-1" type="radio" name="category" value="lostfound" />
+                <RadioLabel htmlFor="category-1">lost/found</RadioLabel>
 
-              <RadioInput id="category-2" type="radio" name="category" value="ingoodhands" />
-              <RadioLabel htmlFor="category-2">in good hands</RadioLabel>
+                <RadioInput id="category-2" type="radio" name="category" value="ingoodhands" />
+                <RadioLabel htmlFor="category-2">in good hands</RadioLabel>
 
-              <RadioInput id="category-3" type="radio" name="category" value="sell" />
-              <RadioLabel htmlFor="category-3">sell</RadioLabel>
-
+                <RadioInput id="category-3" type="radio" name="category" value="sell" />
+                <RadioLabel htmlFor="category-3">sell</RadioLabel>
+              </CategoriesBox>
               {errors.category && touched.category ? <ErrorMsg>{errors.category}</ErrorMsg> : null}
-            </CategoriesBox>
+            </div>
             <InputBox>
               <Label htmlFor="title">
                 Title of ad <span style={{ color: '#F59256' }}>*</span>
@@ -89,7 +90,9 @@ const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
               {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
-              <Btn type="button" onClick={onCancel}>Cancel</Btn>
+              <Btn type="button" onClick={onCancel}>
+                Cancel
+              </Btn>
               <Btn type="submit">Next</Btn>
             </BtnBox>
           </Forma>
@@ -108,7 +111,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
       .required('Location is required')
       .matches(
         /^[A-Z][\w\s-]+,\s[A-Z][\w\s-]+$/,
-        'Please, match this format: City, Region (both must start with capital letter)'
+        'Please, match this format: City, Region'
       ),
     price: state.category === 'sell' ? Yup.number().required('Price is required') : undefined,
     comments: Yup.string().required('Comments are required').min(8).max(120),
@@ -174,7 +177,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
                 Location <span style={{ color: '#F59256' }}>*</span>
               </Label>
               <Input type="text" name="location" placeholder="Type location" />
-              {errors.location && touched.location ? <ErrorMsg>{errors.location}</ErrorMsg> : null}
+              {errors.location && touched.location ? <ErrorMsg style={{bottom: '-35px'}}>{errors.location}</ErrorMsg> : null}
             </InputBox>
             {state.category === 'sell' && (
               <InputBox>
@@ -230,7 +233,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
                   display: 'block',
                 }}
               ></Input>
-              {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
+              {errors.comments && touched.comments ? <ErrorMsg style={{bottom: '-35px'}}>{errors.comments}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
               <Btn type="button" onClick={() => onBack({ ...values, avatar })}>

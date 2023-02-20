@@ -111,7 +111,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
                 borderRadius: 20,
               }}
             />
-            {errors.comments && touched.comments ? <ErrorMsg>{errors.comments}</ErrorMsg> : null}
+            {errors.comments && touched.comments ? <ErrorMsg style={{bottom: '-35px'}}>{errors.comments}</ErrorMsg> : null}
           </InputBox>
           <BtnBox>
             <Btn type="button" onClick={() => onBack({ ...values, photoPet })}>
