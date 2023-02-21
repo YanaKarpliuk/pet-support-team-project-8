@@ -39,6 +39,9 @@ const CloseBtn = styled.div`
   border: none;
   border-radius: ${p => p.theme.radius.round};
   padding: 2px;
+  &:hover {
+    background-color: ${p => p.theme.colors.accent};
+  }
 `;
 
 const styles ={Backdrop, Content, CloseBtn}

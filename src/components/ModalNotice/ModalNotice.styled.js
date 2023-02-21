@@ -120,11 +120,15 @@ const Value = styled.td`
   & > a {
     text-decoration: none;
     color: ${p => p.theme.colors.black};
+    &:hover {
+      color: ${p => p.theme.colors.accent};
+    }
   }
   @media ${p => p.theme.media.mobile} {
     font-size: ${p => p.theme.fontSizes.s};
   }
 `;
+
 const ComentsBox = styled.div`
   margin-top: 28px;
   margin-bottom: 32px;
