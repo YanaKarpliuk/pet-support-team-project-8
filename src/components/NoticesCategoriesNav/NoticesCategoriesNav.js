@@ -33,7 +33,7 @@ const NoticesCategoriesNav = () => {
                 dispatch(fetchNoticesByCategory({ category: CATEGORIES.lostFound }))
             }
         }
-    }, [])
+    }) // //removed []
 
     const handleCategoryFetch = (filter) => {
         dispatch(fetchNoticesByCategory(filter))

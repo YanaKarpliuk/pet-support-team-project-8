@@ -57,7 +57,7 @@ const UserData = () => {
 
   useEffect(() => {
     dispatch(getUserData())
-  }, [])
+  }, [dispatch]) // added [dispatch]
 
   const handleSubmit = data => {
     dispatch(updateUserData(data));
