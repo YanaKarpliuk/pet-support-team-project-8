@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const {
   Forma,
+  InputWrap,
   Input,
   InputBox,
   BtnBox,
@@ -63,21 +64,27 @@ const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
               <Label htmlFor="title">
                 Title of ad <span style={{ color: '#F59256' }}>*</span>
               </Label>
-              <Input type="text" name="title" placeholder="Type name" />
+              <InputWrap>
+                <Input type="text" name="title" placeholder="Type name" />
+              </InputWrap>
               {errors.title && touched.title ? <ErrorMsg>{errors.title}</ErrorMsg> : null}
             </InputBox>
             <InputBox>
               <Label htmlFor="name">
                 Pet's name <span style={{ color: '#F59256' }}>*</span>
               </Label>
-              <Input type="text" name="name" placeholder="Type the pet's name" />
+              <InputWrap>
+                <Input type="text" name="name" placeholder="Type the pet's name" />
+              </InputWrap>
               {errors.name && touched.name ? <ErrorMsg>{errors.name}</ErrorMsg> : null}
             </InputBox>
             <InputBox>
               <Label htmlFor="birthdate">
                 Date of birth <span style={{ color: '#F59256' }}>*</span>
               </Label>
-              <Input type="date" name="birthdate" placeholder="Type date of birth" />
+              <InputWrap>
+                <Input type="date" name="birthdate" placeholder="Type date of birth" />
+              </InputWrap>
               {errors.birthdate && touched.birthdate ? (
                 <ErrorMsg>{errors.birthdate}</ErrorMsg>
               ) : null}
@@ -86,7 +93,9 @@ const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
               <Label htmlFor="breed">
                 Breed <span style={{ color: '#F59256' }}>*</span>
               </Label>
-              <Input type="text" name="breed" placeholder="Type breed" />
+              <InputWrap>
+                <Input type="text" name="breed" placeholder="Type breed" />
+              </InputWrap>
               {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
             </InputBox>
             <BtnBox>
@@ -109,10 +118,7 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
     sex: Yup.string().oneOf(['male', 'female']).required('Sex is required'),
     location: Yup.string()
       .required('Location is required')
-      .matches(
-        /^[A-Z][\w\s-]+,\s[A-Z][\w\s-]+$/,
-        'Please, match this format: City, Region'
-      ),
+      .matches(/^[A-Z][\w\s-]+,\s[A-Z][\w\s-]+$/, 'Please, match this format: City, Region'),
     price: state.category === 'sell' ? Yup.number().required('Price is required') : undefined,
     comments: Yup.string().required('Comments are required').min(8).max(120),
   });
@@ -176,15 +182,21 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
               <Label htmlFor="location">
                 Location <span style={{ color: '#F59256' }}>*</span>
               </Label>
-              <Input type="text" name="location" placeholder="Type location" />
-              {errors.location && touched.location ? <ErrorMsg style={{bottom: '-35px'}}>{errors.location}</ErrorMsg> : null}
+              <InputWrap>
+                <Input type="text" name="location" placeholder="Type location" />
+              </InputWrap>
+              {errors.location && touched.location ? (
+                <ErrorMsg style={{ bottom: '-35px' }}>{errors.location}</ErrorMsg>
+              ) : null}
             </InputBox>
             {state.category === 'sell' && (
               <InputBox>
                 <Label htmlFor="price">
                   Price <span style={{ color: '#F59256' }}>*</span>
                 </Label>
-                <Input type="number" name="price" placeholder="Type price" />
+                <InputWrap>
+                  <Input type="number" name="price" placeholder="Type price" />
+                </InputWrap>
                 {errors.price && touched.price ? <ErrorMsg>{errors.price}</ErrorMsg> : null}
               </InputBox>
             )}
@@ -222,18 +234,23 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
               <Label htmlFor="comments">
                 Comments <span style={{ color: '#F59256' }}>*</span>
               </Label>
-              <Input
-                component="textarea"
-                type="text"
-                name="comments"
-                placeholder="Type comments"
-                style={{
-                  height: 116,
-                  borderRadius: 20,
-                  display: 'block',
-                }}
-              ></Input>
-              {errors.comments && touched.comments ? <ErrorMsg style={{bottom: '-35px'}}>{errors.comments}</ErrorMsg> : null}
+              <InputWrap comments={true}>
+                <Input
+                  component="textarea"
+                  type="text"
+                  name="comments"
+                  placeholder="Type comments"
+                  style={{
+                    height: 116,
+                    borderRadius: 20,
+                    display: 'block',
+                    resize: 'none',
+                  }}
+                />
+              </InputWrap>
+              {errors.comments && touched.comments ? (
+                <ErrorMsg style={{ bottom: '-35px' }}>{errors.comments}</ErrorMsg>
+              ) : null}
             </InputBox>
             <BtnBox>
               <Btn type="button" onClick={() => onBack({ ...values, avatar })}>

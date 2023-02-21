@@ -52,11 +52,33 @@ export const Title = styled.h1`
 export const InputWrap = styled.div`
   position: relative;
   margin-bottom: ${({ isError }) => (isError ? '30px' : '16px')};
+  border-radius: 40px;
+  transition: all 100ms ease-in;
+
+  &:focus-within,
+  &:hover {
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
+
+    @media screen and (min-width: 768px) {
+      box-shadow: 0 0 0 1.5px ${({ theme }) => theme.colors.accent};
+    }
+  }
 `;
 
 export const InputPassWrap = styled.div`
   position: relative;
   color: ${({ isShownPass }) => (isShownPass ? theme.colors.black : theme.colors.accent)};
+  border-radius: 40px;
+  transition: all 100ms ease-in;
+
+  &:focus-within,
+  &:hover {
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
+
+    @media screen and (min-width: 768px) {
+      box-shadow: 0 0 0 1.5px ${({ theme }) => theme.colors.accent};
+    }
+  }
 `;
 
 export const Input = styled(Field)`
@@ -74,7 +96,6 @@ export const Input = styled(Field)`
   background-color: transparent;
   cursor: pointer;
   caret-color: ${theme.colors.accent};
-  transition: all 100ms ease-in;
 
   @media screen and (min-width: 768px) {
     height: 52px;
@@ -94,15 +115,6 @@ export const Input = styled(Field)`
     @media screen and (min-width: 768px) {
       font-size: 18px;
       line-height: 1.38;
-    }
-  }
-
-  &:focus,
-  &:hover {
-    border: 2px solid ${theme.colors.accent};
-
-    @media screen and (min-width: 768px) {
-      border-width: 3px;
     }
   }
 `;
