@@ -14,7 +14,8 @@ const Backdrop = styled.div`
   backdrop-filter: blur(10px);
   opacity: ${p => (p.active ? 1 : 0)};
   pointer-events: ${p => (p.active ? 'all' : 'none')};
-  transition: 0.5s;
+  transition: transform 0.7s ease 0.3s, opacity 0.15s ease 0s;
+  transform: scale(1);
 `;
 
 const Content = styled.div`
