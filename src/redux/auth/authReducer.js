@@ -21,7 +21,6 @@ const initialState = {
 const onAuthRegisterSuccess = s => ({
   ...s,
   isLoading: false,
-  isLoggedIn: true,
   error: null,
 });
 
@@ -77,7 +76,7 @@ const onRefreshUserDataSuccess = (s, { payload }) => ({
   isLoading: false,
 });
 
-const onRefreshUserDataReject = (s, { payload }) => ({
+const onRefreshUserDataReject = s => ({
   ...s,
   isLoading: false,
   IsRefreshing: false,

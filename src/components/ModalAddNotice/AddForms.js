@@ -3,7 +3,8 @@ import styles from '../ModalAddNotice/ModalAddNotice.styled';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-const { Forma, Input, Label, InputBox, BtnBox, Btn, InputFile, ErrorMsg, AddPhoto } = styles;
+const { Forma, Input, Label, InputBox, BtnBox, Btn, InputFile, ErrorMsg, AddPhoto, InputWrap } =
+  styles;
 
 const firstStepSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
@@ -18,17 +19,23 @@ const FirstStepAdd = ({ state, handleSubmit, onCancel }) => {
         <Forma autoComplete="off">
           <InputBox>
             <Label htmlFor="name">Pet's name</Label>
-            <Input type="text" name="name" placeholder="Type your pet's name" />
+            <InputWrap>
+              <Input type="text" name="name" placeholder="Type your pet's name" />
+            </InputWrap>
             {errors.name && touched.name ? <ErrorMsg>{errors.name}</ErrorMsg> : null}
           </InputBox>
           <InputBox>
             <Label htmlFor="birthday">Date of birth</Label>
-            <Input type="date" name="birthday" placeholder="Type date of birth" />
+            <InputWrap>
+              <Input type="date" name="birthday" placeholder="Type date of birth" />
+            </InputWrap>
             {errors.birthday && touched.birthday ? <ErrorMsg>{errors.birthday}</ErrorMsg> : null}
           </InputBox>
           <InputBox>
             <Label htmlFor="breed">Breed</Label>
-            <Input type="text" name="breed" placeholder="Type breed" />
+            <InputWrap>
+              <Input type="text" name="breed" placeholder="Type breed" />
+            </InputWrap>
             {errors.breed && touched.breed ? <ErrorMsg>{errors.breed}</ErrorMsg> : null}
           </InputBox>
           <BtnBox>
@@ -101,17 +108,27 @@ const SecondStepAdd = ({ state, handleSubmit, onBack }) => {
           </InputBox>
           <InputBox>
             <Label htmlFor="comments">Comments</Label>
-            <Input
-              component="textarea"
-              type="text"
-              name="comments"
-              placeholder="Type comments"
+            <InputWrap
+              comments={true}
               style={{
                 height: 116,
-                borderRadius: 20,
               }}
-            />
-            {errors.comments && touched.comments ? <ErrorMsg style={{bottom: '-35px'}}>{errors.comments}</ErrorMsg> : null}
+            >
+              <Input
+                component="textarea"
+                type="text"
+                name="comments"
+                placeholder="Type comments"
+                style={{
+                  height: '100%',
+                  borderRadius: 20,
+                  resize: 'none',
+                }}
+              />
+            </InputWrap>
+            {errors.comments && touched.comments ? (
+              <ErrorMsg style={{ bottom: '-35px' }}>{errors.comments}</ErrorMsg>
+            ) : null}
           </InputBox>
           <BtnBox>
             <Btn type="button" onClick={() => onBack({ ...values, photoPet })}>

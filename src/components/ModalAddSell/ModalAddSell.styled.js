@@ -35,6 +35,7 @@ const Title = styled.h1`
     margin: 28px;
   }
 `;
+
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,6 +44,20 @@ const InputBox = styled.div`
   position: relative;
   @media ${p => p.theme.media.mobile} {
     width: 100%;
+  }
+`;
+
+const InputWrap = styled.div`
+  border-radius: ${({ comments }) => (comments ? '20px' : '40px')};
+  transition: all 100ms ease-in;
+
+  &:focus-within,
+  &:hover {
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
+
+    @media screen and (min-width: 768px) {
+      box-shadow: 0 0 0 1.5px ${({ theme }) => theme.colors.accent};
+    }
   }
 `;
 
@@ -60,12 +75,11 @@ const Input = styled(Field)`
   background-color: ${p => p.theme.colors.bg};
   color: ${p => p.theme.colors.black};
   padding: 11px 14px 10px 14px;
-  outline: 1px solid ${p => p.theme.colors.accent};
-  border: none;
+  border: 1px solid ${p => p.theme.colors.accent};
+  outline: none;
   border-radius: 40px;
   cursor: pointer;
-  carent-color: ${p => p.theme.colors.accent};
-  transition: all 100ms ease-in;
+  caret-color: ${p => p.theme.colors.accent};
 
   @media ${p => p.theme.media.tablet} {
     height: 48px;
@@ -91,15 +105,6 @@ const Input = styled(Field)`
 
   &::-ms-reveal {
     display: none;
-  }
-
-  &:focus,
-  &:hover {
-    outline: 2px solid ${p => p.theme.colors.accent};
-
-    @media screen and (min-width: 768px) {
-      outline-width: 3px;
-    }
   }
 `;
 
@@ -289,6 +294,7 @@ const steyles = {
   Container,
   Forma,
   Title,
+  InputWrap,
   Input,
   Label,
   RadioLabel,

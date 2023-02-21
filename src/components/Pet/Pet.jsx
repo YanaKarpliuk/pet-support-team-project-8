@@ -73,6 +73,7 @@ const Pet = ({
             await dispatch(removeUserPet(_id));
           }}
           aria-label="delete my pet"
+          disabled={isDeletePetLoading}
         >
           <DeleteIcon />
         </DeleteBtn>
