@@ -7,7 +7,7 @@ import friendsSelectors from '../../redux/friends/friendsSelectors';
 import { useEffect } from 'react';
 import friendsOperations from '../../redux/friends/friendsOperation';
 
-const { selectFriends, selectFriendsError, selectIsFriendsLoading } = friendsSelectors;
+const { selectFriends, selectIsFriendsLoading } = friendsSelectors;
 const { fetchFriends } = friendsOperations;
 
 const {
@@ -32,7 +32,7 @@ const OurFriendsPage = () => {
 
   const dispatch = useDispatch();
   const friends = useSelector(selectFriends);
-  const error = useSelector(selectFriendsError);
+  // const error = useSelector(selectFriendsError);
   const loading = useSelector(selectIsFriendsLoading);
 
   useEffect(() => {
