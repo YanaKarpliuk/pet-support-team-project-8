@@ -2,7 +2,7 @@
   "name": "pet-support-team-project-8",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yanakarpliuk.github.io/pet-support-team-project-8/",
+  "homepage": "https://pet-support.netlify.app",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
