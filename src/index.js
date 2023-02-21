@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  HashRouter,
+  BrowserRouter,
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import './index.css';
@@ -17,11 +17,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <HashRouter>
+      <BrowserRouter basename='pet-support-team-project-8'>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
-      </HashRouter>
+      </BrowserRouter>
     </PersistGate>
   </Provider>
 );
