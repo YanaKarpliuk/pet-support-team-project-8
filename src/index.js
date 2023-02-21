@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter basename='pet-support-team-project-8'>
+      <BrowserRouter>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
