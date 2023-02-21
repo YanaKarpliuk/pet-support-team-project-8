@@ -15,6 +15,7 @@ import authStore from './auth/authReducer';
 import userReducer from './user/slice';
 import { searchReducer } from './search/searchSlice';
 import { newsReducer } from './news/newsSlice';
+import { friendsReducer } from './friends/friendsSlice';
 import { noticesReducer } from './notices/noticesSlice';
 
 const authPersistConfig = {
@@ -30,6 +31,7 @@ const store = configureStore({
     search: searchReducer,
     news: newsReducer,
     notices: noticesReducer,
+    friends: friendsReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
